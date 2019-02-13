@@ -1,0 +1,20 @@
+Title: 虚拟机的区别
+Date: 2010-12-20 16:04:01
+URL: /2010/12/vm-compare/
+Tags: hyperv , VMware , Windows
+
+Hyper-V Server 2008和Windows Server 2008里面带的Hyper-V。显然前者更弱一点啦。当然，免费也是他的优势。
+
+[http://www.microsoft.com/hyper-v-server/en/us/default.aspx](http://www.microsoft.com/hyper-v-server/en/us/default.aspx "http://www.microsoft.com/hyper-v-server/en/us/default.aspx")
+
+![](http://i.microsoft.com/global/hyper-v-server/en/us/PublishingImages/Home-table-2.gif)
+
+VMWare的产品线对比
+
+[http://www.vmware.com/products/vsphere/esxi-and-esx/compare.html](http://www.vmware.com/products/vsphere/esxi-and-esx/compare.html "http://www.vmware.com/products/vsphere/esxi-and-esx/compare.html")
+
+[![image](/wp-content/uploads/2010/12/image_thumb3.png "image")](/wp-content/uploads/2010/12/image3.png)
+
+VMWare和MS的产品对比，当然，是VMWare做的…
+
+[![Compare VMware vSphere Kits for Cloud Computing, Server and Data Center Virtualization](/wp-content/uploads/2010/12/Compare-VMware-vSphere-Kits-for-Cloud-Computing-Server-and-Data-Center-Virtualization_thumb.jpg "Compare VMware vSphere Kits for Cloud Computing, Server and Data Center Virtualization")](/wp-content/uploads/2010/12/Compare-VMware-vSphere-Kits-for-Cloud-Computing-Server-and-Data-Center-Virtualization.jpg)

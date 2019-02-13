@@ -1,0 +1,49 @@
+Title: H3C-S7510-E使用CF卡保存日志
+Date: 2010-10-13 09:25:11
+URL: /2010/10/h3c-save-log-to-cf-card/
+Tags: h3c , syslog
+
+CF卡买的是创见的2G 133x卡，太大的怕不识别。
+
+[http://www.360buy.com/product/123621.html](http://www.360buy.com/product/123621.html "http://www.360buy.com/product/123621.html")
+
+20101101更新：KingMax的也可以：[http://www.360buy.com/product/208724.html](http://www.360buy.com/product/208724.html "http://www.360buy.com/product/208724.html")，同样2G。
+
+109米，插上去直接就可以识别了，也没格式化。
+  > [S7510E-2]display device cf-card      
+> CF Card Information in slot 5 :       
+> Status: Normal       
+> Size&#160; : 2004 MB
+> 
+> [S7510E-2]
+> 
+> &#160;  
+
+先看一下当前的日志文件配置：
+  > &lt;S7510E-2&gt;display logfile summary      
+> &#160; Log file is enabled.       
+> &#160; Channel number : 9       
+> &#160; Log file size quota : 1 MB       
+> &#160; Log file directory : cf:/logfile       
+> &#160; Writing frequency : 24 hour 0 min 0 sec       
+> &lt;S7510E-2&gt;
+> 
+> &#160;  
+
+注意要在普通模式下，不要进system-view。
+
+在cf卡下建立一个目录logfile
+  > &lt;S7510E-2&gt;mkdir cfa0:/logfile
+> 
+> %Created dir cfa0:/logfile.
+> 
+> &lt;S7510E-2&gt;  
+
+将日志保存到cfa0下：
+  > [S7510E-2]info-center logfile switch-directory cfa0:/  
+
+注意是system-view的命令。
+
+然后打logfile save就可以把日志保存到cf卡了。
+
+看日志的话，用more命令，和linux一样。

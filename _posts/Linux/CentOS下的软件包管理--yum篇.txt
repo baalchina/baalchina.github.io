@@ -1,0 +1,70 @@
+Title: CentOS下的软件包管理--yum篇
+Date: 2008-08-06 20:13:34
+URL: /2008/08/centos下的软件包管理-yum篇/
+Tags: Linux , Yum
+
+2008-07-15 09:03
+CentOS下的软件包管理--yum篇
+
+★YUM介绍
+在CentOS和Fedora Core得发行版中，采用了一种叫做yum得软件包综合管理工具，它的全称是Yellowdog Updater,Modified，这个工具并不是CentOS开发的，而是由Yellow Dog Linux开发的软件包综合管理工具。作为软件包综合管理工具除了yum外，还有DebianGNU/Linux所采用的APT和Red Hat Enterprise Linux等所采用的up2date。
+它们的共同特点都是：
+
+* 通过网络安装和升级软件包
+* 自动解决软件包间的依存关系
+这里请注意,Yum的软件包升级的软件包并不是最新的软件包，而是CentOS确认的安全稳定，在CentOS下能够很好的系统结合的软件包，关于最新软件包的安装更新请参照CentOS下的软件包管理--rpm篇
+
+★Yum利用准备
+在使用yum之前，最基本的事情就是要先导入GPG公开key，更改还有就是软件包下载的网站（yum配置文件中定义的软件包下载地址）。
+
+GPG公开key
+RPM软件包都有电子签名，用这个电子签名来判断软件包有没有被篡改，数据有无破损是否完整，正因为这样才要导入开发组织配布的GPG公开key。那这个GPG公开key可以从软件包发布站和CD-ROM/DVD-ROM获得，在系统下被默认安装在/usr/share/doc/centos-release-4/RPM-GPG-KEY下，这里还有一个一模一样的文件/usr/share/doc/centos-release-4/RPM-GPG-KEY-centos4。倘若你只是利用centos.org的镜像站点的话，那么这个公开key是默认被导入了的，在我们的网站上面你可以看到，非官方库利用的时候，我们也导入了这个GPG公开key，参照http://www.centospub.com/make/newenv.html下的定义非官方库的操作。
+★导入GPG的公开key的方法：
+#rpm –import GPGkey的路径或网络文件
+
+★更新软件包下载镜像地址的设定
+Cent0S的镜像下在网站分布在世界的很多地方，默认的设定是centos.org，中国镜像分布在中国的上海，香港还有福建。修改软件包下载镜像站点是为了提高软件包下载速度。
+Yum的设定文件是/etc/yum.repos.d/CentOS-Base.repo。关于站点更改的内容请参照本站问题解答版主Chao的“CentOS终于有了中国镜像!”的文章。
+在这里提醒更改文件设置的用户，一定要将原文件作备份后再修改，或者将原来的文件内容注释掉，而不是删除或覆盖原设置，并在文件中加以注释，比如什么时间更改的，由谁更改的，更改的内容等信息，这对系统的管理维护有好处。
+
+★使用yum更新系统及软件
+在本站的配置祥解中，大家多次看到我们采用了yum安装软件的内容。
+关于使用yum的详细信息，大家可以参照fedore.clinux.org的使用yum管理软件的文档。
+
+★常用的yum参数选项
+使用方法
+例：
+#yum check-update
+#yum remove 软件包名
+#yum install 软件包名
+#yum update 软件包名
+
+选项
+
+说明
+check-update 显示可升级的软件包
+clean 删除下载后的旧的header。和clean all相同
+clean oldheaders 删除旧的headers
+clean packages 删除下载后的软件包
+info 显示可用软件包信息
+info 软件包名 显示指定软件包信息
+install 软件包名 安装指定软件包
+list 显示可用软件包
+list installed 显示安装了的软件包
+list updates 显示可升级的软件包
+provides 软件包名 显示软件包所包含的文件
+remove 软件包名 删除制定的软件包，确认判定指定软件包的依存关系。
+search 关键字 利用关键字搜索软件包。搜索对象是，RPM文件名，Packager（包），Dummary，Description的各型
+update 升级所有的可升级的软件包
+update 软件包名 升级指定的软件包
+
+选项
+
+说明
+groupinstall 安装指定的组
+groupupdate 安装了的组成员软件包更新
+grouplist 安装了的组和可以安装的组一览显示
+groupremove 删除指定的组
+groupinfo 指定组所包含的软件包显示
+
+http://www.21andy.com/blog/20071116/661.html

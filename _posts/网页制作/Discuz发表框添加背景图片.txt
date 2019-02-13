@@ -1,0 +1,25 @@
+Title: Discuz发表框添加背景图片
+Date: 2008-08-06 14:23:49
+URL: /2008/08/discuz发表框添加背景图片/
+Tags: Discuz , 网页制作
+
+其实就是一个背景图片了。很简单。
+
+首先做一个图片，比如叫做_images/post_bg.gif_，背景设为透明。
+
+修改forumdisplay.htm以及viewthread.htm模板，找到
+
+
+
+
+
+修改为：
+
+
+
+
+
+
+红色为修改部分。
+
+注：D61和D6相同，无需修改。

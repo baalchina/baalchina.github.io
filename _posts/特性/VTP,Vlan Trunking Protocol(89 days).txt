@@ -1,0 +1,21 @@
+Title: VTP,Vlan Trunking Protocol(89 days)
+Date: 2009-04-26 19:29:30
+URL: /2009/04/vlan-trunking-protocol/
+Tags: ccie , vtp
+
+## VTP
+
+&#160;
+
+VTP和Trunking的关系，也就是他通过Trunking传输。其他没啥关联了。
+&nbsp;
+
+1.  VTP通告VLAN ID，VLAN name以及VLAN Type。但不通告VLAN与接口的关系。
+2.  当修改Vlan信息后，VTP序号自动加一，并通告出去。
+3.  Cisco交换机VTP默认在Server模式，没有名字。当配置了一个Domain Name之后就会通告出去，当其他交换机收到更新时会将自己的Null改为该VTP Domain Name。注意这一点，即使其他交换机的Domain Name为空，他也会受到影响。
+4.  Client以及Transparent模式不保存配置。
+5.  Normal VLAN，1~1005。VTP 1&amp;2支持，保存在vlan.dat中。
+6.  Extend-range VLAN，1006~4094，不能用vlan database编辑，不存在vlan.dat中。只能在Transparent透明模式下配置。
+7.  透明模式下编辑VLAN只对本地有效，但是他依旧会转发VTP消息。
+8.  VTP Pruning，默认没有启用。启用之后可以过滤掉不必要的Vlan。  > Switch(config)#vtp pruning     
+> Switch(config-if)#switchport trunking pruning vlan remove vlan-id

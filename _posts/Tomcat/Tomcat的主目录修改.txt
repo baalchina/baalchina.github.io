@@ -1,0 +1,19 @@
+Title: Tomcat的主目录修改
+Date: 2010-12-22 13:50:34
+URL: /2010/12/tomcat-root-dir/
+Tags: Tomcat
+
+网上找了好多，最后稀里糊涂的就好了。大致总结如下，如果错误，概不负责。![微笑](/wp-content/uploads/2010/12/wlEmoticon-smile1.png)
+
+1、删掉conf中的ROOT.xml文件
+
+2、在conf的server.xml中，修改成：
+
+&#160;
+  > &#160; &lt;Host name=&quot;www.nau.edu.cn&quot;&#160; appBase=&quot;&quot;      
+> &#160;&#160;&#160;&#160;&#160;&#160; unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;       
+> &#160;&#160;&#160;&#160;&#160;&#160; xmlValidation=&quot;false&quot; xmlNamespaceAware=&quot;false&quot;&gt;       
+> &lt;Context path=&quot;&quot; docBase=&quot;e:\wwwroot&quot; debug=&quot;0&quot; reloadable=&quot;true&quot;&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+> &#160;&#160; &lt;/Context&gt;&#160;  
+
+重启tomcat，搞定。

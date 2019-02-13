@@ -1,0 +1,174 @@
+Title: MX200配置.Ver.20080909
+Date: 2008-09-09 14:55:08
+Status: private
+URL: /2008/09/mx200-config/
+Tags: config , mx200 , wifi
+
+> *MX-200# show configuration > 
+> # Configuration nvgen'd at 2008-9-09 06:53:28> 
+> # Image 6.0.4.2.0> 
+> # Model MX-200> 
+> # Last change occurred at 2008-9-09 06:52:06> 
+> set ip route default 172.26.9.38 1> 
+> set system name MX-200> 
+> set system ip-address 172.26.9.33> 
+> set system countrycode CN> 
+> set system contact Baalchina> 
+> set system location Njsjxy> 
+> set service-profile nau-1 ssid-name nau-1> 
+> set service-profile nau-1 ssid-type clear> 
+> set service-profile nau-1 auth-fallthru last-resort> 
+> set service-profile nau-1 auth-dot1x disable> 
+> set service-profile nau-1 attr vlan-name user-394> 
+> set service-profile nau-2 ssid-name nau-2> 
+> set service-profile nau-2 ssid-type clear> 
+> set service-profile nau-2 auth-fallthru last-resort> 
+> set service-profile nau-2 auth-dot1x disable> 
+> set service-profile nau-2 attr vlan-name user-395> 
+> set enablepass password 6c8b0d5617bf78b3ec3092a5a7c099de9e0c> 
+> set user admin password encrypted 045a0f0b062f> 
+> set mac-user 00:00:00:00:00:01 group DenyGroup> 
+> set mac-user 00:18:f8:35:72:4a group DenyGroup> 
+> set radio-profile default service-profile nau-1> 
+> set radio-profile default service-profile nau-2> 
+> set ap 1 serial-id 0790900696 model MP-71  > 
+> set ap 1 name Jingxiu.S106> 
+> set ap 1 radio 1 mode enable> 
+> set ap 2 serial-id 0790600196 model MP-71  > 
+> set ap 2 name Jinxiu.S107> 
+> set ap 2 radio 1 mode enable> 
+> set ap 3 serial-id 0790600113 model MP-71  > 
+> set ap 3 name Jinxiu.S102> 
+> set ap 3 radio 1 mode enable> 
+> set ap 4 serial-id 0790900131 model MP-71  > 
+> set ap 4 name Jinxiu.S104> 
+> set ap 4 radio 1 mode enable> 
+> set ap 5 serial-id 0790600081 model MP-71  > 
+> set ap 5 name Jinxiu.N106> 
+> set ap 5 radio 1 mode enable> 
+> set ap 6 serial-id 0790900095 model MP-71  > 
+> set ap 6 name Jinxiu.N108> 
+> set ap 6 radio 1 mode enable> 
+> set ap 7 serial-id 0790600040 model MP-71  > 
+> set ap 7 name Jinxiu.N101> 
+> set ap 7 radio 1 mode enable         > 
+> set ap 8 serial-id 0790900695 model MP-71  > 
+> set ap 8 name Jinxiu.N105> 
+> set ap 8 radio 1 mode enable> 
+> set ap 9 serial-id 0790600009 model MP-71  > 
+> set ap 9 name Jinxiu.N207> 
+> set ap 9 radio 1 mode enable> 
+> set ap 10 serial-id 0790900694 model MP-71  > 
+> set ap 10 name Jinxiu.N208> 
+> set ap 10 radio 1 mode enable> 
+> set ap 11 serial-id 0790900783 model MP-71  > 
+> set ap 11 name Jinxiu.N204> 
+> set ap 11 radio 1 mode enable> 
+> set ap 12 serial-id 0790900099 model MP-71  > 
+> set ap 12 name Jinxiu.N203> 
+> set ap 12 radio 1 mode enable> 
+> set ap 13 serial-id 0790900283 model MP-71  > 
+> set ap 13 name Jinxiu.N201> 
+> set ap 13 radio 1 mode enable> 
+> set ap 14 serial-id 0790900721 model MP-71  > 
+> set ap 14 name Jinxiu.N304> 
+> set ap 14 radio 1 mode enable> 
+> set ap 15 serial-id 0790600064 model MP-71  > 
+> set ap 15 name Jinxiu.N305           > 
+> set ap 15 radio 1 mode enable> 
+> set ap 16 serial-id 0790600228 model MP-71  > 
+> set ap 16 name Jinxiu.N306> 
+> set ap 16 radio 1 mode enable> 
+> set ap 17 serial-id 0790600494 model MP-71  > 
+> set ap 17 name Jinxiu.N303> 
+> set ap 17 radio 1 mode enable> 
+> set ap 18 serial-id 0790600404 model MP-71  > 
+> set ap 18 name Jinxiu.N301> 
+> set ap 18 radio 1 mode enable> 
+> set ap 19 serial-id 0790600069 model MP-71  > 
+> set ap 19 name Jinxiu.N406> 
+> set ap 19 radio 1 mode enable> 
+> set ap 20 serial-id 0790600083 model MP-71  > 
+> set ap 20 name Jinxiu.N408> 
+> set ap 20 radio 1 mode enable> 
+> set ap 21 serial-id 0791100097 model MP-71  > 
+> set ap 21 name Jinxiu.N404> 
+> set ap 21 radio 1 mode enable> 
+> set ap 22 serial-id 0790600320 model MP-71  > 
+> set ap 22 name Jinxiu.N402> 
+> set ap 22 radio 1 mode enable> 
+> set ap 23 serial-id 0790600287 model MP-71  > 
+> set ap 23 name Jinxiu.N506> 
+> set ap 23 radio 1 mode enable> 
+> set ap 24 serial-id 0790600234 model MP-71  > 
+> set ap 24 name Jinxiu.N508> 
+> set ap 24 radio 1 mode enable> 
+> set ap 25 serial-id 0790900542 model MP-71  > 
+> set ap 25 name Jinxiu.N504> 
+> set ap 25 radio 1 mode enable> 
+> set ap 26 serial-id 0790600225 model MP-71  > 
+> set ap 26 name Jinxiu.N402> 
+> set ap 26 radio 1 mode enable> 
+> set ap 27 serial-id 0790600078 model MP-71  > 
+> set ap 27 name Jinhui.W106> 
+> set ap 27 radio 1 mode enable> 
+> set ap 28 serial-id 0790600141 model MP-71  > 
+> set ap 28 name Jinhui.W107> 
+> set ap 28 radio 1 mode enable> 
+> set ap 29 serial-id 0790600071 model MP-71  > 
+> set ap 29 name Jinhui.W108> 
+> set ap 29 radio 1 mode enable> 
+> set ap 30 serial-id 0790600117 model MP-71  > 
+> set ap 30 name Jinhui.W206> 
+> set ap 30 radio 1 mode enable        > 
+> set ap 31 serial-id 0790600150 model MP-71  > 
+> set ap 31 name Jinhui.W208> 
+> set ap 31 radio 1 mode enable> 
+> set ap 32 serial-id 0790600279 model MP-71  > 
+> set ap 32 name Jinhui.W307> 
+> set ap 32 radio 1 mode enable> 
+> set ap 33 serial-id 0790900145 model MP-71  > 
+> set ap 33 name Jinhui.W306> 
+> set ap 33 radio 1 mode enable> 
+> set ap 34 serial-id 0790900308 model MP-71  > 
+> set ap 34 name Jinhui.W308> 
+> set ap 34 radio 1 mode enable> 
+> set ap 35 serial-id 0790600120 model MP-71  > 
+> set ap 35 name Jinhui.3F.Corner> 
+> set ap 35 radio 1 mode enable> 
+> set ap 36 serial-id 0790600453 model MP-71  > 
+> set ap 36 name Jinhui.4F.West> 
+> set ap 36 radio 1 mode enable> 
+> set ap 37 serial-id 0790900578 model MP-71  > 
+> set ap 37 name Jinhui.4F.East> 
+> set ap 37 radio 1 mode enable> 
+> set ap 38 serial-id 0790900064 model MP-71  > 
+> set ap 38 name Jinhui.5F.West        > 
+> set ap 38 radio 1 mode enable> 
+> set ap 39 serial-id 0790600007 model MP-71  > 
+> set ap 39 name Jinhui.5F.East> 
+> set ap 39 radio 1 mode enable> 
+> set ip https server enable> 
+> set ip snmp server enable> 
+> set ip telnet server enable> 
+> set snmp community name nau-read-v1 access read-only> 
+> set snmp protocol v2c enable> 
+> set snmp protocol usm enable> 
+> set vlan 1 port 3> 
+> set vlan 1 port 1> 
+> set vlan 393 name ap-guanli> 
+> set vlan 393 port 1 tag 393> 
+> set vlan 394 name user-394> 
+> set vlan 394 port 1 tag 394> 
+> set vlan 754 name guanli> 
+> set vlan 754 port 1 tag 754> 
+> set vlan 395 name user-395> 
+> set vlan 395 port 1 tag 395> 
+> set interface 1 ip 192.168.143.1 255.255.255.0> 
+> set interface 393 ip 172.30.193.254 255.255.255.0> 
+> set interface 393 ip dhcp-server disable start 172.30.193.200 stop 172.30.193.201> 
+> set interface 754 ip 172.26.9.33 255.255.255.248> 
+> set interface 754 ip dhcp-server disable start 192.168.1.1 stop 192.168.1.254> 
+> set ntp enable> 
+> set ntp server 172.17.13.254> 
+> set ntp server 210.28.92.3

@@ -1,0 +1,14 @@
+Title: mysql的max-allowed-packet
+Date: 2012-12-18 10:59:37
+URL: /2012/12/mysql-max-allowed-packet/
+Tags: Mysql
+
+字面意思，就是发送给mysql的数据允许的最大数据包大小。
+
+参考：
+
+[http://baike.baidu.com/view/3669591.htm](http://baike.baidu.com/view/3669591.htm "http://baike.baidu.com/view/3669591.htm")
+
+&#160;
+
+之所以写这个是因为还原一个dedecms的数据库时，通过dede备份，还原，文章死活打不开---问题是还原备份根本没报错--最后用navicat的时候才报这个错误，发现原来目的服务器的max-allowed-packet设置是1，而dede的某个表字段因为是html，超过了这个大小。

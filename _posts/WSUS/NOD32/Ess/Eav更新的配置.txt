@@ -1,0 +1,10 @@
+Title: NOD32/Ess/Eav更新的配置
+Date: 2008-10-08 19:00:45
+URL: /2008/10/eset-update/
+Tags: eset , nod32 , 病毒库更新
+
+使用的是Nod32 Update Viewer这个软件。当然还有一个正版的升级ID。
+
+在[http://nodview.net.ru](http://nodview.net.ru)下载这个软件，安装。
+
+V3版只需要设置一个Automatic Update,Update Period以及保存位置即可。将保存位置用IIS虚拟目录发布出来，注意设定MIME类型：*,对应application/octet-stream.

@@ -1,0 +1,76 @@
+Title: SSH的安全
+Date: 2010-03-22 14:30:02
+URL: /2010/03/ssh-security/
+Tags: ssh
+
+###### &#160;
+
+几个步骤，自己总结的...不知道是否完善。
+
+&#160;
+     
+
+###### 使用证书登录SSH
+      
+
+###### 不允许root直接登录
+      
+
+###### 关闭密码登录
+      
+
+###### 修改22端口
+      
+
+###### 设定密码错误自动封IP
+   
+
+&#160;
+
+## 1、使用证书登陆SSH
+
+首先生成公钥/私钥对：
+  > [root@bbs ~]#ssh-keygen -t rsa  
+
+输入一个passphase一路回车即可。
+
+此时会生成两个文件：id_rsa和id_rsa.pub。前者是private key，后者是public key。
+
+Public key放在服务器的~/.ssh/authorized_keys中。
+
+Private key放在本机（比如SecureCRT，或者Linux的~/.ssh下）
+
+然后连接就可以了。
+
+&#160;
+
+也可以使用SecureCRT的Tools中的Create Public Key功能，生成一对密钥。然后将.pub传上去就行了。
+
+&#160;
+
+第一次登陆的时候会让你输入passphase，以后就不需要了。
+
+&#160;
+
+## 2、不允许root登录
+
+这个简单，编辑sshd.conf，将
+  > PermitRootLogin no  
+
+即可
+
+## 3、关闭密码登陆
+
+这个也不难，继续编辑sshd.conf
+  > PasswordAuthentication no  
+
+&#160;
+
+## 4、修改SSH端口
+
+sshd_conf里面有个port...啥也不说了...
+
+&#160;
+
+## 5、修改连接次数
+  > MaxAuthTries 6

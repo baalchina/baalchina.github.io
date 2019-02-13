@@ -1,0 +1,73 @@
+Title: H3C-Tips
+Date: 2010-10-08 14:48:21
+URL: /2010/10/h3c-tips/
+Tags: h3c
+
+#### 硬件
+
+1.  S7510E的引擎有LSQ1SRP1CB (Salience VI-Turbo)以及LSQ1MPUB (Salience VI-Lite)等。后者的区别在于取消代理功能，不支持MPLS。  
+
+#### 交换机管理，只启用SSH
+
+首先要生成key，并启用SSH Server
+  > [S7510E-1]public-key local create rsa&#160; 
+> [S7510E-1]ssh server enable  
+
+接下来允许SSH登录
+  > [S7510E-1-ui-vty0-4]display this      
+> #       
+> user-interface aux 0       
+> authentication-mode password       
+> set authentication password simple h3c       
+> user-interface vty 0 4       
+> authentication-mode scheme       
+> #       
+> return       
+> [S7510E-1-ui-vty0-4]  
+
+这里必须要启用AAA scheme。这样SSH才可以登录。
+
+当然，还要建用户：
+  > [S7510E-1-luser-baalchina]display this      
+> #       
+> local-user baalchina       
+> password cipher (@*(@*#(*#(@#(*&amp;@#&amp;       
+> service-type ssh telnet terminal       
+> #       
+> return       
+> [S7510E-1-luser-baalchina]  
+
+允许baalchina用户使用ssh/telnet/terminal登录。
+
+然后最后再把telnet-server禁掉就行了。打完收工。
+
+ps，做的时候小心，不然就连不上了。
+
+#### 只允许特定客户端telnet/ssh到特定的设备地址
+
+如果只允许特定地址，telnet/ssh交换机的特定svi地址，那么就需要通过在user-interface中加入ACL来实现。
+
+先写一个ACL：
+  > [S7510E-1]display acl 3100     
+> Advanced ACL&#160; 3100, named Remote_Access, 2 rules,      
+> for_remote_access_to_switch      
+> ACL's step is 5      
+>  rule 0 permit ip source 172.17.0.0 0.0.0.255 destination 172.16.1.1 0       
+>  rule 5 deny ip (2 times matched)
+> 
+> [S7510E-1]  
+
+172.16.1.1是设备的地址。
+
+再到vty里面加上ACL就ok了。
+  > user-interface vty 0 4     
+>  acl 3100 inbound      
+>  authentication-mode scheme      
+> #
+> 
+> &#160;  
+
+ps，加上这个，其实22端口还是开着的…只是拒绝连接。telnet提示
+  > %connection refused by remote host.  
+
+凯创的就比这个好一点，一条命令，端口都关闭了。

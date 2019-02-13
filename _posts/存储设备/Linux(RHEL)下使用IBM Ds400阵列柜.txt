@@ -1,0 +1,56 @@
+Title: Linux(RHEL)下使用IBM Ds400阵列柜
+Date: 2009-11-13 16:17:52
+URL: /2009/11/using-ds400-in-linux/
+Tags: ds400 , ibm , Linux
+
+服务器是RHEL AS3，内核版本2.4。卡是Qlogic的2430，阵列是ds400。
+
+首先当然是做好访问权限设置了。启动之前Ctrl+Q设置。这个很简单。
+
+&#160;
+
+安装驱动的命令如下：
+  > wget www.nau.edu.cn/qla2x00-v7.07.06-1-dist.tgz     
+> tar xvzf qla2x00-v7.07.06-1-dist.tgz       
+> cd qlogic/      
+> sh -x drvrinstall       
+> ./libinstall      
+> make all SMP=1      
+> make all install       
+> modprobe -v qla2300      
+>  fdisk –l  
+
+至此，顺利的话fdisk -l已经可以看到sdb，也就是阵列了。
+
+我们还要让它自动加载。
+  > vi /etc/modules.conf  
+
+增加两行：
+  > alias scsi_hostadapter2 qla2300_conf     
+> alias scsi_hostadapter3 qla2300  
+
+&#160;
+ 然后做一个镜像，并cp到/boot/  
+  > mkinitrd -f ql2340.img 2.4.21-27.ELsmp     
+> cp ql2340.img /boot/  
+
+编辑grub.conf，添加这个镜像。
+  > vi /etc/grub.conf  
+
+添加：
+  > initrd /initrd-2.4.18-14.img  
+
+&#160;
+
+需要注意的是，生成镜像的时候要对应smp或者非smp生成。然后镜像要放到指定的启动选项下。
+
+&#160;
+
+然后重启，fdisk -l，如果看到sdb，大功告成。
+
+&#160;
+
+Tips:
+
+1.  注意mkinitrd -f ql2340.img 2.4.21-27.ELsmp，和mkinitrd -f ql2340.img 2.4.21-27.EL不是同一个命令哦。
+2.  没加载驱动之前，ds400的光纤卡灯是错误灯状态。

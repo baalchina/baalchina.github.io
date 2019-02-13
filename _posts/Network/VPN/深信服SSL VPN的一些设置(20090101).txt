@@ -1,0 +1,28 @@
+Title: 深信服SSL VPN的一些设置(20090101)
+Date: 2008-12-01 16:22:45
+URL: /2008/12/sinfor-vpn/
+Tags: sinfor , VPN
+
+1、关于证书。
+
+首先在CA中心配置中生成“第三方证书请求”。
+
+然后在对应网站生成一串代码，保存为nauvpn.crt。
+
+然后复制一份，比如nauvpn1.crt。
+
+vpn中点击证书，导入第三方证书，输入这两个文件，重启，即可。
+
+证书，到2012年1月25号的。[nauvpn](/wp-content/uploads/2008/12/nauvpn.rar)
+
+2、关于日志
+
+[http://www.sinfors.com/cn/support/supports_56.htm](http://www.sinfors.com/cn/support/supports_56.htm)，下载LogKeeper，安装。设定好Web端口。
+
+VPN中设定好Log服务器地址即可。
+
+LogKeeper采用的是Apache+PHP环境，支持SQLServer，不过貌似不能修改Log文件的地址？
+
+3、关于超时时间。
+
+在SSLVPN-参数设置-高级配置中。

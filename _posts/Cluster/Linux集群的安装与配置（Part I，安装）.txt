@@ -1,0 +1,163 @@
+Title: Linux集群的安装与配置（Part I，安装）
+Date: 2009-08-11 18:41:35
+URL: /2009/08/heartbeat-configuration/
+Tags: Cluster , ha , heartbeat , Linux
+
+集群的作用有很多，比如HA(high availability)，比如负载均衡等。我这里只做HA，保证可用性。
+
+&#160;
+
+软件用的是开源的heartbeat，[http://www.linux-ha.org](http://www.linux-ha.org "http://www.linux-ha.org")
+
+### 安装详解：
+
+下载软件包：
+  > #wget [http://hg.linux-ha.org/lha-2.1/archive/STABLE-2.1.4.tar.bz2](http://hg.linux-ha.org/lha-2.1/archive/STABLE-2.1.4.tar.bz2)  
+
+&#160;
+
+解压编译并安装
+
+&#160;
+
+&#160;
+  > #./ConfigureMe configure
+> 
+> #make
+> 
+> #make install  
+
+&#160;
+
+可能会少很多软件包，一个个打上就行了。我的CentOS 5.3，安装的时候自定义只选择开发工具，需要以下的包：
+  > #yum install libnet      
+> #yum install glib2-devel       
+> #yum install libxml2-devel(这个没说，但是后面是需要的)
+> 
+> #yum install PyXML  
+
+&#160;
+
+**另外需要注意的是，如果他告诉你缺某个包，你yum之后，重新make还是会报错的，需要重新./configure再make。**这点比较诡异。
+
+### 扫尾搞定配置文件
+  > cp doc/ha.cf /etc/ha.d/      
+> cp doc/haresources /etc/ha.d/       
+> cp doc/authkeys /etc/ha.d/       
+> cp ldirectord/ldirectord.cf /etc/ha.d/  
+
+&#160;
+
+### 服务的启动、停止等
+
+&#160;
+  > /etc/rc.d/init.d/heartbeat start | stop | restert| status  
+
+&#160;
+
+### 安装的Troubleshooting
+
+&#160;
+  > configure: WARNING: The following recommended components noted earlier are missing:      
+> &#160;&#160;&#160;&#160; uuid library, Python.h, security/pam_appl.h, gnutls/gnutls.h, gnutls/gnutls.h       
+> &#160;&#160;&#160; We will continue but you may have lost some non-critical functionality.       
+> configure: error: The following required components noted earlier are missing:       
+> &#160;&#160;&#160;&#160; glib2-devel, libnet       
+> &#160;&#160;&#160; Please supply them and try again.
+> 
+> ./bootstrap exiting due to error (sorry!).  
+
+这个是缺少包了。把几个包yum一下就行了。
+
+### 题外话：
+
+libnet也可以自己编译，这个比较诡异。
+  > wget [http://ncu.dl.sourceforge.net/project/libnet/libnet/0.10.11/libnet-0.10.11.tar.gz](http://ncu.dl.sourceforge.net/project/libnet/libnet/0.10.11/libnet-0.10.11.tar.gz)       
+> cd libnet       
+> cp makfiles/linux.mak port.mak(注意是makfile不是makefile啊)  
+
+&#160;
+  > #yum install hearbeat  
+
+提示如下：
+  > Installing:      
+> heartbeat&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; i386&#160;&#160;&#160;&#160;&#160;&#160; 2.1.3-3.el5.centos&#160;&#160;&#160;&#160;&#160;&#160; extras&#160;&#160;&#160;&#160;&#160;&#160; 1.7 M       
+> Installing for dependencies:       
+> PyXML&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; i386&#160;&#160;&#160;&#160;&#160;&#160; 0.8.4-4&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; base&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1.1 M       
+> heartbeat-pils&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; i386&#160;&#160;&#160;&#160;&#160;&#160; 2.1.3-3.el5.centos&#160;&#160;&#160;&#160;&#160;&#160; extras&#160;&#160;&#160;&#160;&#160;&#160; 213 k       
+> heartbeat-stonith&#160;&#160;&#160;&#160;&#160;&#160; i386&#160;&#160;&#160;&#160;&#160;&#160; 2.1.3-3.el5.centos&#160;&#160;&#160;&#160;&#160;&#160; extras&#160;&#160;&#160;&#160;&#160;&#160; 311 k  
+
+原来是要PyXML这个包，注意大小写
+
+&#160;
+
+接下来继续编译，安装    
+make又错：
+  > cc1: warnings being treated as errors      
+> xml.c: In function 'write_xml_file':       
+> xml.c:635: warning: unused variable 'in'       
+> xml.c: In function 'get_message_xml':       
+> xml.c:775: error: 'BZ_OK' undeclared (first use in this function)       
+> xml.c:775: error: (Each undeclared identifier is reported only once       
+> xml.c:775: error: for each function it appears in.)       
+> xml.c:796: warning: implicit declaration of function 'BZ2_bzBuffToBuffDecompress'       
+> xml.c:799: error: 'BZ_OUTBUFF_FULL' undeclared (first use in this function)       
+> gmake[3]: *** [xml.lo] 错误 1       
+> gmake[3]: Leaving directory `/root/Heartbeat-STABLE-2-1-STABLE-2.1.4/lib/crm/common'       
+> gmake[2]: *** [all-recursive] 错误 1       
+> gmake[2]: Leaving directory `/root/Heartbeat-STABLE-2-1-STABLE-2.1.4/lib/crm'       
+> gmake[1]: *** [all-recursive] 错误 1       
+> gmake[1]: Leaving directory `/root/Heartbeat-STABLE-2-1-STABLE-2.1.4/lib'       
+> make: *** [all-recursive] 错误 1  
+
+这个应该是bz报错，bz是什么？bzip2？
+
+不管了
+  > yum install bzip2-devel  
+
+继续    
+
+编译完成之后有这个提示：
+  > chown hacluster /var/lib/heartbeat/cores/hacluster      
+> chown: “hacluster”: 无效的用户       
+> gmake[2]: [install-exec-local] 错误 1 (忽略)       
+> chmod 700 /var/lib/heartbeat/cores/hacluster       
+> cd /usr/lib/heartbeat;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; \       
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; for file in `ls /usr/share/heartbeat`;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; \       
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; do if [&#160; -d $file ]; then continue; fi; \       
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rm -f $file &amp;&amp; ln -s /usr/share/heartbeat/$file .;&#160;&#160;&#160;&#160;&#160; \       
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; done       
+> gmake[2]: Nothing to be done for `install-data-am'.       
+> gmake[2]: Leaving directory `/root/Heartbeat-STABLE-2-1-STABLE-2.1.4'       
+> gmake[1]: Leaving directory `/root/Heartbeat-STABLE-2-1-STABLE-2.1.4'  
+
+注意用户问题哦。
+
+&#160;
+
+&#160;
+  > [root@linux-ha-a ~]# /etc/rc.d/init.d/heartbeat start     
+> logd is already running      
+> Starting High-Availability services:       
+> [失败]      
+> heartbeat: udpport setting must precede media statementsheartbeat[20883]: 2009/08/13_06:26:00 ERROR: Invalid user id name [hacluster]      
+> heartbeat[20883]: 2009/08/13_06:26:00 ERROR: Bad uid list [hacluster]      
+> heartbeat[20883]: 2009/08/13_06:26:00 ERROR: Invalid apiauth directive [ipfail uid=hacluster]  
+
+这个就是结果啦。
+
+解决方法：
+  > useradd hacluster     
+> groupadd haclient
+> 
+> chown hacluster /var/lib/heartbeat/cores/hacluster      
+> chmod 700 /var/lib/heartbeat/cores/hacluster  
+
+&#160;
+
+这个报错：
+  > heartbeat: udpport setting must precede media statementsheartbeat[21237]: 2009/08/13_06:39:21 ERROR: Auth Key [1] not found in keyfile [/etc/ha.d/authkeys]      
+> heartbeat[21237]: 2009/08/13_06:39:21 ERROR: Authentication configuration error.      
+> heartbeat[21237]: 2009/08/13_06:39:21 ERROR: Configuration error, heartbeat not started.  
+
+这个有点好玩，意思是udpport的设置必须在media设置之前。但是实际上是authkey报错造成的，解决方法就是正确配置authkey。

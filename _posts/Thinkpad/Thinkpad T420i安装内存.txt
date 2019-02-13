@@ -1,0 +1,16 @@
+Title: Thinkpad T420i安装内存
+Date: 2012-04-24 09:29:41
+URL: /2012/04/t420-install-dimm-under-keyboard/
+Tags: t420 , Thinkpad
+
+有台T420i，想加内存。背面的好办，螺丝一拆就装上了，还有一根槽就有点麻烦了，在键盘下面。
+
+&#160;
+
+本来以为很复杂，在网上找了个帖子，是lenovo论坛的，介绍拆了七八个螺丝，基本是把背面的所有螺丝都拆了。结果我拆下来发现还是没法拆键盘。
+
+&#160;
+
+于是到thinkpad官网找资料，中文网找了半天无果，结果到英文网，3min找到一篇文章：[http://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/0a60007_04.pdf](http://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/0a60007_04.pdf)，很详细的告诉你怎么装内存，装内存之前需要拆那些东西都告诉你了。
+
+中文官网咋就这么悲催呢~

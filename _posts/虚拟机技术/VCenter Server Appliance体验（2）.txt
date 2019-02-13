@@ -1,0 +1,40 @@
+Title: VCenter Server Appliance体验（2）
+Date: 2013-04-28 14:55:30
+URL: /2013/04/vmware-vcenter-appliance-2/
+Tags: VMware
+
+刚看到VMWare又出新版本的vc了，于是想测试一把。正好有台esxi版本太老，每次连接都需要下载老版本vclient，干脆一起升级了。
+
+&#160;
+
+于是自己机器上找到一个某版本的vim的iso，装了update manager，导入最新的esxi iso，报错，说不支持。于是想把update manager升级一下。
+
+然后最新的update manager安装时，又告诉我这个最新的“update manager”不支持我“比较老的vcenter appliance”。
+
+于是又想升级vcenter server appliance，看了半天文档，总算明白了。
+
+&#160;
+
+首先去下载这个：
+
+VMware-vCenter-Server-Appliance-5.1.0.10000-1065184-updaterepo.iso，注意名字。
+
+然后在vcenter appliance的虚拟机里面加载这个iso，进入它的web界面。
+
+在update-settings里面，选择use cdrom updates。
+
+然后save，check一下即可。
+
+&#160;
+
+似乎简单不少？
+
+&#160;
+
+另外，发现linux版本的vcenter启动巨慢无比。不知道为什么。
+
+&#160;
+
+参考文档：
+
+[http://pubs.vmware.com/vsphere-51/index.jsp?topic=%2Fcom.vmware.vsphere.upgrade.doc%2FGUID-445E55C7-F9D6-49CE-96AD-C3EA11FE3804.html](http://pubs.vmware.com/vsphere-51/index.jsp?topic=%2Fcom.vmware.vsphere.upgrade.doc%2FGUID-445E55C7-F9D6-49CE-96AD-C3EA11FE3804.html)

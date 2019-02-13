@@ -1,0 +1,16 @@
+Title: CentOS 5使用国内镜像的方法
+Date: 2008-08-25 13:31:23
+URL: /2008/08/centos-yum/
+Tags: centos , Yum
+
+修改CentOS-Base.repo
+cd /etc/yum.repos.d
+mv CentOS-Base.repo  CentOS-Base.repo.save
+wget http://centos.ustc.edu.cn/CentOS-Base.repo.5
+mv CentOS-Base.repo.5 CentOS-Base.repo
+就可以方便的yum了。
+
+第一次用好像会提示你导入一个key。
+
+参考：
+http://centos.ustc.edu.cn/

@@ -1,0 +1,26 @@
+Title: H3C交换机做网关，tracert第一跳不通
+Date: 2011-01-05 14:29:18
+URL: /2011/01/h3c-tracert/
+Tags: h3c , icmp , tracert
+
+S7510E和SecBlade都是如此。问题是因为开启了
+  > ip ttl-expires  
+
+关掉即可。
+
+&#160;
+  > ip ttl-expires enable  
+
+解释如下：
+
+&#160;
+  > 开启ICMP 重定向报文发送功能ip redirects enable     
+> 必选      
+> 缺省情况下，ICMP 重定向报文发送功能      
+> 处于关闭状态
+> 
+> &#160;  
+
+&#160;
+
+摘自手册。

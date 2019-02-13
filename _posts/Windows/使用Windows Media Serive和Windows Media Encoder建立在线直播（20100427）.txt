@@ -1,0 +1,25 @@
+Title: 使用Windows Media Serive和Windows Media Encoder建立在线直播（20100427）
+Date: 2008-03-02 21:21:05
+URL: /2008/03/windows-media-service/
+Tags: MMS , Windows , WMS
+
+> 实现目的：使用Windows编码器实时向服务器（运行Windows Media Service）推送信号，其他用户通过访问服务器上的WMS来播放。
+方式有两种
+
+1.  从编码器(推)：编码器主动发送流。发布点无法手动启动，编码器发送之后自动会启动。发布点形如PUSH:*
+2.  从编码器(拉)：WMS服务器主动去编码器获取数据流。发布点形如：http://encodeurl:port
+这里使用1。
+
+安装配置步骤
+
+1.  首先服务器上安装好Windows Media Service。Win2003可以直接安装。
+2.  创建发布点，名字比如叫做live，内容源就写“Push:*”即可。
+编码器配置部分：
+
+1.  新建会话。输出项选择“向服务器推送”，服务器名称“servername:port”，发布点live。注意不要写http。
+2.  应用，开始编码即可。如果一切正常，可以看到服务器上的WMS发布点已经是绿色的，而不是之前停止状态了。
+注意：
+
+1.  需要验证，可以在Windows 2003里面新建一个User用户，然后编码器使用该用户登录。
+2.  端口，可以在WMS--选择服务器--属性--控制协议--WMS Http服务器控制协议中修改。
+3.  **需要对用户授权才可以使用。默认everyone是有权限读取，administrator是有权限发布的。你需要把你新建的那个用户，在服务器级别和发布点级别分别授权给发布权限。否则是无法发布的。**

@@ -1,0 +1,10 @@
+Title: 当你发现cacti的自定义模板无法调取数据的时候，最简单的方法...
+Date: 2013-01-03 21:38:13
+URL: /2013/01/cacti-custom-template/
+Tags: cacti
+
+就是删了所有的东西全部重来一遍！
+
+包括data source, graph以及device。
+
+折腾好久没搞定的，删了重来一遍就好了。当然，要仔细一点的做~

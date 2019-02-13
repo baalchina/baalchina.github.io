@@ -1,0 +1,11 @@
+Title: 一个相册程序TiltViewer
+Date: 2010-02-11 15:10:32
+URL: /2010/02/tiltviewer/
+Tags: tiltviewer
+
+flash的，效果不错哦。
+
+参看：
+
+[http://www.simpleviewer.net/tiltviewer/app/](http://www.simpleviewer.net/tiltviewer/app/ "http://www.simpleviewer.net/tiltviewer/app/")    
+[http://hezi.info/logs/tiltviewer.html](http://hezi.info/logs/tiltviewer.html "http://hezi.info/logs/tiltviewer.html")

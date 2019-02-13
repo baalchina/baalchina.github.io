@@ -1,0 +1,28 @@
+Title: Linux打开telnet-server功能
+Date: 2010-02-28 16:16:31
+URL: /2010/02/linux-telnet/
+Tags: Linux , Telnet
+
+默认linux是关闭telnet-server功能的，我们来安装它。
+
+安装：
+  > [root@disk shell]# yum install telnet-server  
+
+telnet-server通过xinetd来控制的，编辑打开：
+  > [root@disk shell]# vi /etc/xinetd.d/telnet  
+
+将disable修改为no。
+
+重启一下xinetd:
+  > [root@disk shell]# service xinetd restart     
+> Stopping xinetd: [FAILED]      
+> Starting xinetd: [&#160; OK&#160; ]      
+> [root@disk shell]#  
+
+&#160;
+
+另外还要记得修改防火墙。并通过ntsysv将telnet加成服务。
+
+&#160;
+
+写完上面的我发现以前已经写过类似的了...[http://www.baalchina.net/2008/08/linux%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ae%89%e8%a3%85telnet-server/](http://www.baalchina.net/2008/08/linux%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ae%89%e8%a3%85telnet-server/)

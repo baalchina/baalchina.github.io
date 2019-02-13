@@ -1,0 +1,8 @@
+Title: Dell服务器跳过Raid卡
+Date: 2009-10-31 16:59:52
+URL: /2009/10/dell-skip-raid/
+Tags: dell
+
+PowerEdge2950服务器，开机的时候按Ctrl+R进Raid卡配置，Ctrl+E进入远程管理卡配置，结果今天不小心在提示Ctrl+R的时候按得Ctrl+E，结果提示跳过了Raid卡配置，随后报OS找不到。
+
+一个有点意思的功能。

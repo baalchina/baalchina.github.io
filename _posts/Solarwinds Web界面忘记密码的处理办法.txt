@@ -1,0 +1,8 @@
+Title: Solarwinds Web界面忘记密码的处理办法
+Date: 2008-12-13 13:04:03
+Status: draft
+URL: //p=216
+
+> 开始---程序---Microsoft SQL Server---企业管理器，依次展开左边窗口的各栏，找到并展开“数据库”--“NetperfMon"，鼠标右键选择右边的“Accounts”---“打开表”---“返回所有行”，把"Admin"同行的Password 字段里的那一长串字符给删掉，退出企业管理器，这样就清空了Admin的密码，登陆进去再重新设置Admin的密码即可。
+
+http://www.netexpert.cn/thread-14179-1-16.html

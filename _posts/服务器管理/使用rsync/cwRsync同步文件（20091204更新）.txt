@@ -1,0 +1,201 @@
+Title: 使用rsync/cwRsync同步文件（20091204更新）
+Date: 2009-11-10 10:59:31
+URL: /2009/11/rsync-and-cwrsync/
+Tags: cwrsync , rsync , 同步 , 备份
+
+&#160;
+
+rsync最早是在linux下的一个同步工具，后来有了Windows版本，叫做cwRsync。
+
+&#160;
+
+目的很简单，同步文件。
+
+#### 客户端和服务端都是Windows
+
+首先服务端安装cwRsync的Server。注意安装的时候会新建一个用户，用作启动该服务。
+
+安装完成之后，将服务设置为自动并启动之。服务叫做RsyncServer。
+
+编辑rsyncd.conf，和Linux下是一个德行哦~
+  use chroot = false
+strict modes = false
+hosts allow = *
+log file = rsyncd.log
+secrets file = password.txt 
+
+[web]
+path&#160; = /cygdrive/e/rsync
+read only = false
+transfer logging = no
+auth users = 123
+
+
+解释下。
+
+&#160;
+
+> host allow，就是允许的host啦。
+> 
+> secret file就是密码文件。你可以把一个用户名密码放在里面，格式是username:password
+
+&#160;
+
+> [web]，有点类似于http服务中的虚拟目录。
+> 
+> path就是他的目录，注意格式，比如e:\rsync，写成/cygdrive/e/rsync
+> 
+> read only，不能只读哦，否则无法复制的。
+> 
+> auth users，也就是只有123这个用户可以写。
+
+&#160;
+
+然后客户端就比较简单了。安装cwRsync，执行以下命令即可同步：
+
+> rsync -r -v /cygdrive/e/webapp [123@1.1.1.1::web](mailto:123@1.1.1.1::web)
+
+意思就是，把e:\webapp目录下的所有文件（-r参数），同步到1.1.1.1的这台主机上的web“虚拟目录”中，使用账号123。当然，也可以挂一个密码文件。
+
+> rsync -r -v --password-file=password.txt /cygdrive/e/u3 [123@1.1.1.1::web](mailto:123@1.1.1.1::web)
+
+注意password-file的写法是直接把密码写在里面，我一开始还是按照123:123这个写法写的，结果死活过不去。
+
+&#160;
+
+#### Linux客户端
+
+首先下载编译安装
+
+> wget [http://samba.anu.edu.au/ftp/rsync/rsync-3.0.6.tar.gz](http://samba.anu.edu.au/ftp/rsync/rsync-3.0.6.tar.gz)
+> 
+> tar xvzf rsync-3.0.6.tar.gz
+> 
+> cd rsync-3.0.6
+> 
+> ./configure --help
+> 
+> ./configure --prefix=/usr/local/rsync &amp;&amp; make &amp;&amp; make install
+
+&#160;
+
+使用和Windows客户端基本类似。但是注意passwordfile的权限。比如777的话，那就会提示：
+
+> password file must not be other-accessible 
+> 
+> continuing without password file
+
+也就是告诉你别人不能看到他。必须要600权限。
+
+另外，所有者也应当是root，如果用root运行rsync的话。
+
+&#160;
+
+#### 错误解决方案
+
+> rsync: failed to connect to 210.28.93.4: No route to host (113)
+
+这个嘛，是server端口的防火墙端口没开。
+
+> @ERROR: chroot failed 
+> 
+> rsync error: error starting client-server protocol (code 5) at main.c(1503) [sender=3.0.6]
+
+这个嘛，是服务器上忘记新建目录了…
+
+> sending incremental file list 
+> 
+> rsync: connection unexpectedly closed (446032 bytes received so far) [sender] 
+> 
+> rsync error: error in rsync protocol data stream (code 12) at io.c(600) [sender=3.0.6]
+
+原因不明。好像是因为本地的文件改变了，然后查找列表，过了超时时间于是报错。
+
+> rsync warning: some files vanished before they could be transferred (code 24) at main.c(1039) [sender=3.0.6]
+
+本地文件在同步过程中被删除了。
+
+#### Tips:
+
+1.  cwRsyncServer的权限问题：如果Server端是Windows，安装的时候选择的服务运行用户又是默认的svccwrsync的话，就会发现同步上去的文件都是属于这个用户的，administrator也打不开，必须要获取所有权才可以。这个一直没有办法解决，我是变通通过将服务修改为administrator执行来解决的。待研究。参考：[http://www.itefix.no/i2/node/12115#comment-15208](http://www.itefix.no/i2/node/12115#comment-15208 "http://www.itefix.no/i2/node/12115#comment-15208")2.  如果文件很大，基本上会消耗很长时间…比如，    > 10828136680 100%&#160;&#160;&#160; 2.50MB/s&#160;&#160;&#160; 1:08:49 (xfer#1, to-check=8/12)
+> 
+>     sent 102912 bytes&#160; received 832464 bytes&#160; 200.49 bytes/sectotal size is 10868802803&#160; speedup is 11619.72
+
+> -rw-r--r-- 1 root root 10826577139 12-01 11:15 error.log 
+> 
+> -rw------- 1 root root 10734010368 12-01 22:02 .error.log.Kd5u45
+
+下面一个类似临时文件的东东，会不断的增长，直到达到目标大小。我用VMware+iSCSI测试的时候，几乎卡死了。如果这个文件还是在不停增长的，应该会选择开始传输他的时间点进行同步。
+
+1.  但是rsync增量的时候效果还是不错的。80多w文件的bbs附件，第一次备份花了8个半小时，但是后期增量，在sending incremental file list这个过程只需要大概1分钟左右就可以过掉了。效果不错。
+
+&#160;
+
+#### 最后贴一下自己的bbs备份的rsyncd.conf
+
+> ################################ 
+> 
+> #Rsync Conf for BBS.ATTACHMENTS# 
+> 
+> #&#160;&#160;&#160;&#160;&#160;&#160; by baalchina&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; #&#160;&#160;&#160;&#160; 
+> #&#160;&#160;&#160;&#160;&#160;&#160; Last Modified&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; # 
+> 
+> #&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2009-12-01&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; # 
+> 
+> ################################
+> 
+> #General Setting 
+> 
+> pid file = /var/run/rsyncd.pid 
+> 
+> port = 873 
+> 
+> address = 210.28.93.4
+> 
+> uid = root 
+> 
+> gid = root
+> 
+> use chroot = yes 
+> 
+> read only = no
+> 
+> #ACLS 
+> 
+> hosts allow = 210.28.92.4/255.255.255.255 
+> 
+> hosts deny = *
+> 
+> max connections = 5 
+> 
+> motd file = /etc/rsyncd/rsyncd.motd
+> 
+> #Log file 
+> 
+> log format = %t %a %m %f %b 
+> 
+> syslog facility = local3 
+> 
+> #timeout = 800
+> 
+> ################################### 
+> 
+> #This is virtual directory setting# 
+> 
+> ###################################
+> 
+> #bbs attachments setting 
+> 
+> [attach] 
+> 
+> path = /data/attachments 
+> 
+> list = yes 
+> 
+> ignore errors 
+> 
+> auth users = attach 
+> 
+> secrets file = /etc/rsyncd/rsyncd.secrets 
+> 
+> comment = for nau bbs attachments

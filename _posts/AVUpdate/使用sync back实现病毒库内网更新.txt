@@ -1,0 +1,28 @@
+Title: 使用sync back实现病毒库内网更新
+Date: 2009-03-19 10:40:19
+URL: /2009/03/av-lan-update/
+Tags: kaspersky , mcafee , syncback , 内网更新
+
+本来是用脚本的，但是不太方便，自己也不熟悉shell。
+
+最后是通过虚拟机+syncback实现的。
+
+&#160;
+
+虚拟机很简单，装个xp sp3，256m内存，最简单系统就ok。
+
+然后安装相应的杀软，比如kaspersky,mcafee。nod系列有其他的更新方法，不用这个。
+
+&#160;
+
+kav或者mcafee设定本地镜像目录，安装sync back，[http://www.onlinedown.net/soft/71233.htm](http://www.onlinedown.net/soft/71233.htm "http://www.onlinedown.net/soft/71233.htm")
+
+这是一个备份+同步的软件。设定定时操作，同步到update服务器的ftp即可。
+
+&#160;
+
+记下来，以免忘记。
+
+&#160;
+
+ps,咖啡的库真大..399m，难怪老是同步失败。

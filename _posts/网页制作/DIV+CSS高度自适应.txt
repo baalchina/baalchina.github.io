@@ -1,0 +1,20 @@
+Title: DIV+CSS高度自适应
+Date: 2010-07-07 14:12:01
+URL: /2010/07/css-height/
+Tags: css , div
+
+[![css](/wp-content/uploads/2010/07/css_thumb.jpg "css")](/wp-content/uploads/2010/07/css.jpg)
+
+一共4个DIV。
+
+最外面的容器main，css属性如下：
+  > #main{overflow:hidden;}
+> 
+> &#160;  
+
+然后left个rigth添加属性如下：
+  > #left,#right{padding-bottom:5000px;margin-bottom:-5000px;}&#160;&#160;  
+
+搞定。
+
+IE8和FF3测试通过。

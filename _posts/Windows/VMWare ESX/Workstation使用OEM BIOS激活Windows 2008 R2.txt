@@ -1,0 +1,39 @@
+Title: VMWare ESX/Workstation使用OEM BIOS激活Windows 2008 R2
+Date: 2010-02-23 17:02:03
+URL: /2010/02/win-2008-r2-on-vmware/
+Tags: VMware , Windows
+
+2008R2的激活一直是个问题。不过有了oem激活就好多啦。
+
+我安装时用的是这个iso
+  > SW_DVD5_Windows_Svr_DC_EE_SE_Web_2008R2_64-bit_ChnSimp_X15-59777.ISO  
+
+新建虚拟机，然后指定bios文件，如果是workstation的话，就编辑.vmx文件，在最后一行添加
+  > bios440.filename = &quot;dell.rom&quot;  
+
+如果是ESX的话，就编辑虚拟机，选项，配置参数，同样添加如上。图上我机器开着，所以是灰色的。
+
+[![r2](/wp-content/uploads/2010/02/r2_thumb.jpg "r2")](/wp-content/uploads/2010/02/r2.jpg)
+
+不用担心路径问题，写错了会报错的。hoho。
+
+然后启动系统，正常安装Windows。启动好之后打开cmd，运行如下即可
+
+导入证书：
+  > slmgr.vbs -ilc c:\dell.XRM-MS  
+
+然后导入序列号，如果是标准版：
+  > standard     
+> slmgr.vbs -ipk D7TCH-6P8JP-KRG4P-VJKYY-P9GFF  
+
+如果是企业版：
+  > enterprise     
+> slmgr.vbs -ipk BKCJJ-J6G9Y-4P7YF-8D4J7-7TCWD  
+
+&#160;
+
+然后就可以看到激活成功啦。
+
+&#160;
+
+感谢刘老大的rom以及证书文件~

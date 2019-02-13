@@ -1,0 +1,18 @@
+Title: 动态磁盘换系统之后无法识别的问题
+Date: 2009-09-08 15:42:18
+URL: /2009/09/dynamic-disk-repair/
+Tags: 动态磁盘
+
+原有系统是vista，然后第二硬盘是动态硬盘。后来重装了xp，于是第二硬盘就认不出来了，显示是动态硬盘，没有导入选项，只有一个“转换为基本磁盘”选项，转了就死了…
+
+一番搜索，找到这个，成功解决：
+
+[http://hi.baidu.com/myguanli/blog/item/c2c2adaeb64efcc47dd92af5.html](http://hi.baidu.com/myguanli/blog/item/c2c2adaeb64efcc47dd92af5.html "http://hi.baidu.com/myguanli/blog/item/c2c2adaeb64efcc47dd92af5.html")
+
+用的是TestDisk这个软件，开源的：
+
+[http://www.cgsecurity.org/wiki/TestDisk_Download](http://www.cgsecurity.org/wiki/TestDisk_Download "http://www.cgsecurity.org/wiki/TestDisk_Download")
+
+&#160;
+
+原因是动态磁盘的分区信息是存在主硬盘上的，然后搞了一把之后，发现原来坐在上面的thinkpad隐藏分区也可见了…嘿嘿

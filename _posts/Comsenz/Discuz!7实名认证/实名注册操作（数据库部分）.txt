@@ -1,0 +1,26 @@
+Title: Discuz!7实名认证/实名注册操作（数据库部分）
+Date: 2009-09-08 15:00:10
+URL: /2009/09/discuz-real-name-database/
+Tags: Discuz , 实名注册 , 实名认证
+
+这个部分其实比较简单的，主要是体力活，嘿嘿。
+
+我们最终要导入到cdb_students表中的内容是如下：
+  > INSERT INTO `cdb_students` (`id`, `xszhm`, `xm`, `sfzhm`, `used`) VALUES      
+> (112, '01010101, '我的名字', '身份证号码', '0');
+> 
+> &#160;  
+
+我们从教务处/招生办拿来的数据，可能是各种各样的数据库，用excel打开，然后插入一行，作为id。注意目前库里的字段数，那么新的id就从现有id+1开始。然后拖动一下，让excel自动排序。
+
+然后再在excel的每一列中间插入一列，随便输入几个字符，只要不一样就行了，另存为纯文本，最后变成：
+
+baidu01sohu01010101sina我的名字google身份证netease
+
+然后，再用ultraedit打开，将baidu,sohu…这类无意义的字符串替换成你需要替换的sql语句的字符串。
+
+然后，导入到phpmyadmin里面。
+
+&#160;
+
+笨方法，但是很有效。

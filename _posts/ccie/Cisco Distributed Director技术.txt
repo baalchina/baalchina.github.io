@@ -1,0 +1,11 @@
+Title: Cisco Distributed Director技术
+Date: 2008-12-07 15:31:41
+URL: /2008/12/distributed-director/
+Tags: cisco , distributed director , ios
+
+其实就是CDN的技术了。
+  > 只需“一击”之劳如果你单击某个链接，目的是下载某个发布在 microsoft. com 软件下载程序中的文件（软件下载中心的大多数文件），那是因为它确实很有意思。一种由 Cisco 公司创建的、名为 Distributed Director 的技术，可自动确定用户访问该下载软件最适合的下载路线。 过去，我们使用很多全球数据中心站点，所以您必须在站点列表中选择您认为离您需要的位置最近的站点。现在，您不必再为了下载一个文件而成为地理专家。所有文件都会发布在四个美国数据中心以及在东京和伦敦的国际数据中心中。您根本不必选择站点。 下面讲一讲它是如何工作的。无论您在什么时候需要一个域名，如 download.microsoft.com，计算机首先要将它解析成为 Internet 中的某个 IP 地址。在正常情况下，Web 浏览器向域名服务器要求一个 IP 地址，然后将您送到那个服务器中。Microsoft 的域名服务器，不仅仅是对一套 IP 地址进行自动响应，还会将要求转发给 Distributed Director 路由器。然后该路由器会检查每个数据中心的专用路由器，这些数据中心中包括 download.microsoft.com 服务器，并且在地理学和性能的基础上，决定哪个服务器最适于响应该要求。 一旦确定了最好的数据中心，Distributed Director 会给用户的浏览器发送数据中心中相关服务器的 IP 地址。然后浏览器利用该 IP 地址提出下载要求，之后就会将文件从特定的软件下载服务器中发送到用户的计算机中。 不管您信不信，对于软件下载中心来说，这只是一个开端。在我们希望从更多的 Microsoft 资源中集成可下载软件的很长时间以前，您就可发现可下载软件在不断改进。  
+
+[http://www.microsoft.com/china/backstage/archives/sept99_archive.htm](http://www.microsoft.com/china/backstage/archives/sept99_archive.htm "http://www.microsoft.com/china/backstage/archives/sept99_archive.htm")
+
+出现在N3的IOS Feature中。

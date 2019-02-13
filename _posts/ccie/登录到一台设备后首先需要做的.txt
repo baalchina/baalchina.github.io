@@ -1,0 +1,36 @@
+Title: 登录到一台设备后首先需要做的
+Date: 2008-09-06 20:41:26
+URL: /2008/09/first-todo-logging/
+Tags: ccie , 笔记 , 配置
+
+当我们登录到一台路由器/交换机之后（无论真实设备还是模拟器），首先需要做的是：
+> Router(config)#hostname R1> 
+> R1(config)#no ip domain lookup> 
+> R1(config)#line console 0> 
+> R1(config-line)#logging synchronous> 
+> R1(config-line)#no exec-timeout
+作用分别是：
+
+1.  指定Hostname
+2.  关闭域名查找，避免打错命令浪费时间
+3.  logging synchronous的作用就是会让提示出来之后，依旧保存用户之前输入的命令
+4.  使得终端不会超时
+
+看一下使用synchronous之前的提示：
+
+> Router(config)#int e0/0> 
+> Router(config-if)#no shut> 
+> Router(config-if)# ip add 192.> 
+> *Mar  1 00:34:04.370: %LINK-3-UPDOWN: Interface Ethernet0/0, changed state to up> 
+> *Mar  1 00:34:05.372: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet0/0, changed state to up168.1.1 255.255.255.0> 
+> Router(config-if)#
+
+之后
+
+> Router(config)#int e0/0> 
+> Router(config-if)#no sh> 
+> Router(config-if)#ip add 192.16> 
+> *Mar  1 00:35:37.294: %LINK-3-UPDOWN: Interface Ethernet0/0, changed state to up> 
+> *Mar  1 00:35:38.296: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet0/0, changed state to up> 
+> Router(config-if)#ip add 192.168.1.1 255.255.255.0> 
+> Router(config-if)#

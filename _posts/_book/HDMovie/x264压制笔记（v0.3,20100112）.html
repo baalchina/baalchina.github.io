@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>x264压制笔记（v0.3,20100112）</title>
+
+    <meta charset="UTF-8"/>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+    <meta name="HandheldFriendly" content="true"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+    <link href="../asset/farbox/basic.css" type="text/css" rel="stylesheet"/>
+    <link href="../asset/farbox/main.css" type="text/css" rel="stylesheet"/>
+
+    <style type="text/css">
+        
+            span.md_line{margin-bottom:0.5em; display:block; line-height:1.89}
+            .md_line br{ display: none;}
+            
+    </style>
+
+    <script>
+        var flowchat_options = {
+            'x': 0, 'y': 0, 'line-width': 1, 'line-length': 50, 'text-margin': 10, 'font-size': 13,
+            'font-color': '#3c3c3c', 'line-color': '#666666', 'element-color': '#666666', 'fill': 'transparent',
+            'yes-text': 'yes', 'no-text': 'no', 'arrow-end': 'block', 'class': 'flowchart', 'scale': 1,
+            'symbols': { 'start': {}, 'end': {}, 'condition': {}, 'inputoutput': {}, 'operation': {}, 'subroutine': {}}
+        }
+    </script>
+    <script type="text/javascript" src="../asset/other/raphael-min.js"></script>
+    <script type="text/javascript" src="../asset/other/flowchart.js"></script>
+    <script type="text/javascript" src="../asset/other/echarts.min.js"></script>
+
+
+</head>
+
+<body>
+    
+        <a href="../index.html" id="go_to_home"> &lt; home </a>
+    
+    <div id="sidebar">
+        <ul id="sidebar_body">
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../BBS设置-宠物岛.html" class="">BBS设置-宠物岛</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../H3C MSR920路由器配置l2tp vpn.html" class="">H3C MSR920路由器配置l2tp vpn</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../H3C WA2220-AG升级（后继）.html" class="">H3C WA2220-AG升级（后继）</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../MySQL的安装.html" class="">MySQL的安装</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../OSPF的数据库交换.html" class="">OSPF的数据库交换</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../Solarwinds Web界面忘记密码的处理办法.html" class="">Solarwinds Web界面忘记密码的处理办法</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../Test for WP-CODE.html" class="">Test for WP-CODE</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../Try IT!.html" class="">Try IT!</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../Windows下GitLab使用.html" class="">Windows下GitLab使用</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../robots.html" class="">robots</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../从Word发送blog是啥效果呢？.html" class="">从Word发送blog是啥效果呢？</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../如何注册一个.edu域名.html" class="">如何注册一个.edu域名</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../深信服这家公司有点不上路子！.html" class="">深信服这家公司有点不上路子！</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                <li class="level_1 file">
+                    <a href="../简单的“网盘”程序.html" class="">简单的“网盘”程序</a>
+                </li>
+            
+
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">AVUpdate</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../AVUpdate/使用sync back实现病毒库内网更新.html" class="">使用sync back实现病毒库内网更新</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../AVUpdate/获取国内版eset nod32的升级密码.html" class="">获取国内版eset nod32的升级密码</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Apache</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Apache/IIS+Apache多IP，使用80端口解决方法.html" class="">IIS+Apache多IP，使用80端口解决方法</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Apache/升级Apache+PHP.html" class="">升级Apache+PHP</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Apache/查看apache,php,mysql编译参数.html" class="">查看apache,php,mysql编译参数</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Apple</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Apple/ipod touch越狱以及恢复.html" class="">ipod touch越狱以及恢复</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Apple/杯具的ipod touch恢复固件.html" class="">杯具的ipod touch恢复固件</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">BGP</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../BGP/BGP Synchronization.html" class="">BGP Synchronization</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Blackboard</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Blackboard/Blackboard平台java虚拟机内存问题.html" class="">Blackboard平台java虚拟机内存问题</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">CACTI</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../CACTI/cacti服务器报错.html" class="">cacti服务器报错</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../CACTI/当你发现cacti的自定义模板无法调取数据的时候，最简单的方法....html" class="">当你发现cacti的自定义模板无法调取数据的时候，最简单的方法...</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Cluster</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Cluster/Linux集群的安装与配置（Part II，配置）.html" class="">Linux集群的安装与配置（Part II，配置）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Cluster/Linux集群的安装与配置（Part I，安装）.html" class="">Linux集群的安装与配置（Part I，安装）</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Comsenz</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/Discuz 7.2的一个很无语的404问题--没有头像，就是404！.html" class="">Discuz 7.2的一个很无语的404问题--没有头像，就是404！</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/Discuz X1.5对于南审地带的修改.html" class="">Discuz X1.5对于南审地带的修改</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/Discuz! X2修改搜索框里面的默认文字.html" class="">Discuz! X2修改搜索框里面的默认文字</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/Discuz!的密码加密.html" class="">Discuz!的密码加密</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/Discuz发短消息提示xml解析错误.html" class="">Discuz发短消息提示xml解析错误</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/manyou和UCH协同工作的一些问题.html" class="">manyou和UCH协同工作的一些问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/南审地带Discuz! X1.5的修改（20101227）.html" class="">南审地带Discuz! X1.5的修改（20101227）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Comsenz/改了discuz的code代码，新建一个下载地址代码.html" class="">改了discuz的code代码，新建一个下载地址代码</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">DNS</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/BIND的编译配置安装.html" class="">BIND的编译配置安装</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/Bind9的新漏洞.html" class="">Bind9的新漏洞</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/Comodo的DNS….html" class="">Comodo的DNS…</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/DNSTop，实时分析DNS解析数据.html" class="">DNSTop，实时分析DNS解析数据</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/DNS漏洞(CERT VU#800113).html" class="">DNS漏洞(CERT VU#800113)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/DNS的日志的一些错误（20090109）.html" class="">DNS的日志的一些错误（20090109）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/bind的几个命令.html" class="">bind的几个命令</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/bind自带的测试工具：queryperf.html" class="">bind自带的测试工具:queryperf</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/发现www.kuaiche.com被解析到192.168.254.254了.html" class="">发现www.kuaiche.com被解析到192.168.254.254了</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/奇怪的dns问题（半年的缓存？）.html" class="">奇怪的dns问题（半年的缓存？）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../DNS/尝试将DNS转发到电信.html" class="">尝试将DNS转发到电信</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Database</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Database/干了一件很水的事情.html" class="">干了一件很水的事情</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">FTP</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../FTP/Gene6下，文件名空格开头造成无法下载.html" class="">Gene6下，文件名空格开头造成无法下载</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../FTP/ftprush的简单脚本.html" class="">ftprush的简单脚本</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../FTP/gene6增加用户登录提示.html" class="">gene6增加用户登录提示</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../FTP/vsftpd的安装与配置（不全，待补充，20091205）.html" class="">vsftpd的安装与配置（不全，待补充，20091205）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../FTP/不知道从哪个版本开始的filezilla也支持非utf-8了...乱码解决！.html" class="">不知道从哪个版本开始的filezilla也支持非utf-8了...乱码解决！</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">HDMovie</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../HDMovie/eac3to的一些配置.html" class="">eac3to的一些配置</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../HDMovie/x264 1pass的一个分析工具.html" class="">x264 1pass的一个分析工具</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../HDMovie/x264压制笔记（v0.3,20100112）.html" class="selected">x264压制笔记（v0.3,20100112）</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Linux</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/CentOS 7下挂载iSCSI磁盘.html" class="">CentOS 7下挂载iSCSI磁盘</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/CentOS下的软件包管理--yum篇.html" class="">CentOS下的软件包管理--yum篇</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Linode的CentOS 7启用BBR.html" class="">Linode的CentOS 7启用BBR</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Linux学习-NFS(V1.0).html" class="">Linux学习-NFS(V1.0)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Linux学习-Samba(V1.0).html" class="">Linux学习-Samba(V1.0)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Linux打开telnet-server功能.html" class="">Linux打开telnet-server功能</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Linux服务器安装telnet-server.html" class="">Linux服务器安装telnet-server</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Linux系统下修改时区，进行同步.html" class="">Linux系统下修改时区，进行同步</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Liunx下查看服务器性能(zt).html" class="">Liunx下查看服务器性能(zt)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/MySQL的安装.html" class="">MySQL的安装</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Nginx+Apache2+SSL的Web服务器配置.html" class="">Nginx+Apache2+SSL的Web服务器配置</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Nginx下只针对logging.php进行https处理的重写规则.html" class="">Nginx下只针对logging.php进行https处理的重写规则</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/SFTP指定端口号.html" class="">SFTP指定端口号</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Squid反向代理的实现(Part I, Installing and configuration).html" class="">Squid反向代理的实现(Part I, Installing and configuration)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Squid反向代理的实现-DNS部分（Part 0，DNS Config）.html" class="">Squid反向代理的实现-DNS部分（Part 0，DNS Config）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Squid的设置（Part II，Troubleshooting，200100128）.html" class="">Squid的设置（Part II，Troubleshooting，200100128）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Ubuntu+Vista启动菜单的恢复.html" class="">Ubuntu+Vista启动菜单的恢复</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Ubuntu添加新网卡并配置IP.html" class="">Ubuntu添加新网卡并配置IP</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Ubuntu的一些设置和安装.html" class="">Ubuntu的一些设置和安装</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Windows下使用IIS下建立内网Ubuntu镜像.html" class="">Windows下使用IIS下建立内网Ubuntu镜像</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/Windows下建立Ubuntu本地镜像.html" class="">Windows下建立Ubuntu本地镜像</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/mysql备份之mysqldump.html" class="">mysql备份之mysqldump</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/mysql的常用操作命令.html" class="">mysql的常用操作命令</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/ubuntu设置全局代理.html" class="">ubuntu设置全局代理</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/yum的使用.html" class="">yum的使用</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/“这样使用RHEL合法吗” (zt).html" class="">“这样使用RHEL合法吗”?(zt)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Linux/最简squid配置教程.html" class="">最简squid配置教程</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Multicast</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Multicast/Windows下组播的两个测试工具.html" class="">Windows下组播的两个测试工具</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Nginx</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Nginx/nginx主机名的奇怪现象.html" class="">nginx主机名的奇怪现象</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Nginx/升级了下nginx.html" class="">升级了下nginx</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Oracle</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/ODI学习笔记4 字符集问题.html" class="">Oracle ODI学习笔记3 字符集问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/ODI学习笔记5 Oracle到Oracle集成.html" class="">ODI学习笔记5 Oracle到Oracle集成</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/ODI学习笔记6 关于执行程序和执行场景.html" class="">ODI学习笔记6 关于执行程序和执行场景</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/ODI学习笔记6 模型的更新.html" class="">ODI学习笔记6 模型的更新</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/ODI的过滤（ODI学习笔记3）.html" class="">ODI的过滤（ODI学习笔记3）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/ODI转换字符集问题(ODI学习笔记4).html" class="">ODI转换字符集问题（ODI学习笔记4）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/ODI问题：ODI-15405.html" class="">ODI-15405错误</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/Oracle ODI学习笔记（1）：ODI的Agent安装配置.html" class="">Oracle ODI学习笔记（1）：ODI的Agent安装配置</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/Oracle ODI学习笔记（2）：概念.html" class="">ODI学习笔记（2）:概念</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Oracle/SQL学习笔记1-日期和时间.html" class="">SQL学习笔记1-日期和时间</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">PC</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../PC/Windows 7下的虚拟光驱软件.html" class="">Windows 7下的虚拟光驱软件</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../PC/windbg-Windows的dump文件分析工具.html" class="">windbg-Windows的dump文件分析工具</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../PC/优酷的i酷和Win7 x64貌似有严重的兼容性问题.html" class="">优酷的i酷和Win7 x64貌似有严重的兼容性问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../PC/动态磁盘换系统之后无法识别的问题.html" class="">动态磁盘换系统之后无法识别的问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../PC/用了个代理服务器，结果各个软件开始抽风.html" class="">用了个代理服务器，结果各个软件开始抽风</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">SQL Server</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../SQL Server/升级SQL Server 2000个人版到企业版.html" class="">升级SQL Server 2000个人版到企业版</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">System</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../System/System Events Notification Service无法运行的解决.html" class="">System Events Notification Service无法运行的解决</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Thinkpad</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Thinkpad/Thinkpad T420i安装内存.html" class="">Thinkpad T420i安装内存</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Thinkpad/Thinkpad从Compatibility模式转为ACHI模式.html" class="">Thinkpad从Compatibility模式转为ACHI模式</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Thinkpad/神奇的win7驱动….html" class="">神奇的win7驱动…</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Tomcat</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Tomcat/Tomcat的主目录修改.html" class="">Tomcat的主目录修改</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">VMware</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VCenter Server Appliance体验.html" class="">VCenter Server Appliance体验</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VCenter Server时间不对造成VC服务无法启动.html" class="">VCenter Server时间不对造成VC服务无法启动</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VDR的错误-3948(vcb api例外).html" class="">VDR的错误-3948(vcb api例外)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VMWare Convert 遇到“agent.internal.fault.PlatformError.summary”错误.html" class="">VMWare Convert 遇到“agent.internal.fault.PlatformError.summary”错误</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VMWare Data Recovery无法连接.html" class="">VMWare Data Recovery无法连接</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VMWare ESXi的使用心得(20080823).html" class="">VMWare ESXi的使用心得(20080823)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VMWare Infrastructure 3使用（20090324）.html" class="">VMWare Infrastructure 3使用（20090324）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/VMWare Vcenter Convert出现“The session is not authenticated”解决办法.html" class="">VMWare Vcenter Convert出现“The session is not authenticated”解决办法</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/esx频繁从vcenter掉线的解决办法.html" class="">esx频繁从vcenter掉线的解决办法</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/vSphere的分布式交换机.html" class="">关于VMWare的分布式交换机</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/vSphere的备份操作（20091222，Ver1.1）.html" class="">vSphere的备份操作（20091222，Ver1.1）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/vsphere5下快照+独立磁盘的奇怪问题.html" class="">vsphere5下快照+独立磁盘的奇怪问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/从Veeam备份恢复挂掉的VC(Part2).html" class="">从Veeam备份恢复挂掉的VC(Part2)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/从Veeam备份恢复挂掉的VC.html" class="">从Veeam备份恢复挂掉的VC</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/使用Veeam恢复虚拟机的区别.html" class="">使用Veeam恢复虚拟机的区别</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/开启杀毒软件的SSL监控之后无法连接vcenter.html" class="">开启杀毒软件的SSL监控之后无法连接vcenter</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../VMware/探究esxi主机无响应的问题.html" class="">esxi主机无响应的问题</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">WSUS</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WSUS/WSUS Client Diagnostics Tool.html" class="">WSUS Client Diagnostics Tool</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WSUS/WSUS的0x80190194错误.html" class="">WSUS的0x80190194错误</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WSUS/Windows Server Update Services配置.html" class="">Windows Server Update Services配置</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WSUS/Windows Update 的0x800B0001错误.html" class="">Windows Update 的0x800B0001错误</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WSUS/总算让WSUS正常了.html" class="">总算让WSUS正常了</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Web</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/Discuz!修改模板支持https登陆.html" class="">Discuz!修改模板支持https登陆</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/HSTS协议.html" class="">HSTS协议</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/html中tppabs标签的含义.html" class="">html中tppabs标签的含义</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/一个相册程序TiltViewer.html" class="">一个相册程序TiltViewer</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/一个网站挂马实例：输入域名访问正常，从百度搜索过来就跳转到色情网站.html" class="">一个网站挂马实例:输入域名访问正常，从百度搜索过来就跳转到色情网站</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/删除带有ltp1,com4这样特殊名字的文件.html" class="">删除带有ltp1,com4这样特殊名字的文件</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/动易网站被挂马一例.html" class="">动易网站被挂马一例</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web/高铁订票的那个12306.cn实在是太烂了.html" class="">高铁订票的那个12306.cn实在是太烂了</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Web应用</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web应用/关于校园网内部分网站登陆之后该页无法显示问题的思考.html" class="">关于校园网内部分网站登陆之后该页无法显示问题的思考</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Web应用/总算解决了wordpress自动转换破折号的问题.html" class="">总算解决了wordpress自动转换破折号的问题</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">WiFi</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WiFi/H3C AC修改AP名字.html" class="">H3C AC修改AP名字</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WiFi/H3C AP居然可以在客户端到达一定数目时自动隐藏SSID.html" class="">H3C AP居然可以在客户端到达一定数目时自动隐藏SSID</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WiFi/H3C AP的monitor模式.html" class="">H3C AP的monitor模式</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WiFi/H3C LSQ1WCMB0无线控制器升级.html" class="">H3C LSQ1WCMB0无线控制器升级</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WiFi/H3C WA2220AG AP+WX6103 AC升级的问题.html" class="">H3C WA2220AG AP+WX6103 AC升级的问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WiFi/H3C的WA2620i-AGN无线AP似乎不能自动注册到AC上.html" class="">H3C的WA2620i-AGN无线AP似乎不能自动注册到AC上</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../WiFi/测试H3C WA-2610H-GN面板式AP（2013-12-24update）.html" class="">测试H3C WA-2610H-GN面板式AP（2013-12-24update）</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Windows</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/IIS支持一些特殊扩展名的文件.html" class="">IIS支持一些特殊扩展名的文件</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows 2003 R2下如何格式化超大磁盘.html" class="">Windows 2003 R2下如何格式化超大磁盘</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows 2003 R2下的分布式文件服务（DFS）无法找到复制选项.html" class="">Windows 2003 R2下的分布式文件服务（DFS）无法找到复制选项</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows 2008 R2碎碎念.html" class="">Windows 2008 R2碎碎念</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows 7 KMS激活报“08007000D”的解决方法.html" class="">Windows 7 KMS激活报“08007000D”的解决方法</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows 7无法访问共享文件夹的解决方法.html" class="">Windows 7无法访问共享文件夹的解决方法</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows Live Writer抽风了...(解决“指定了无效的ip地址错误”).html" class="">Windows Live Writer抽风了...(解决“指定了无效的ip地址错误”)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows Server 2008 R2上安装WSUS 3.0 SP2.html" class="">Windows Server 2008 R2上安装WSUS 3.0 SP2</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/Windows Server修改远程桌面端口.html" class="">Windows Server修改远程桌面端口</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/iis的站点id原来是根据名字算出来的.html" class="">iis的站点id原来是根据名字算出来的</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/“由于协议错误，会话将被中断。请重新连接到远程计算机”的解决.html" class="">“由于协议错误，会话将被中断。请重新连接到远程计算机”的解决</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/使用Windows Media Serive和Windows Media Encoder建立在线直播（20100427）.html" class="">使用Windows Media Serive和Windows Media Encoder建立在线直播（20100427）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/利用工具彻底卸载Office 2010.html" class="">利用工具彻底卸载Office 2010</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/搜狗拼音好像和远程桌面冲突？.html" class="">搜狗拼音好像和远程桌面冲突？</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/无法加入域，提示“找不到网络路径”的解决办法.html" class="">无法加入域，提示“找不到网络路径”的解决办法</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/火星的发现win7可以直接挂载vhd，ghost，diskimage神马的，都可以去死了....html" class="">火星的发现win7可以直接挂载vhd，ghost，diskimage神马的，都可以去死了...</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/蛋疼的Office 2010kms激活….html" class="">蛋疼的Office 2010kms激活…</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Windows/通过网络安装Windows Server 2003.html" class="">通过网络安装Windows Server 2003</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">Wordpress</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../Wordpress/据说手机也能发博客.html" class="">据说手机也能发博客</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">ccie</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../ccie/Cisco Distributed Director技术.html" class="">Cisco Distributed Director技术</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../ccie/Cisco路由器DHCP下配置IP-MAC绑定.html" class="">Cisco路由器DHCP下配置IP-MAC绑定</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../ccie/HSRP,VRRP and GLBP, IRDP(90 Days).html" class="">HSRP,VRRP and GLBP, IRDP(90 Days)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../ccie/一个OSPF邻居起不来的情况.html" class="">一个OSPF邻居起不来的情况</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../ccie/如何使用路由器模拟Frame-Relay交换机.html" class="">如何使用路由器模拟Frame-Relay交换机</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../ccie/登录到一台设备后首先需要做的.html" class="">登录到一台设备后首先需要做的</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">x264</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../x264/几个版本x264.exe的速度对比.html" class="">几个版本x264.exe的速度对比</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../x264/悲剧的非官方x264....html" class="">悲剧的非官方x264...</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">其他设备</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../其他设备/3com交换机的密码.html" class="">3com交换机的密码</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../其他设备/光纤的图.html" class="">光纤的图</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../其他设备/发现了一个奇怪的trunk的问题.html" class="">发现了一个奇怪的trunk的问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../其他设备/恢复H3C iMC平台的admin密码.html" class="">恢复H3C iMC平台的admin密码</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">存储设备</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../存储设备/IBM System x3650M2支持2TB硬盘.html" class="">IBM System x3650M2支持2TB硬盘</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../存储设备/Linux(RHEL)下使用IBM Ds400阵列柜.html" class="">Linux(RHEL)下使用IBM Ds400阵列柜</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../存储设备/硬盘测试.html" class="">硬盘测试</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">安全</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../安全/360和微软也是有一腿的嘛....html" class="">360和微软也是有一腿的嘛...</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../安全/L2,L3设备的安全配置.html" class="">L2,L3设备的安全配置</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../安全/Let's Encrypt的证书申请.html" class="">Let's Encrypt的证书申请</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../安全/Let's Encrypt证书（Windows IIS申请）.html" class="">Let's Encrypt证书（Windows IIS申请）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../安全/使用IAS+Radius管理交换机的telnet密码.html" class="">使用IAS+Radius管理交换机的telnet密码</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../安全/有感于某些人的某些言论.html" class="">有感于某些人的某些言论</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">技术</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../技术/豆瓣电台用的是http协议？.html" class="">豆瓣电台用的是http协议？</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">数据库技术</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../数据库技术/Kettle的效率.html" class="">Kettle的效率</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">数码</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../数码/小米盒子体验.html" class="">小米盒子体验</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">服务器管理</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/360网管版体验.html" class="">360网管版体验</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/80端口被NT kernel & System 占用.html" class="">80端口被NT kernel & System 占用</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/CentOS 5使用国内镜像的方法.html" class="">CentOS 5使用国内镜像的方法</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/IBM x345服务器RAID卡不识别磁盘.html" class="">IBM x345服务器RAID卡不识别磁盘</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/SSH的安全.html" class="">SSH的安全</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/x3650使用小记.html" class="">x3650使用小记</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/一款合适的校园网邮箱所应具有的功能.html" class="">一款合适的校园网邮箱所应具有的功能</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/代理服务器自动配置脚本.html" class="">代理服务器自动配置脚本</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/允许PRTG监控Dell服务器的硬件状态.html" class="">允许PRTG监控Dell服务器的硬件状态</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/升级HP Smart Array P212阵列卡.html" class="">升级HP Smart Array P212阵列卡</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/在大容量磁盘的服务器上安装系统.html" class="">在具有大容量磁盘的服务器上安装系统</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../服务器管理/服务器raid卡电池的问题.html" class="">服务器raid卡电池的问题</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">核心设备</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/Enterasys设备上的端口聚合.html" class="">Enterasys设备上的端口聚合</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/Enterasys设备上设置spanguard.html" class="">Enterasys设备上设置spanguard</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/H3C-S7510-E使用CF卡保存日志.html" class="">H3C-S7510-E使用CF卡保存日志</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/H3C-Tips.html" class="">H3C-Tips</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/H3C交换机做网关，tracert第一跳不通.html" class="">H3C交换机做网关，tracert第一跳不通</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/H3C防火墙使用心得（Verison 1.1,20101213）.html" class="">H3C防火墙使用心得（Verison 1.1,20101213）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/Hillstone防火墙HA的时候和H3C S5800产生STP冲突.html" class="">Hillstone防火墙HA的时候和H3C S5800产生STP冲突</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/How To Reset the Admin Password on the DFE Products.html" class="">How To Reset the Admin Password on the DFE Products</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/N7-03.配置.V20080909.html" class="">N7-03.配置.V20080909</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/N7-04.配置.V20080909.html" class="">N7-04.配置.V20080909</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../核心设备/N7-11.配置.V20080909.html" class="">N7-11.配置.V20080909</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">模拟器</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../模拟器/GNS3的一些使用.html" class="">GNS3的一些使用</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">流媒体</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../流媒体/FMS新建虚拟目录.html" class="">FMS新建虚拟目录</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../流媒体/Flash Media Server的使用.html" class="">Flash Media Server的使用</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../流媒体/Strobe Media Playback，SMP的使用心得的超简单版本….html" class="">Strobe Media Playback，SMP的使用心得的超简单版本…</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../流媒体/vlc的playlist xspf文件.html" class="">vlc的playlist:xspf文件</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../流媒体/windows media player 11居然不支持mms.html" class="">windows media player 11居然不支持mms</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">特性</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../特性/VTP,Vlan Trunking Protocol(89 days).html" class="">VTP,Vlan Trunking Protocol(89 days)</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">系统管理</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../系统管理/Dell服务器跳过Raid卡.html" class="">Dell服务器跳过Raid卡</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../系统管理/IBM Server-Raid 7k卡报error code 2807.html" class="">IBM Server-Raid 7k卡报error code 2807</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../系统管理/SecureCRT解决中文乱码.html" class="">SecureCRT解决中文乱码</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../系统管理/悲催的某服务器.html" class="">悲催的某服务器</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">网络协议</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网络协议/OSPF双路由的问题.html" class="">OSPF双路由的问题</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网络协议/OSPF的区域以及LSA类型.html" class="">OSPF的区域以及LSA类型</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网络协议/VRRP以及HSRP.html" class="">VRRP以及HSRP</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">网络配置</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网络配置/MX200配置.Ver.20080909.html" class="">MX200配置.Ver.20080909</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">网页制作</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网页制作/DIV+CSS高度自适应.html" class="">DIV+CSS高度自适应</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网页制作/Discuz发表框添加背景图片.html" class="">Discuz发表框添加背景图片</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网页制作/虽然我用过的cms不多，但是要我选最烂的，dedecms绝对排第一.html" class="">虽然我用过的cms不多，但是要我选最烂的，dedecms绝对排第一</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../网页制作/静态html页面中的包含命令.html" class="">静态html页面中的包含命令</a>
+                </li>
+                
+            </ul>
+            
+        
+            
+            
+            
+            
+
+            
+                
+                <li class="level_1 directory not_valid_directory">
+                    <a href="#" class="">虚拟机技术</a>
+                </li>
+            
+
+            
+            <ul>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../虚拟机技术/Error connecting：Unknown MKS event.html" class="">Error connecting:Unknown MKS event</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../虚拟机技术/Hyper-V Server 2008 R2使用心得(废柴版).html" class="">Hyper-V Server 2008 R2使用心得(废柴版)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../虚拟机技术/VCenter Server Appliance体验（2）.html" class="">VCenter Server Appliance体验（2）</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../虚拟机技术/VMWare Converter对Linux服务器做P2V操作的几点Tips(20121123更新).html" class="">VMWare Converter对Linux服务器做P2V操作的几点Tips(20121123更新)</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../虚拟机技术/VMware的补丁下载地址.html" class="">VMware的补丁下载地址</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../虚拟机技术/升级esxi老是出现“所选清单对象不支持此操作。请查看为此操作选择的对象的事件”.html" class="">升级esxi老是出现“所选清单对象不支持此操作。请查看为此操作选择的对象的事件”</a>
+                </li>
+                
+                
+                
+                
+                 <li class="level_2">
+                    <a href="../虚拟机技术/虚拟机的区别.html" class="">虚拟机的区别</a>
+                </li>
+                
+            </ul>
+            
+        
+        </ul>
+    </div>
+
+    <div id="main">
+        <div class="content_body">
+            <h1 class="title"> x264压制笔记（v0.3,20100112） </h1>
+            <div class="doc_post"> <h2 id="toc_0">前言</h2>
+
+<p class="md_block">
+    <span class="md_line">很多都是个人理解，参照了hdbits、x264wiki的一些文章。斜线为自己的理解，可能有问题哦。</span>
+</p>
+
+
+<h2 id="toc_1">视频处理部分，MeGui，x264等等</h2>
+
+<h4 id="toc_2">首先是写AVS</h4>
+
+<h5 id="toc_3">AVS中</h5>
+
+<blockquote>
+
+<p class="md_block">
+    <span class="md_line">Crop (0,0,-0,-0)  </span>
+</p>
+
+</blockquote>
+
+<p class="md_block">
+    <span class="md_line">分别代表左上右下。顺时针。</span>
+</p>
+
+
+<p class="md_block md_has_block_below md_has_block_below_blockquote">
+    <span class="md_line">如果是奇数，那么就需要用</span>
+</p>
+
+
+<blockquote>
+
+<p class="md_block">
+    <span class="md_line">spline36resize(1920,816,0,131,0,-133)  </span>
+</p>
+
+</blockquote>
+
+<p class="md_block">
+    <span class="md_line">也就是把resize和crop写到了一起。但是可能会造成质量损失。</span>
+</p>
+
+
+<h5 id="toc_4">mod16和mod4？不是很明白...</h5>
+
+<h5 id="toc_5">OAR，Original Aspect Ratio</h5>
+
+<p class="md_block md_has_block_below md_has_block_below_blockquote">
+    <span class="md_line">让切片接近OAR</span>
+</p>
+
+
+<blockquote>
+
+<p class="md_block">
+    <span class="md_line">OAR=(高/宽)*1280  </span>
+</p>
+
+</blockquote>
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h4 id="toc_6">MeGUI的使用</h4>
+
+<h5 id="toc_7">&#160;</h5>
+
+<h5 id="toc_8">MeGUI的参数以及Tips</h5>
+
+<ol>
+<li>
+<p class="md_block">
+    <span class="md_line"> subme,subpixel refinement=9。2.  M.E.Range，24 for movie,64 for anime。3.  不要选择Tubro参数，虽然速度慢了，但是效果好。4.  计算Bitrate，使用Bitrate calculator5.  使用AVSCutter，可以方便的切片段。</span>
+</p>
+
+
+<h5 id="toc_9">&#160;</h5>
+
+<p class="md_block">
+    <span class="md_line">一行行的来解释。有些可能megui里面并没有列出。</span>
+</p>
+
+
+<h2 id="toc_10">Main</h2>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><a class="md_compiled" href="/wp-content/uploads/2009/12/megui.jpg"><img class="" src="/wp-content/uploads/2009/12/megui_thumb.jpg" alt="megui" title="megui" ></a></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h5 id="toc_11">Profile</h5>
+
+<h5 id="toc_12">Presents</h5></li>
+</ol>
+
+<p class="md_block">
+    <span class="md_line">新的x264(r1177)里面加入的。和速度有关系，建议值是你能容忍的最慢的值。</span>
+</p>
+
+
+<h5 id="toc_13">Tune</h5>
+
+<p class="md_block">
+    <span class="md_line">会在presents之后，其他所有参数之前被应用。根据你的源来确定，如果不确定你的源，那就不指定（default）。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">可能参数：file,animation,grain,psnr,ssim,fastdecode,zerolatency,touhou..</span>
+</p>
+
+
+<h5 id="toc_14">Slow-firstpass</h5>
+
+<p class="md_block">
+    <span class="md_line">在结尾加上--pass 1自动加上了特定的一些参数。在最慢的么present下无效。参见<a class="md_compiled" href="http://mewiki.project357.com/wiki/X264_Settings#slow-firstpass">wiki</a>。</span>
+</p>
+
+
+<h2 id="toc_15">Frame-Type栏</h2>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><a class="md_compiled" href="/wp-content/uploads/2009/12/megui2.jpg"><img class="" src="/wp-content/uploads/2009/12/megui2_thumb.jpg" alt="megui2" title="megui2" ></a></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h4 id="toc_16">Frame-Type Option</h4>
+
+<h5 id="toc_17">keyint（貌似megui里面没有？）</h5>
+
+<p class="md_block">
+    <span class="md_line">设置x264输出中， IDR-frame之间的最大间隔。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">什么是IDR-frame？IDR-frame就是该帧的另一边没有可参照的帧。IDR-Frame需要I-Frame，但是不是所有的I-Frame都是IDR-Frame。大多数情况x264会把场景的第一个帧做为IDR-Frame。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">_<strong>建议值：</strong>_</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">Blu-Ray设置为framerate的10被，其他设置为5~10倍。</span>
+</p>
+
+
+<h5 id="toc_18">min-keyint</h5>
+
+<p class="md_block">
+    <span class="md_line">IDR-frame之间的最短长度。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_建议及默认值：_</strong><br><br /></span>
+    <span class="md_line">默认25，建议默认或者1xframerate。</span>
+</p>
+
+
+<h5 id="toc_19">no-scenecut</h5>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_默认以及建议值_</strong></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">未设置。作用完全禁止adaptive I-frame decsion</span>
+</p>
+
+
+<h5 id="toc_20">scenecut</h5>
+
+<p class="md_block">
+    <span class="md_line">设定I/IDR帧放置的阀值。x264会计算每个帧和前面帧的不同，如果不同值低于“scenecut”，那么就确定为是一个scenecut，如果同时又少于min-keyint帧数，那么就随后放置一个I-frame，否则会放置一个IDR-frame。这个值越高，增加scenecut被侦测的几率。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_默认值40_</strong></span>
+</p>
+
+
+<h5 id="toc_21">Bframes</h5>
+
+<p class="md_block">
+    <span class="md_line">默认3。设定x264最多能同时使用多少个b-frame。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">如果没有b-frame，那么x264的帧类型如下：IPPPPP...PI，如果--bframe 2，那么就最多两个连续的P可以被替换为B，比如IBPBBPBPPPB..PI</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">B-frame和P-frame的区别在于B可以对将来的帧使用动态预测（motion prediction）。可以显著的提高压缩率。平均质量通过_pbratio_参数控制。如果可能的话，用_b-adapt_来强制x264使用固定的B-frames。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_默认以及建议值_</strong></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">如果是_--b-adapt 2_，_--bframes_越高会显著的降低压缩速度，但是没有太多的好处。一般设置为2~5。Blu-Ray限制了最大B-frames到3。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">如果不是_--b-adapt 2_，那么使用_--bframes 16_(怎么这么拗口...:lol)，也就是最大值。这是最合适以及最快的压制参数。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">即：_--b-adapt_影响到_--b-frame_的选择。</span>
+</p>
+
+
+<h5 id="toc_22">更多信息关于B-Frame</h5>
+
+<p class="md_block">
+    <span class="md_line">B帧可以/也不可以参照另一个B帧，假设后面的B帧是另一个B帧的参考帧。这就是B-frame的两种形式，比方叫做&quot;B&quot;和&quot;b&quot;。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">要确定压制的时候使用多少个B-frame，参考x264 log中的&#39;consecutive B-frames&#39;，</span>
+</p>
+
+
+<h5 id="toc_23">b-adapt</h5>
+
+<p class="md_block md_has_block_below md_has_block_below_ol">
+    <span class="md_line">设定B-frame放置决定算法。控制x264如何决定是放置一个B还是一个P帧。多pass下时，该参数仅对Pass1有效，因为在pass1中frame types就决定了。</span>
+</p>
+
+
+<ol>
+<li> 0，禁用。始终选择B-frames。等同与 _--no-b-adapt_参数。2.  1，老式算法。更快，在高_--b-frames_的情况下略微提高速度。3.  2，新算法。速度慢，高_--b-frames_下时略微减慢速度。<br></li>
+</ol>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_建议参数_</strong></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">2，如果你不怕耽误时间的话。</span>
+</p>
+
+
+<h5 id="toc_24">b-bias</h5>
+
+<p class="md_block">
+    <span class="md_line">控制代替P-frames的B-frames的可能性。大于0的数值增加B-frames的权重，小于0的相反。不是数值型的，只是主观的度量。数值从-100~+100，100并不代表保证所有的P-frame会被替代--使用_--badapt 0_效果更好。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_建议参数_</strong></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">0，除非你认为你比x264更好的控制。</span>
+</p>
+
+
+<h5 id="toc_25">b-pyramid</h5>
+
+<p class="md_block">
+    <span class="md_line">允许用B-frame作为其他帧的参考帧。如果没有这个设定那么只能用I/P帧。虽然I/P用起来效果更好（IP的画质好），但是B-frame同样可用。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">作为参考帧的B-frame会得到P-frame以及正常B-frame的一般quantizer(容器，编码器？)。在b-pyramid工作前，至少需要2歌B-frame。</span>
+</p>
+
+
+<p class="md_block md_has_block_below md_has_block_below_ol">
+    <span class="md_line">参数有3种，</span>
+</p>
+
+
+<ol>
+<li> none，不使用B-frame作为参考帧。2.  strict，使用一个B-frame作为参考帧，是Blu-Ray规范制定的。（allow one B-frame per minigop to be used as reference，什么是minigop...）3.  normal，允许多个B-frame作为参考帧。<br></li>
+</ol>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_默认以及建议参数_</strong></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">设置为Normal。如果是Blu-Ray，使用None或者Strict。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h5 id="toc_26">no-cbac</h5>
+
+<p class="md_block md_has_block_below md_has_block_below_ol">
+    <span class="md_line">关闭cbac并且使用老式的cavlc。降低效率。</span>
+</p>
+
+
+<ol>
+<li> CBAC=Context Adaptive Binary Arithmetic Coder2.  CAVLC=Context Adaptive Variable Length Coder<br></li>
+</ol>
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">_<strong>默认以及建议值</strong>_</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">未设定。建议使用CBAC。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h5 id="toc_27">ref</h5>
+
+<p class="md_block">
+    <span class="md_line">控制DPB(Decoded Picture Buffer)的大小。从0~16。这个值代表每个P-frame可以用来作为参考帧的个数。根据B-frames本身是否被用作参考帧，它用到的会少1~2个。最小值为1。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">需要注意的是ITU-T(国际电信联盟)标准限制了DPB以及每个level的ref数目。如果遵守Level 4.1标准的话，1080p和720p的大小分别是9以及4。如果视频高度非标准高度，应该使用高一点的ref值。Blu-Ray和HD-DVD用到的就是Level 4.1标准，并且是众多播放器比如xbox,ps3所支持的最高标准。这也是为什么设置错误的ref会造成无法硬解的原因。</span>
+</p>
+
+
+<p class="md_block md_has_block_below md_has_block_below_ol">
+    <span class="md_line">公式：</span>
+</p>
+
+
+<ol>
+<li> _maximum ref = MaxDPB * 1024 / ( width * height * 1.5) _</li>
+<li> or3.  _8388608/(宽x高)_<br></li>
+</ol>
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_建议及参考值_</strong></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">4~6。增加会造成质量降低以及速度损失。非常大的ref并不有效，但是16的ref在动画，视频游戏捕获，CGI记忆其他场合比较有效。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">有个列表</span>
+</p>
+
+
+<h5 id="toc_28">Deblocking</h5>
+
+<p class="md_block md_has_block_below md_has_block_below_ol">
+    <span class="md_line">两种Deblocking,称为Deblocking strength以及Deblocking threshold，分别对应Alpha Deblocking以及Beta Deblocking(官方名称)。</span>
+</p>
+
+
+<ol>
+<li> <strong>Alpha Deblocking</strong>，越高越有效，但是会摧毁细节，将图像变得平滑。默认0。一般在-3~3之间。当使用cqm时，建议使用默认值，不能超过+/-2。2.  Beta Deblocking，决定在块中的东西是否是细节(detail)，当Deblocking应用在他上面时。我估计这玩意是用来判断哪些画面属于block的。原文看后面。一般来说这个值不用修改。3.  一般来说，-3:-3比较流行。_如果是动画的话， 高一点比较好。_  &gt; Lower values of Beta Deblocking apply less deblocking to more flat blocks with details present (but more deblocking to blocks without details), while Higher values cause more deblocking to be applied to less flat blocks with details present.<br></li>
+</ol>
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h5 id="toc_29">interlaced（交错）</h5>
+
+<p class="md_block">
+    <span class="md_line">默认没有设置。x264的interlaced encoding比progressive encoding效率更低。所以最好在压制前反交错一个源，而不是使用interlaced模式。</span>
+</p>
+
+
+<h5 id="toc_30">slice,slice-max-size,slice-max-mbs</h5>
+
+<p class="md_block">
+    <span class="md_line">设定每个帧中的片。并且枪支直角slices。如果设定了_slice-max-size_或者_slice-max-mbs_则会覆盖掉_slice_。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">后面两个，设定最大的slice大小（单位字节），包含estimated NAL overhead，以及设定macroblocks中最大的slice大小。两者都和_interlaced_不兼容。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line md_line_dom_embed"><strong>_建议值：_</strong></span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">不要使用slice，除非是blu-ray。用4。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h5 id="toc_31">contrained-intra</h5>
+
+<p class="md_block">
+    <span class="md_line">默认没有设置。允许constrained intra预测。用于base layer of SVC encodes。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h4 id="toc_32">Rate-Control</h4>
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h5 id="toc_33">Subpixel Refinement</h5>
+
+<p class="md_block">
+    <span class="md_line">一般称为subme。建议值：8~10。</span>
+</p>
+
+
+<h5 id="toc_34">Adaptive Quantizers</h5>
+
+<p class="md_block">
+    <span class="md_line">aq 0.7~1.5。很复杂，后面继续写。</span>
+</p>
+
+
+<h5 id="toc_35">Threads</h5>
+
+<p class="md_block">
+    <span class="md_line">--thread auto即可。但是四合的话，最好是--threads 6....不是很明白。</span>
+</p>
+
+
+<h5 id="toc_36">Bitrate</h5>
+
+<p class="md_block">
+    <span class="md_line">1080p,8000~14000k<br><br /></span>
+    <span class="md_line">720p,4000~6000k</span>
+</p>
+
+
+<h5 id="toc_37">Crf，Constand Rate Factor</h5>
+
+<p class="md_block">
+    <span class="md_line">crf，18~21用于1080p，越低，质量越高。720p，crf18最佳。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h4 id="toc_38">x264的quants(不适用于psy-rdo patch)</h4>
+
+<p class="md_block md_has_block_below md_has_block_below_blockquote">
+    <span class="md_line">首先抄一段hdbits wiki的例子</span>
+</p>
+
+
+<blockquote>
+
+<p class="md_block">
+    <span class="md_line">avis[info]: 1920x800 @ 23.98 fps (225877 frames)<br><br /></span>
+    <span class="md_line">x264[info]: using cpu capabilities: MMX MMXEXT SSE SSE2 SSSE3<br><br /></span>
+    <span class="md_line md_line_dom_embed"><strong>x264[info]: slice I:19020 Avg QP:14.99&#160; size:135578<br><br /></span>
+    <span class="md_line">x264[info]: slice P:104481 Avg QP:16.42&#160; size: 63445<br><br /></span>
+    <span class="md_line">x264[info]: slice B:102376 Avg QP:18.27&#160; size: 25097</strong><br><br /></span>
+    <span class="md_line">x264[info]: mb I&#160; I16..4: 10.3% 61.9% 27.8%<br><br /></span>
+    <span class="md_line">x264[info]: mb P&#160; I16..4:&#160; 1.3% 16.4%&#160; 5.2%&#160; P16..4: 44.0% 21.7%&#160; 4.9%&#160; 0.2%&#160; 0.1%&#160;&#160;&#160; skip: 6.1%<br><br /></span>
+    <span class="md_line">x264[info]: mb B&#160; I16..4:&#160; 0.1%&#160; 1.3%&#160; 0.3%&#160; B16..8: 32.7%&#160; 2.0%&#160; 3.6%&#160; direct: 9.0%&#160; skip:51.1%<br><br /></span>
+    <span class="md_line">x264[info]: 8x8 transform&#160; intra:67.7%&#160; inter:48.0%<br><br /></span>
+    <span class="md_line">x264[info]: direct mvs&#160; spatial:89.3%&#160; temporal:10.7%<br><br /></span>
+    <span class="md_line">x264[info]: ref P&#160; 66.7% 17.7%&#160; 9.1%&#160; 3.8%&#160; 2.8%<br><br /></span>
+    <span class="md_line">x264[info]: ref B&#160; 81.9% 12.0%&#160; 3.7%&#160; 1.4%&#160; 0.9%<br><br /></span>
+    <span class="md_line">x264[info]: kb/s:10000.5  </span>
+</p>
+
+</blockquote>
+
+<p class="md_block">
+    <span class="md_line">这是MeGUI压制完成后的log。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">我们关注3~5行（黑色部分）。Average Quantizer代表Transparency to the source，其中0代表1：1，也就是和源一摸一样。</span>
+</p>
+
+
+<p class="md_block md_has_block_below md_has_block_below_ol">
+    <span class="md_line">好的数值：</span>
+</p>
+
+
+<ol>
+<li> 小于16,17，浪费了空间，文件太大了。可以降低码率。2.  大于25,26，码率太低了，杀掉了太多的细节。尝试提升码率。3.  因此试图让AQ大小控制在18~24之间。当然，如果源就是一个shit，那么只不过拷贝了一个shit...哈哈。4.  2pass会降低AQ 1.5~2个点。如果运行的是一个Tubro 1st pass，<br></li>
+</ol>
+
+<h4 id="toc_39">x264在卡通、动画以及CGI下的特殊设定</h4>
+
+<h5 id="toc_40">对于Cartoon的特殊设定</h5>
+
+<ol>
+<li> Reference Frames，1080p可以用到10，但是注意，超过5之后就不是L4.1兼容了。2.  Psy-rdo可以使用，但是要低一点，因为会产生**_artifacts_**。3.  Trellis 0和2之间测试，因为会破坏图像质量。4.  降低或者关闭AQ，<br></li>
+</ol>
+
+<h5 id="toc_41">对于Animated(CGI)的特殊设定</h5>
+
+<ol>
+<li> psy-rdo降低，低于1.0。2.  Trellis一般0~2。3.  aq低值，0.5~0.9。4.  禁用dct-decimate，如果源非常锐（sharp/detailed source），但是需要提升一点比特率。5.  reference frames增加，但是注意兼容性。6.  禁用Weighted Prediction帮助提升细节--通过将--weightb去除掉。<br></li>
+</ol>
+
+<h4 id="toc_42">命令行运行x264</h4>
+
+<p class="md_block md_has_block_below md_has_block_below_blockquote">
+    <span class="md_line">如果想将x264运行于低优先级，那么写好bat之后，使用</span>
+</p>
+
+
+<blockquote>
+
+<p class="md_block">
+    <span class="md_line">start /b /low x264.exe  </span>
+</p>
+
+</blockquote>
+
+<p class="md_block">
+    <span class="md_line">即可。如果已经使用了/b /low，那么就没必要在bat里面再让x264.exe使用地优先级了。</span>
+</p>
+
+
+<h4 id="toc_43">AVSP比较图片</h4>
+
+<p class="md_block">
+    <span class="md_line">比较的简单。注意如果两个片源老是自动同步帧---而其实根本不是同一帧---我们可以将第一个视频Trim (1,1000)，然后再和第二个对比，这样就不会自动同步了。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h2 id="toc_44">音频处理部分</h2>
+
+<h4 id="toc_45">eac3to</h4>
+
+<p class="md_block">
+    <span class="md_line">可用于demuxing，DTS encoding等等。这个似乎可说的不多。eac3to也可以用于合并m2ts,evo，或者解音频，字幕等。不过一般用的都是TSMuxer。</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h2 id="toc_46">其他（视频文件处理如Demux，字幕）</h2>
+
+<p class="md_block">
+    <span class="md_line">啊啊</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h2 id="toc_47">最后</h2>
+
+<p class="md_block">
+    <span class="md_line">Thanks to &quot;GrandDK&#39;s x264 Reencode Guide - HDWiki&quot;in hdbits.</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<p class="md_block">
+    <span class="md_line">&#160;</span>
+</p>
+
+
+<h2 id="toc_48">高级设定（切音轨，段落等）</h2>
+
+<h4 id="toc_49">段落的设定</h4>
+
+<p class="md_block">
+    <span class="md_line">使用xml完成。待完成。不多写了。</span>
+</p> </div>
+        </div>
+
+    </div>
+
+
+
+
+
+<script>
+    // auto focus for menu
+    window.onload = function(){
+        var sidebar = document.getElementById('sidebar');
+        var current = document.getElementsByClassName('selected')[0];
+        if (current && sidebar){
+            sidebar.scrollTop = current.offsetTop - sidebar.clientHeight/2 + 100
+        }
+    };
+</script>
+
+
+
+
+</body>
+
+</html>

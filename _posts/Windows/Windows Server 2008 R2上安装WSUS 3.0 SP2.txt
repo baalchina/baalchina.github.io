@@ -1,0 +1,43 @@
+Title: Windows Server 2008 R2上安装WSUS 3.0 SP2
+Date: 2010-03-03 09:54:36
+URL: /2010/03/install-wsus3-in-windows2008r2/
+Tags: Windows , WSUS
+
+安装基本和Windows 2003上一致，由于R2是64位，所以WSUS也要下载x64的。
+
+是安装IIS时，需要分别安装“应用程序服务器”和“Web服务器(IIS)”。前者默认即可，后者需要添加“ASP.NET”、“Windows 身份验证”、“动态内容压缩”和“IIS 6 管理兼容性”这些组件。
+
+&#160;
+
+另外一开始用添加角色功能添加失败了，不知道是不是这个原因：
+  > 支持在 Windows Server 2008 R2 上安装（Windows Server 2008 R2中内置的WSUS SP1不支持在 Windows Server 2008 R2 RTM版本中安装）  
+
+改了ip地址之后，wsus死活连不上，重启update service服务正常，但是报一大堆错误，重启os，重装wsus都不行，最后发现是iis里面我把绑定从*改成了ip...nnd。
+
+&#160;
+  > WSUS 管理控制台无法通过远程 API 连接到 WSUS 服务器。
+> 
+> 请确保 Update Services 服务、IIS 和 SQL 正在该服务器上运行。如果该问题仍然存在，请尝试重新启动 IIS、SQL 和 Update Services 服务。
+> 
+> System.Net.WebException -- 请求因 HTTP 状态 404 失败: Not Found。
+> 
+> Source     
+> Microsoft.UpdateServices.Administration
+> 
+> Stack Trace:     
+> &#160;&#160; 在 Microsoft.UpdateServices.Administration.AdminProxy.CreateUpdateServer(Object[] args)      
+> &#160;&#160; 在 Microsoft.UpdateServices.Administration.AdminProxy.GetUpdateServer()      
+> &#160;&#160; 在 Microsoft.UpdateServices.UI.AdminApiAccess.AdminApiTools.GetUpdateServer()      
+> &#160;&#160; 在 Microsoft.UpdateServices.UI.SnapIn.Scope.ServerSummaryScopeNode.ConnectToServer()      
+> &#160;&#160; 在 Microsoft.UpdateServices.UI.SnapIn.Scope.ServerSummaryScopeNode.ConnectToServerAndPopulateNode(Boolean connectingServerToConsole)      
+> &#160;&#160; 在 Microsoft.UpdateServices.UI.SnapIn.Common.ExtensionSnapInManager.OnInitialize()  
+
+这个是报错。
+
+参考：
+
+[http://technet.microsoft.com/zh-cn/library/dd939916(WS.10).aspx](http://technet.microsoft.com/zh-cn/library/dd939916(WS.10).aspx "http://technet.microsoft.com/zh-cn/library/dd939916(WS.10).aspx")
+
+[http://winsvr.org/info/info.php?sessid=&amp;infoid=84](http://winsvr.org/info/info.php?sessid=&amp;infoid=84 "http://winsvr.org/info/info.php?sessid=&amp;infoid=84")
+
+[http://daozhou.com/blog/article.asp?id=15](http://daozhou.com/blog/article.asp?id=15 "http://daozhou.com/blog/article.asp?id=15")

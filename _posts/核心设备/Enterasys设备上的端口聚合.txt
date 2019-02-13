@@ -1,0 +1,18 @@
+Title: Enterasys设备上的端口聚合
+Date: 2009-03-01 20:13:42
+URL: /2009/03/enterasys-lacp/
+Tags: enterasys , lacp
+
+命令：
+&nbsp;
+
+set port lacp port ge.2.2 aadminkey 3   
+set port lacp port ge.3.2 aadminkey 3    
+set port lacp port ge.2.2 padminkey 3    
+set port lacp port ge.3.2 padminkey 3
+
+&#160;
+
+这个adminkey就是类似于Cisco etherchannel里面的channel号。
+
+注意这个时候打vlan的时候就需要针对lag.0.3打，否则是不会生效的。

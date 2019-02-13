@@ -1,0 +1,35 @@
+Title: 豆瓣电台用的是http协议？
+Date: 2012-12-18 13:58:09
+URL: /2012/12/douban-fm-http/
+
+这个有点牛...一直以为什么mms,rtsp,rtmp都很牛，其实发现http才是大牛！有带宽，一切都是浮云，穷人才用流媒体！
+
+
+==================================================
+Index             : 4
+Protocol          : TCP
+Local Address     : 192.168.65.128
+Remote Address    : 58.218.203.21
+Local Port        : 1386
+Remote Port       : 80
+Local Host        : 
+Remote Host       : download015.telssr.chinacache.net
+Service Name      : http
+Packets           : 1,619
+Data Size         : 1,879,663 Bytes
+Total Size        : 1,944,653 Bytes
+Data Speed        : 1959.0 KB/Sec
+Capture Time      : 2012-12-18 13:54:37:994
+Last Packet Time  : 2012-12-18 13:54:38:932
+Duration          : 00:00:00.937
+Local MAC Address : 
+Remote MAC Address: 
+Local IP Country  : 
+Remote IP Country : 
+==================================================
+
+GET /201212181354/e2468247da90392160951296c76629d3/view/song/small/p357112.mp3 HTTP/1.1
+Accept-Encoding: identity
+Host: mr4.douban.com
+Connection: close
+User-Agent: Python-urllib/2.6

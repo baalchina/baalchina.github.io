@@ -1,0 +1,51 @@
+Title: OSPF的区域以及LSA类型
+Date: 2008-08-23 16:10:51
+URL: /2008/08/ospf-area-lsa/
+Tags: ccie , cisco , ospf
+
+# OSPF的LSA类型
+
+1.  Type 1（Router，路由器）：每个路由器一条，列出RID和所有接口的IP地址。也用来表示桩网络（stub network）。
+2.  Type 2（Network，网络）：每个过境网络一条，由子网中的DR创建，用来表示子网以及连到该子网的路由器接口。
+3.  Type 3（Network Summary，网络汇总）：由ABR创建，当从一个区域广播到其他区域时，用来表示该区域的类型1和2的LSA。定义了源区域的链路（子网）和开销，但没有拓扑数据。
+4.  Type 4（ASBR Summary）：类似于LSA类型3，只是它广播的是可达ASBR的路由
+5.  Type 5（AS External）：由ASBR创建，用于表示外部注入OSPF的路由。
+6.  Type 6（Group Membership）：为MOSPF定义，Cisco并不支持。
+7.  Type 7（NSSA External）：由ASBR在NSSA区域内创建，作用与LSA Type 5相似。
+8.  Type 8（External）：Cisco未实现。
+9.  Type 9-11：OSPF未来扩展所用。例如，类型10用于MPLS的流量工程。
+
+## 比较详细的解释
+
+1.  LSA 1和LSA 2分别代表了Router和网络。Type1描述路由器、接口（区域内）以及每个接口上的邻接路由器列表。Type列出了Transit Area。Type2由DR产生，如果不存在DR的网络不会有Type2。**两者都在Area内活动。**
+2.  牵涉到区域，引入了Type 3 LSA。Type3将1和2汇总。计算到达Type 3列出的子网的距离：_首先计算到达宣告Type3 Router的距离，然后再加上Type3中的距离。就是最终距离。_
+3.  Type 4以及Type 5。牵涉到了ASBR--不同AS。都是AS外的路由。
+
+    1.  Type4,E1,仅考虑外部的Metric。
+    2.  Type5,E2,同时需要考虑内部+外部的Metric。
+    3.  当从AS外部注入E2路由时，创建LSA5，其他路由器直接使用就可以了。
+    4.  当从AS外部注入E1路由是，创建的也是LSA5。但是当ABR在区域内泛洪时再创建了LSA4，其中列出了ABR到达ASBR的开销。此时到达外部路由的Cost=到达ABR的Cost+LSA4列出的Cost+LSA5的Cost。
+    5.  如下图：[![](http://baalchina.nau.edu.cn/wp-content/uploads/2008/08/200801011199168826259.jpg "200801011199168826259")](http://baalchina.nau.edu.cn/wp-content/uploads/2008/08/200801011199168826259.jpg)
+
+# OSPF的区域类型
+
+Stub Area。有说=末梢区域的，有说=桩区域的...
+
+1.  Stub的好处就是ABR不再广播LSA5到区域内，而只是广播一个默认路由。这样就会减少LSDB。
+2.  Stub一般工作与单一ABR的情况。如果多个ABR，虽然会工作，但是会存在次优路由。
+3.  根据特定情况，某些Stub区域也会阻止LSA3。
+
+1.  Stub,屏蔽5，不屏蔽3。最基本的Stub。
+2.  Totally Stubby，屏蔽5以及3。
+3.  Not-So-Stubby-Area,NSSA，屏蔽5但是不屏蔽3.同时支持创建LSA7。
+4.  Totally NSSA，屏蔽5以及3的同时支持创建LSA7.
+
+> NSSA,_#area area-id nssa_> 
+> Totally NSSA, _#area area-id nssa no-summary_> 
+> Stub, _#area area-id stub_> 
+> Totally Stubby, _#area area-id stub no-summary_
+
+也就是Totally的话那就加上no-summary
+
+参考：
+[http://riser.blog.51cto.com/252482/57590](http://riser.blog.51cto.com/252482/57590)

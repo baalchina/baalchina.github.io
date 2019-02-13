@@ -1,0 +1,27 @@
+Title: GNS3的一些使用
+Date: 2008-06-03 23:27:34
+URL: /2008/06/gns3-using/
+Tags: cisco , dynamips , 模拟器
+
+GNS是Dynamips的一个图形化前端。个人感觉要比以前用的Dynamips GUI好用。
+
+官方网站：http://www.gns3.net/
+
+1、对于Frame-Relay交换机的配置。
+首先配置该交换机，指定DLCI，比如1口112对应2口的121。
+然后再路由器配置是貌似需要指定map，比如#
+#frame-relay map ip 10.1.1.2 101 broadcast
+#no frame-relay inverse-arp
+
+其中，IP是对端的IP，101是自己到对端的DLCI。
+
+2、关于IDLE-PC
+未经证实，可以自己算出idle-pc之后修改.net文件，将每个router的idle pc加到ios那里。就不需要每个指定了。
+
+3、关于性能
+交换机启动的时候会很卡，telnet输入字符的时候可以感觉到。但是完全启动好之后就没有问题了。
+
+4、关于超时
+两台router，一台在线，另一台超时之后就再也连不上了，虽然可以打开端口，但是没有显示。原因不明。
+
+待补充。

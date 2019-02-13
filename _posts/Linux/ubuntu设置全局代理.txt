@@ -1,0 +1,11 @@
+Title: ubuntu设置全局代理
+Date: 2013-12-20 22:28:07
+URL: /2013/12/ubuntu-global-proxy/
+
+sudo vi ~/.bashrc
+
+ADD
+http_proxy=http://[user:password]@yourproxyaddress:proxyport
+export http_proxy
+
+reload

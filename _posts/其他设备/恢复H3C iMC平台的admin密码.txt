@@ -1,0 +1,20 @@
+Title: 恢复H3C iMC平台的admin密码
+Date: 2012-10-16 09:38:10
+URL: /2012/10/recovery-h3c-imc-password/
+Tags: h3c , imc
+
+长期不用，不出所料的忘记了。在网上找了一段文章
+
+[http://hi.baidu.com/gzwimax/item/13aa859ff3bd59df7a7f016d](http://hi.baidu.com/gzwimax/item/13aa859ff3bd59df7a7f016d "http://hi.baidu.com/gzwimax/item/13aa859ff3bd59df7a7f016d")
+
+尝试了一下，无效。可能是因为版本的问题，我这边版本是5.0的。
+
+&#160;
+
+百度一下，找到一下文档
+
+[http://forum.h3c.com/forum.php?mod=viewthread&amp;tid=47133&amp;highlight=imc%2B%E5%AF%86%E7%A0%81](http://forum.h3c.com/forum.php?mod=viewthread&amp;tid=47133&amp;highlight=imc%2B%E5%AF%86%E7%A0%81 "http://forum.h3c.com/forum.php?mod=viewthread&amp;tid=47133&amp;highlight=imc%2B%E5%AF%86%E7%A0%81")
+
+这个就很简单了，原来它提供了修复工具，运行
+
+“E:\imc\client\bin\resetpwd.bat”就可以恢复成admin/admin了。

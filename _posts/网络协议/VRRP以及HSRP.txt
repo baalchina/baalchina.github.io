@@ -1,0 +1,42 @@
+Title: VRRP以及HSRP
+Date: 2008-08-21 16:19:04
+URL: /2008/08/vrrp-hsrp/
+Tags: ccie , cisco , hsrp , vrrp
+
+_HSRP，Hot Standby Router Protocol,
+VRRP，Virtual Router Redundancy Protocol_
+
+可以使多个路由器共享同一个IP以及MAC地址。
+
+1.  VRRP
+2.  使用虚拟的MAC：0000.5e00.01xx,xx为VRRP的组ID。
+3.  不支持Interface Track
+
+## HSRP配置
+
+> #standby 21 ip 10.1.1.21> 
+> #standby 21 priority 105> 
+> #standby 21 preempt> 
+> #standby 21 track serial0/0.1> 
+> #standby 22 ip 10.1.1.22> 
+> #standby 22 track serial0/0.1
+另一台设备上：
+> #standby 21 ip 10.1.1.21> 
+> #standby 21 preempt> 
+> #standby 21 track serial0/0.1
+配置也就是HSRP组21，它的虚拟IP是10.1.1.21.
+第一台设备指定了priority=105，大于第二台默认的100，所以第一台是Active设备。
+
+## HSRP以及VRRP的状态
+
+HSRP的状态包括Init,Speak,Standby,Active
+VRRP的状态包括Master,Backup
+
+## HSRP的preempt以及trackback
+
+> #standby 1 preempt> 
+> #standby 1 track serial 0
+preempt的作用是，如果有一个新的高优先级的HSRP Router加入，会立刻成为Active Router。
+track的作用是监控某个端口，如果这个端口down(protocol或者physical)，那么自动降低HSRP的priority。如果这时候另一台Router配置了preempt，那么它将成为Active。
+参考：
+[http://www.cisco.com/en/US/tech/tk648/tk362/technologies_tech_note09186a0080094e8c.shtml](http://www.cisco.com/en/US/tech/tk648/tk362/technologies_tech_note09186a0080094e8c.shtml)

@@ -1,0 +1,42 @@
+Title: HSRP,VRRP and GLBP, IRDP(90 Days)
+Date: 2009-04-25 16:43:43
+URL: /2009/04/hsrp-glbp-vrrp-irdp/
+Tags: ccie , glbp , hsrp , irdp , vrrp
+
+## 1. Hot Standby Router Protocol, Virtual Router Redundancy Protocol, Gateway Load Balance Protocol,ICMP Router Discovery Protocol
+
+&#160;
+
+## 2. HSRP 
+
+&#160;
+
+1.  虚拟的MAC和IP，在Active Router上激活。2.  Standby Router接受Active Router的Hello，3s间隔，10s Dead。3.  优先级（默认100），高的称为Active，默认不抢占。4.  Tracking，当Tracked接口失效R的优先级降低。5.  每接口最多255个组。6.  0000.0C07.ACxx，xx为组号。7.  虚IP应和LAN接口在同一子网且应和其他接口IP不同。  
+
+&#160;
+  > #standby 21 ip 10.1.1.21    
+> #standby 21 priority 105     
+> #standby 21 preempt     
+> #standby 21 track Serial0/0.1  &nbsp;
+
+&#160;
+
+## 3. VRRP
+
+1.  三种状态：Initialize，Master以及Backup。2.  使用组播MAC 0000.5C00.01xx，xx为组号。3.  默认Pre-emption。HSRP默认不。4.  VRRP的Master对应HSRP的Active。5.  VRRP支持认证，MD5以及明文。6.  只用在路由器上，交换机不具有该功能  
+
+&#160;
+
+## 4. GLBP 
+
+1.  a) 最多4台。GLBP Active Virtual Gateway给组中每一个R一个虚拟的MAC。2.  b) 0007.B400.xxyy，xx为组号，yy为R号。3.  c) 当客户端ARP网关MAC时，GLBP AVG负责回复其中的一个MAC。  
+
+&#160;
+
+## 5、IRDP
+
+1.  其实就是让主机可以动态的发现网关。
+2.  主机加入到224.0.0.1组，接收路由器的通告。也可以直接发送请求道224.0.0.2，请求网关地址。
+3.  配置  > router(config-if)#ip irdp preference xxx  
+
+其中preference可选，代表优先级。

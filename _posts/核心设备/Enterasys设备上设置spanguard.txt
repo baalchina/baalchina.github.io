@@ -1,0 +1,18 @@
+Title: Enterasys设备上设置spanguard
+Date: 2008-10-21 09:42:18
+URL: /2008/10/enterasys-spanguar/
+Tags: enterasys , spantree , switch
+
+Enterasys的spanguard类似于Cisco的bpduguard。当在edge(即user端口)收到bpdu的时候，将该端口置为block状态，时间由spanguardtimeout指定。
+
+设置如下：
+
+首先设定edge端口：
+
+> set spantree adminedge ge.2.46 true
+
+接下来设定允许spanguard，以及block时间。
+
+> set spantree adminedge ge.2.1-46 true> 
+> set spantree spanguardtimeout 300> 
+> set spantree spanguardtrapenable enable

@@ -1,0 +1,58 @@
+Title: bind自带的测试工具：queryperf
+Date: 2013-08-15 12:05:38
+URL: /2013/08/queryperf/
+Tags: dns , queryperf
+
+queryperf是bind自带的测试工具，在源码包里。
+
+#cd /root/soft/bind-9.6.1-P2/contrib/queryperf
+#./configure
+#make
+然后建立一个测试文件，如
+
+vi test1
+www.nau.edu.cn A
+baidu.com A
+map.nau.edu.cn A
+nau.edu.cn NS
+edu.cn NS
+baidu.com NS
+nau.edu.cn MX
+运行：
+
+_ ./queryperf -d test1 -s 210.28.92.7_
+
+结果：
+[root@cernetdns-vm queryperf]# ./queryperf -d test1 -s 210.28.92.7
+
+DNS Query Performance Testing Tool
+Version: $Id: queryperf.c,v 1.12 2007/09/05 07:36:04 marka Exp $
+
+[Status] Processing input data
+[Status] Sending queries (beginning with 210.28.92.7)
+[Status] Testing complete
+
+Statistics:
+
+  Parse input file:     once
+  Ended due to:         reaching end of file
+
+  Queries sent:         7 queries
+  Queries completed:    7 queries
+  Queries lost:         0 queries
+  Queries delayed(?):   0 queries
+
+  RTT max:              1.095430 sec
+  RTT min:              0.000217 sec
+  RTT average:          0.159190 sec
+  RTT std deviation:    0.382233 sec
+  RTT out of range:     0 queries
+
+  Percentage completed: 100.00%
+  Percentage lost:        0.00%
+
+  Started at:           Thu Aug 15 12:00:07 2013
+  Finished at:          Thu Aug 15 12:00:08 2013
+  Ran for:              1.095531 seconds
+
+  Queries per second:   6.389596 qps

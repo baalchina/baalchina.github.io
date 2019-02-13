@@ -1,0 +1,14 @@
+Title: Discuz发短消息提示xml解析错误
+Date: 2010-01-06 15:09:28
+URL: /2010/01/disucz-xml-error/
+Tags: Discuz , xml
+
+> XML 解析错误：废弃 document 元素之后的内容位置：[http://zone.nau.edu.cn/pm.php?action=new&amp;uid=17055&amp;](http://zone.nau.edu.cn/pm.php?action=new&amp;uid=17055&amp;) infloat=yes&amp;handlekey=sendpm&amp;inajax=1&amp;ajaxtarget=fwin_content_sendpm 行：1，列：14：  
+
+到discuz.net搜索了一下，无解。
+
+&#160;
+
+进入uc后台，发现数据库某表报错，于是修复数据库，搞定。
+
+真是莫名其妙的故障。。。

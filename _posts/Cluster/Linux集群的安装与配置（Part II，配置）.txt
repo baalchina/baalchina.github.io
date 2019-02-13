@@ -1,0 +1,95 @@
+Title: Linux集群的安装与配置（Part II，配置）
+Date: 2009-08-13 16:34:20
+URL: /2009/08/heartbeat-configration-part-2/
+Tags: ha , heartbeat , Linux
+
+Heartbeat的配置文件主要是3个，也就是前面我们cp到/etc/ha.d下面的**ha.cf**，**haresources**以及**authkeys**，作用可以理解为系统配置，资源配置，以及认证的设置。一个个搞定。
+
+&#160;
+
+### ha.cf
+
+配置比较简单，保证能跑起来
+  > #logfile      
+> debugfile /var/log/ha-debug       
+> logfile /var/log/ha-log       
+> logfacility&#160;&#160;&#160;&#160; local0
+> 
+> #time setting      
+> keepalive 2       
+> deadtime 30       
+> warntime 10       
+> initdead 120       
+> 
+> #network setting      
+> udpport 694       
+> bcast eth1       
+> ucast eth1 192.168.100.2
+> 
+> #node setting      
+> auto_failback on       
+> node&#160;&#160;&#160; linux-ha-a       
+> node&#160;&#160;&#160; linux-ha-b  
+
+我这边跑的是双网卡。其中eth1作为心跳线，配置了192.168.100.1/2两个地址。
+
+### haresources
+
+最简配制的话其实就是一条：
+
+&#160;
+  > #this is resource config      
+> linux-ha-a 210.28.92.233 httpd::start  
+
+三段：
+
+主机名，集群的ip，需要启动的服务::传递给这个服务的参数。
+
+文件介绍上说两台设备的haresources要完全一样，你可别真的完全一样把主机名也一样了…哈。
+
+&#160;
+
+&#160;
+
+### authkeys
+
+这个支持3种认证方式，sha1&gt;md5&gt;crc。其中前两种需要指定密钥。crc只做校验用，没认证的效果。这个文件需要保证600权限。
+
+因为是测试就简单点了，用MD5，验证码用linux-ha的md5值（17bc50a13f1dd31c14f2a3f321e017dc）。实际上直接输入一个字符串就可以了，没必要输入md5的值。
+
+&#160;
+
+注意这个类似于eigrp的认证，是支持多个key-chain的。
+  > auth 1      
+> #1 crc       
+> #2 sha1 HI!       
+> 1 md5 17bc50a13f1dd31c14f2a3f321e017dc  
+
+注意auth 1必须对应下面的1 md5 key
+
+&#160;
+
+### 
+
+### 检测效果/MAC切换机制
+
+全部配置完成之后可以打开虚拟ip地址，网页可以打开，然后再关掉server-a的接口，然后再刷新，看看可否看到页面？
+
+我做的时候没自动切换，结果跑到交换机上#clea ip arp 才有效…郁闷…注意这个MAC地址：
+
+MAC：
+  > 210.xx.yy.231&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0050.56af.15fd arpa&#160;&#160; VL922      
+> 210.xx.yy.232&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0050.56af.3842 arpa&#160;&#160; VL922       
+> 210.xx.yy.233&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0050.56af.3842 arpa&#160;&#160; VL922  
+
+这时候232这台设备生效。233为虚拟MAC。
+
+可以看到的是，ha并没有诸如HSRP/VRRP那样的虚拟MAC机制。而是直接用的设备的MAC。
+
+你ssh到233，其实就是连接到232。
+
+### 待解决
+
+如果跑的是http，那么就要考虑共享存储的问题。静态的还好，如果是动态的呢？
+
+如果是数据库，同样要考虑存储。不过mysql本身的cluster应该可以解决--据说是不用共享存储的。

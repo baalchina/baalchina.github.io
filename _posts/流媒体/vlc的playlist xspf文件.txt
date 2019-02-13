@@ -1,0 +1,78 @@
+Title: vlc的playlist:xspf文件
+Date: 2011-09-06 23:01:07
+URL: /2011/09/vlc-xspf-playlist/
+Tags: vlc , xspf , 组播
+
+xspf（发音做spiff），是一种xml格式的playlist。
+
+#### 最简单的格式
+  > &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;     
+>  &lt;playlist version=&quot;1&quot; xmlns=&quot;[http://xspf.org/ns/0/&quot;](http://xspf.org/ns/0/&quot;)&gt;      
+> &#160;&#160;&#160; &lt;trackList&gt;      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;track&gt;&lt;location&gt;file:///mp3s/song_1.mp3&lt;/location&gt;&lt;/track&gt;      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;track&gt;&lt;location&gt;file:///mp3s/song_2.mp3&lt;/location&gt;&lt;/track&gt;      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;track&gt;&lt;location&gt;file:///mp3s/song_3.mp3&lt;/location&gt;&lt;/track&gt;      
+> &#160;&#160;&#160; &lt;/trackList&gt;      
+>  &lt;/playlist&gt;  
+
+&#160;
+
+#### vlc特殊定义
+
+当然，vlc也支持一些特殊格式，据说在[http://www.videolan.org/vlc/playlist/ns/0/](http://www.videolan.org/vlc/playlist/ns/0/)定义了，可惜404了？
+  > &lt;playlist version=&quot;1&quot; xmlns=&quot;[http://xspf.org/ns/0/&quot;](http://xspf.org/ns/0/&quot;) xmlns:vlc=&quot;[http://www.videolan.org/vlc/playlist/ns/0/&quot;](http://www.videolan.org/vlc/playlist/ns/0/&quot;)&gt;      
+>  ...      
+>  &lt;extension application=&quot;[http://www.videolan.org/vlc/playlist/0&quot;](http://www.videolan.org/vlc/playlist/0&quot;)&gt;      
+> &#160; ...      
+>  &lt;/extension&gt;      
+> &lt;/playlist&gt;  
+
+支持4种定义：
+
+1.  vlc:node
+2.  vlc:item
+3.  vlc:id
+4.  vlc:option  
+
+&#160;
+
+##### 
+
+##### 1、vlc:node
+
+在列表中显示为一个节点-node。可以嵌套。能定义的只有title。
+
+&#160;
+  > &quot;&lt;vlc:node title=&quot;中央台&quot;&gt;&lt;vlc:node title=&quot;CCTV-1&quot;&gt;&lt;vlc:item tid=&quot;1001&quot;/&gt;     
+> &lt;/vlc:node&gt;&lt;/vlc:node&gt;&lt;  
+
+##### 2、vlc:item
+
+这就是内容了
+  > &lt;vlc:item tid=&quot;42&quot; /&gt;
+
+##### 3、vlc:id
+
+track的扩展
+
+> &lt;vlc:id&gt;42&lt;/vlc:id&gt;
+
+##### 4、vlc:option
+
+playlist/trackList/track/extension下
+
+> &lt;vlc:option&gt;option-name&lt;/vlc:option&gt;
+
+option可以有参数
+
+> &lt;vlc:option&gt;option-name=option-value&lt;/vlc:option&gt;
+
+&#160;
+
+注意编辑的时候，因为一开始指定了编码是utf-8，所以保存的时候也要utf8，否则中文是不能识别的。
+
+&#160;
+
+参考：
+
+[http://wiki.videolan.org/XSPF](http://wiki.videolan.org/XSPF "http://wiki.videolan.org/XSPF")

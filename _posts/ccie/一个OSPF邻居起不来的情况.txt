@@ -1,0 +1,15 @@
+Title: 一个OSPF邻居起不来的情况
+Date: 2009-06-04 20:39:38
+URL: /2009/06/unable-to-form-ospf-neighbor/
+Tags: ospf
+
+HUB&amp;Spoke环境，Hub指两个邻居，和一个已经Full了，但是另一个老是起不来。
+
+&#160;
+
+Debug发现如下：
+  > *Mar&#160; 1 01:46:30.804: OSPF: Rcv hello from 29.29.4.4 area 0 from Serial0/0 29.29.34.4     
+> *Mar&#160; 1 01:46:30.804: OSPF: Mismatched hello parameters from 29.29.34.4      
+> *Mar&#160; 1 01:46:30.804: OSPF: Dead R 120 C 120, Hello R 30 C 30&#160; Mask R 255.255.255.248 C 255.255.255.0  
+
+后来检查，发现时掩码配错了...hub和起来的那个邻居是/29，而起不来的这个是/24。。。

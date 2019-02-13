@@ -1,0 +1,12 @@
+Title: Thinkpad从Compatibility模式转为ACHI模式
+Date: 2009-09-15 20:25:50
+URL: /2009/09/thinkpad-achi-windowsxp/
+Tags: achi , Thinkpad
+
+WindowsXP安装的时候必须调整为Compatibility模式，否则无法找到硬盘---虽然有人说新版的MSDN版本集成了但是我用的WinXP SP3 MSDN还是不认--于是用兼容模式安装XP。
+
+安装完之后下载T61的Intel Matrix And Storage Driver。运行C:\DRIVERS\WIN\IMSM\PREPARE下的install.bat，然后重启系统，改回ACHI模式，进入XP找到新驱动，即可。
+
+&#160;
+
+据说，Thinkpad在XP下卡的问题也和这个有关系。

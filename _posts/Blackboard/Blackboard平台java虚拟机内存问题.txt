@@ -1,0 +1,34 @@
+Title: Blackboard平台java虚拟机内存问题
+Date: 2012-06-28 19:29:39
+URL: /2012/06/could-not-reserve-enough-space-for-object-heap/
+Tags: blackboard , jsp , tomcate
+
+单位的blackboard平台，昨天280左右的人考试，提交的时候崩溃了。于是咨询了bb工程师，说是_bbconfig.max.heapsize.tomcat=1024m_这个参数设置的太小了。
+
+感觉很简单，于是动手把1024改成2048.结果启动毫无悬念的挂了...
+
+日志：
+STATUS ¦ wrapper  ¦ 2012/06/28 19:23:57 ¦ Launching a JVM...
+INFO   ¦ jvm 1    ¦ 2012/06/28 19:23:57 ¦ Error occurred during initialization of VM
+INFO   ¦ jvm 1    ¦ 2012/06/28 19:23:57 ¦ Could not reserve enough space for object heap
+INFO   ¦ jvm 1    ¦ 2012/06/28 19:23:57 ¦ Could not create the Java virtual machine.
+ERROR  ¦ wrapper  ¦ 2012/06/28 19:23:57 ¦ JVM exited while loading the application.
+
+似乎提示是不支持这么大的内存。
+
+找到这篇文章：[http://wangdei.iteye.com/blog/204616](http://wangdei.iteye.com/blog/204616)，按照提示，似乎1600M应该是可以的。
+C:\Java\jdk1.5.0_17\bin&gt;java -server -Xmx1700M -version
+Error occurred during initialization of VM
+Could not reserve enough space for object heap
+Could not create the Java virtual machine.
+
+C:\Java\jdk1.5.0_17\bin&gt;java -server -Xmx1600M -version
+java version "1.5.0_17"
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_17-b04)
+Java HotSpot(TM) Server VM (build 1.5.0_17-b04, mixed mode)
+
+但是测试下来，还是报错误。
+
+结果一路改下去，只有1300M这个值可以正常启动Tomcat。奇怪了。
+
+具体问题还等待bb解答。

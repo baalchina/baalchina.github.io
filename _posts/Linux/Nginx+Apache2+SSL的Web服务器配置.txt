@@ -1,0 +1,316 @@
+Title: Nginx+Apache2+SSL的Web服务器配置
+Date: 2008-08-06 14:51:41
+URL: /2008/08/nginxapache2的web服务器配置/
+Tags: Apache , Linux , Nginx , Web
+
+最近一直困扰于Apache2负载过高的问题。CPU始终在70%以上，晚上的高峰直接是页面打开很慢很慢，又到了当初Apache2 MPM模块没有配置好时候的情况了...不过那个时候的CPU不高，还有发挥余地，现在就有点头疼了。
+
+学校是不大可能给你升级服务器的了，于是下决心把Apache2换成了Nginx。
+
+Nginx的介绍不说了，google上很多。就是一个俄罗斯的，大家都认为很牛X的Web Server。比较头疼的就是他的中文文档少之又少。
+
+参照了Discuz!商业区的文章，利用Nginx，将PHP请求转发给Apache2，由后者负责处理。并未采用网上介绍的比较多的FastCGI模式。
+
+1、首先是安装Nginx。我的配置模式如下：
+
+
+#./configure \
+"--with-http_stub_status_module" \
+"--with-http_addition_module" \ 
+"--with-http_realip_module " \
+"--with-pcre=/usr/src/pcre-7.7/" \
+"--with-http_ssl_module" \ 
+"--with-openssl=/data/soft/openssl-0.9.8e/" \ 
+#make
+#make install
+
+
+需要注意的是那个pcre7.7，Perl Compatible Regular Expressions，在使用Discuz!以及其他程序的Rewrite的时候会用到。
+OpenSSL是用于HTTPS的，如果不需要可以不编译。
+**Pcre以及OpenSSL的目录都是它源代码的目录，而不是它的安装目录。**
+Stub-status是一个状况模块，可以查看Nginx当前的运行状态，类似于Apache2的ServerStatus。
+
+2、然后是重新编辑Apache2，大部分模块都不需要了，可以在config里面去掉。
+
+
+#./configure \
+"--prefix=/usr/local/apache2" \ 
+"--with-apr=/usr/local/apr" \
+"--with-apr-util=/usr/local/apr-util/bin" \
+
+
+重新编译的话会遇到APR的问题。错误如下：
+
+configure: error: Cannot use an external APR with the bundled APR-utilq，
+
+这个以前遇到过。解决方法如下：
+
+安装apr以及apr-util。
+
+
+#cd /usr/local/httpd-2-2-4/srclib/apr 
+#./configure --prefix=/usr/local/apr 
+#make
+#make install
+
+
+安装APR-util
+
+
+#cd srclib/apr-util 
+#./configure --prefix=/usr/local/apr-util --with-apr=/usr/local/apr 
+#make
+#make install
+
+
+这些文件在Apache2的源码包里面有。
+
+3、然后是PHP+eAcelerator。
+
+投了个懒，直接把原来Apache下的PHP配置加进来了。
+
+
+#./configure \
+"--prefix=/usr/local/php" \ 
+"--with-apxs2=/usr/local/apache2/bin/apxs" \ 
+"--with-config-file-path=/etc " \ 
+"--with-mysql=/usr/local/mysql " \ 
+"--with-libxml-dir=/usr/local/libxml2 " \ 
+"--with-gd=/usr/local/gd2 " \ 
+"--enable-gd-native-ttf " \ 
+"--with-jpeg-dir " \ 
+"--with-png-dir " \ 
+"--with-bz2 " \ 
+"--with-freetype-dir " \ 
+"--with-iconv-dir " \ 
+"--with-zlib-dir " \ 
+"--enable-mbstring " \ 
+"--disable-ipv6 " \ 
+"--disable-cgi " \ 
+"--disable-cli " \ 
+"--enable-ftp " \ 
+"--enable-magic-quotes " \ 
+"--with-pear " \ 
+"--enable-sockets " \ 
+"--with-ttf " \ 
+"--enable-gd-native-ttf " \ 
+"--enable-sysvsem " \ 
+"--enable-sysvshm " \ 
+"--with-pcre-regex " \ 
+"--enable-xml" \ 
+
+另外根据DZ系统的情况添加了一些乱七八糟的东东。比如什么ftp啥的。
+
+#cp php-dist.ini /etc/php.ini
+
+接下来安装eAcelerator.
+
+
+[root@bbs eaccelerator-0.9.5.3]# make install
+Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/
+
+
+注意系统提示。将下面这段修改之后加入到/etc/php.ini的末尾
+
+
+extension_dir="/usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/"
+extension="eaccelerator.so"
+eaccelerator.cache_dir="/tmp/eaccelerator"
+eaccelerator.shm_size="64"
+eaccelerator.enable="1"
+eaccelerator.optimizer="1"
+eaccelerator.check_mtime="1"
+eaccelerator.debug="0"
+eaccelerator.filter=""
+eaccelerator.shm_max="0"
+eaccelerator.shm_ttl="60"
+eaccelerator.shm_prune_period="60"
+eaccelerator.shm_only="0"
+eaccelerator.compress="1"
+eaccelerator.compress_level="9"
+eaccelerator.keys="shm_and_disk"
+eaccelerator.sessions="shm_and_disk"
+eaccelerator.content="shm_and_disk"
+
+
+下面是Zend，虽然DZ不再加密了，不过有了总比没有好。很简单，不再多说。
+
+
+#./install.sh
+
+
+查看php.ini，是否已加载。
+
+4、其他的诸如GD等不再赘述了，很简单。不过要记得在最开始安装。
+
+5、进入Nginx的配置阶段。
+
+Nginx的一些Tips:
+
+
+#/usr/local/nginx/sbin/nginx -t
+
+测试Config文件是否正常。如果不正常会提示你在哪一行出错。
+
+
+#/usr/local/nginx/sbin/nginx
+
+
+启动Nginx进程。和Apache2不同的是，他没有restart/start/stop这样的脚本。
+
+相对应的，重新启动Nginx则是
+首先
+
+#ps -ef | grep "nginx: master process" | grep -v "grep" | awk -F ' ' '{print $2}'
+
+
+显示出来的就是Nginx的主进程的ID号。然后
+
+#kill -HUP xxxx
+
+即可
+
+下面是Nginx的Config文件配置部分。他的配置文件只有一个，就是/usr/local/nginx/conf/nginx.conf
+
+Nginx的配置文档有点类似于C语言的{}形式。比如一个典型的虚拟主机配置
+
+
+server
+ {
+   listen       80;
+   server_name zone.nau.edu.cn;
+   index index.html index.htm index.php;
+   root /data/web/nauzone;
+
+   #Upload Size
+   client_max_body_size 6M
+
+     location / 
+    {
+       valid_referers   none  blocked  bbs.nau.edu.cn  *.nau.edu.cn;
+       if ($invalid_referer)
+       {
+            return   403;
+       }
+        root   /data/web/nauzone;
+        index index.php index.html index.htm;
+
+      #UCHome Rewrite Rule
+        rewrite ^/(space|network)\-(.+)\.html$ /$1.php?rewrite=$2 last;
+        rewrite ^/(space|network)\.html$ /$1.php last;
+        rewrite ^/([0-9]+)$ /space.php?uid=$1 last;
+        break;
+     }
+
+   #Forward PHP Request TO Apache Server
+      location ~ \.php$ 
+     {
+       proxy_pass   http://127.0.0.1:81;
+       proxy_redirect          off;
+       proxy_set_header Host $host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      #proxy_hide_header Content-Type;
+      }
+ }
+
+这一段配置是放在http部分的。很简单，也很容易理解。
+
+需要注意的是这部分
+
+  #Forward PHP Request TO Apache Server
+    location ~ \.php$ 
+   {
+     proxy_pass   http://127.0.0.1:81;
+     proxy_redirect          off;
+     proxy_set_header Host $host;
+     proxy_set_header X-Real-IP $remote_addr;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     #proxy_hide_header Content-Type;
+   }
+
+
+作用是将PHP的请求转发给Apache2处理。和DZ商业区的那篇文章区别在于，我将最后一行注释掉了。这一个问题困扰了我一天多。
+
+如果不注释掉的话，结果就是会将Content-type传递给Apache2。
+
+而Discuz!的Ajax功能，用到了/templates/default/header_ajax.htm这个文件，这个文件很奇怪，虽然是.htm，但是在内容里却包含了
+
+{eval @header("Content-type: application/xml; charset=$charset");} 
+
+具体的用意不知道，但是肯定是和这个Content-Type有关的。结果就是传递出错，造成Discuz!所有使用到AJAX的功能均不正常，包括表情、投票贴内容、评分等等。
+
+注释掉这一段即OK。也就是Nginx不会将Content-Type传递给Apache2。
+
+=======================================================================
+20080523添加，防盗链配置
+
+在location部分添加以下内容。
+
+valid_referers   none  blocked  bbs.nau.edu.cn  *.nau.edu.cn;
+  if ($invalid_referer) 
+   {
+    return   403;
+   }
+
+
+其中，_valid_referers_可选参数包括none,blocked,以及server_names。
+
+None就是没有，简单的说就是直接通过下载软件下载文件，没有提供referers.
+Blocked就是“一块”主机头，比如我前面的配置，可以通过*来通配符。注意不是“阻塞”的意思哦。
+server_names就是简单的一个主机了。
+
+我上面的结果就是（可以通过Bitcomet测试），如果不输入主机头、或者指定Referer,下载均可成功。而如果是错误的主机头，就会报403错误。
+
+另外location可以只针对特定文件，比如图片。
+
+参考文章：
+官方Wiki:
+[http://wiki.codemongers.com/NginxHttpRefererModule?highlight=%28blocked%29%7C%28server_names%29](http://wiki.codemongers.com/NginxHttpRefererModule?highlight=%28blocked%29%7C%28server_names%29)
+
+=======================================================================
+20080526添加日志部分
+
+现在需要做的就是把它和Awstats结合起来。
+
+首先配置日志。官方文档提到一个log_format格式，如下：
+
+log_format  combined  '$remote_addr - $remote_user [$time_local] '
+                      '"$request" $status $body_bytes_sent '
+                      '"$http_referer" "$http_user_agent"';
+但是实际上我把它添加到http{}部分的时候不停地报错。
+2008/05/26 18:45:16 [emerg] 19875#0: "log_format" directive duplicate "log_format" name in /usr/local/nginx/conf/nginx.conf:26
+
+实际上原因就是因为，“The "combined" log_format is predefined in sources, you do not need to define it.”作者回答我的...汗。
+
+http://wiki.codemongers.com/NginxHttpLogModule
+
+接下来设定每个虚拟主机的配置。
+
+access_log /data/logs/nginx/bbs.access.log;
+
+注意由于nginx不支持管道，所以无法使用cronolog轮询了。也好，避免2g死机问题。我们会使用脚本来实现这个功能。
+
+=======================================================================
+
+20080619添加日志部分
+
+编辑nginx配置文件的时候，可以使用UltraEDIT，然后高亮，选择php，效果会好很多。
+
+=======================================================================
+
+其他功能不多说了，具体可以参照nginx的文档。
+
+参考网站：
+
+1、Nginx官方网站Wiki
+http://wiki.codemongers.com/Main
+
+2、bskzq，关于大型论坛系统环境搭建的讨论--理想论坛的终极解决方案
+http://www.discuz.net/viewthread.php?tid=882980&highlight=
+
+3、netseek，利用Nginx替代apache实现高性能的Web环境
+http://www.discuz.net/viewthread.php?tid=803925&highlight=nginx
+
+4、张宴，Nginx 0.5.33 + PHP 5.2.5（FastCGI）搭建胜过Apache 10倍的Web服务器（第2版）
+http://blog.s135.com/read.php/314.htm

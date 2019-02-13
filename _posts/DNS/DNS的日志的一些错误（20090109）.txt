@@ -1,0 +1,102 @@
+Title: DNS的日志的一些错误（20090109）
+Date: 2008-08-26 11:19:49
+URL: /2008/08/dns-log/
+Tags: bind , dns , Linux , logs
+
+# 首先是lame server错误
+
+> Aug 26 10:49:45 cernetdns2 named[24876]: lame server resolving 'kcds.net' (in 'kcds.net'?): 216.138.0.11#> 
+> 53
+基本上可以理解为，我的dns向对方请求某域名解析，但是由于对方的设置错误，无法解析到。所以产生了这个"瘸腿"错误。所以问题不是很大。我们不需要这个日志。
+
+named.conf增加：
+> logging {> 
+> category lame-servers { null; };> 
+> };
+参考：
+http://linux.vbird.org/linux_server/0350dns.php#Lame_server
+[http://bbs.chinaunix.net/viewthread.php?tid=328597](http://bbs.chinaunix.net/viewthread.php?tid=328597)
+
+# 接下来看disabling EDNS错误。
+
+> Aug 26 10:50:12 cernetdns2 named[24876]: too many timeouts resolving '3.xiaoyouxi.com/A' (in 'xiaoyouxi.c> 
+> om'?): disabling EDNS
+
+这个据说是bug?由于错误的EDNS请求造成的。
+
+在log部分关闭掉他：
+> logging {> 
+> category edns-disabled { null; };> 
+> };
+参考：
+[http://bbs.chinaunix.net/viewthread.php?tid=1254909](http://bbs.chinaunix.net/viewthread.php?tid=1254909)
+[http://groups.google.com/group/comp.protocols.dns.bind/browse_thread/thread/732e104148f762e3](http://groups.google.com/group/comp.protocols.dns.bind/browse_thread/thread/732e104148f762e3)
+[http://www.isc.org/index.pl?/sw/bind/view/?release=9.5.0a6](http://www.isc.org/index.pl?/sw/bind/view/?release=9.5.0a6)
+
+# 还有FORMERR resolving 错误
+
+> Aug 26 10:51:31 cernetdns2 named[24876]: FORMERR resolving 'minisite.qq.com/AAAA/IN': 61.152.100.218#53
+这个就有点奇怪了，有人说是IPv6的AAAA记录，但是没有打开ipv6啊。虽然AAAA确实是Ipv6的特性。
+http://www.kholix.com/wiki/index.php/FORMERR_resolving
+
+另外有人说是recursive queries造成的。尝试关闭recursive queries试试看。
+
+named.conf增加：
+> allow-recursion { localhost; };
+[http://www.webhostingtalk.com/showthread.php?t=531585](http://www.webhostingtalk.com/showthread.php?t=531585)
+
+ps,FORMERR应该是Format Error，格式错误的意思。
+
+# './A/IN' denied错误
+
+> Aug 26 19:04:49 cernetdns2 named[32713]: client 219.133.104.90#59054: view chinanet-in: query (cache) './A/IN' denied> 
+> Aug 26 19:04:55 cernetdns2 named[32713]: client 219.133.104.90#60509: view chinanet-in: query (cache) './A/IN' denied> 
+> Aug 26 19:04:56 cernetdns2 named[32713]: client 119.60.56.129#1886: view chinanet-in: query (cache) 'xl.339xz.com/A/IN' denied> 
+> Aug 26 19:04:56 cernetdns2 named[32713]: client 119.60.56.129#1886: view chinanet-in: query (cache) 'xl.339xz.com/A/IN' denied
+See This:http://bbs.chinaunix.net/thread-973203-1-1.html
+
+# view cernet-in: RFC 1918 response from Internet for 63.0.29.172.in-addr.arpa
+
+> Q: What does "RFC 1918 response from Internet for 0.0.0.10.IN-ADDR.ARPA" mean?> 
+> 
+> A: If the IN-ADDR.ARPA name covered refers to a internal address space you are using then you have failed to follow RFC 1918 usage rules and are leaking queries to the Internet. You should establish your own zones for these addresses to prevent you querying the Internet's name servers for these addresses. Please see [http://as112.net/](http://as112.net/) for details of the problems you are causing and the counter measures that have had to be deployed.> 
+> 
+> If you are not using these private addresses then a client has queried for them. You can just ignore the messages, get the offending client to stop sending you these messages as they are most probably leaking them or setup your own zones empty zones to serve answers to these queries.> 
+> 
+> zone "10.IN-ADDR.ARPA" {> 
+> type master;> 
+> file "empty";> 
+> };> 
+> 
+> zone "16.172.IN-ADDR.ARPA" {> 
+> type master;> 
+> file "empty";> 
+> };> 
+> 
+> ...> 
+> 
+> zone "31.172.IN-ADDR.ARPA" {> 
+> type master;> 
+> file "empty";> 
+> };> 
+> 
+> zone "168.192.IN-ADDR.ARPA" {> 
+> type master;> 
+> file "empty";> 
+> };> 
+> 
+> empty:> 
+> @ 10800 IN SOA &lt;name-of-server&gt;. &lt;contact-email&gt;. (> 
+> 1 3600 1200 604800 10800 )> 
+> @ 10800 IN NS &lt;name-of-server&gt;.
+[http://www.isc.org/index.pl?/sw/bind/FAQ.php](http://www.isc.org/index.pl?/sw/bind/FAQ.php)
+
+RFC1918的私网地址不应当泄漏到公网上。
+
+> Jan  9 14:36:16 cernetdns2 named[21627]: dns_master_load: /var/named/nauchinanet.host:120: net.nau.edu.cn: multiple RRs of singleton type> 
+> Jan  9 14:36:16 cernetdns2 named[21627]: zone nau.edu.cn/IN/chinanet-in: loading from master file /var/named/nauchinanet.host failed: multiple RRs of singleton type> 
+> Jan  9 14:36:16 cernetdns2 named[21627]: zone nauzone.net/IN/chinanet-in: loaded serial 2007051102> 
+> Jan  9 14:36:16 cernetdns2 named[21627]: running
+这个是因为存在两个相同的cname记录。参见第一行。因此在外网无法解析。
+
+ps，dns的日志在/var/log/message里面。

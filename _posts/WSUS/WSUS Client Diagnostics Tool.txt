@@ -1,0 +1,9 @@
+Title: WSUS Client Diagnostics Tool
+Date: 2009-02-25 15:16:59
+URL: /2009/02/wsus-client-diagnostics-tool/
+
+[http://technet.microsoft.com/en-us/wsus/bb466192.aspx](http://technet.microsoft.com/en-us/wsus/bb466192.aspx "http://technet.microsoft.com/en-us/wsus/bb466192.aspx")
+
+[![wsus3](/wp-content/uploads/2009/02/wsus3-thumb.png "wsus3")](/wp-content/uploads/2009/02/wsus3.png)
+
+同时还有WSUS的服务器诊断。用于诊断WSUS是否工作正常。

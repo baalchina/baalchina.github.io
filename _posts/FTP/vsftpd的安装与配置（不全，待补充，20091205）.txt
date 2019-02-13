@@ -1,0 +1,81 @@
+Title: vsftpd的安装与配置（不全，待补充，20091205）
+Date: 2009-12-05 17:06:43
+URL: /2009/12/vsftpd-install/
+Tags: FTP , Linux , vsftp
+
+对于linux下的ftp，一直一种恐惧心理...哈。
+
+&#160;
+
+#### 首先我们下载安装之
+
+很简单。
+  > [root@php ~]#wget [ftp://vsftpd.beasts.org/users/cevans/vsftpd-2.2.2.tar.gz](ftp://vsftpd.beasts.org/users/cevans/vsftpd-2.2.2.tar.gz)[root@php ~]#tar xvzf vsftpd-2.2.2.tar.gz       
+> [root@php ~]#cd vsftpd-2.2.2      
+> [root@php ~]#make      
+> [root@php ~]#useradd nobody      
+> [root@php ~]#mkdir /usr/share/empty/      
+> [root@php ~]#make install      
+> [root@php ~]#cp vsftpd.conf /etc/      
+> [root@php ~]#/usr/local/sbin/vsftpd &amp;  
+
+可以看到，安装的时候是不需要configure的。
+
+#### 配置用户账号
+
+这里用到了一个db_load的工具，默认是没有的，先安装之：
+  > [root@php ~]#yum install db4-utils  
+
+然后我们新建一个密码文件，比如user.txt，格式如下：
+  > username     
+> password  
+
+接下来把他变成vsftpd的数据库格式，并加权限：
+  > [root@php ~]# db_load -T -t hash -f /root/vsftpd/logins.txt /etc/vsftpd_login.db     
+> [root@php ~]# chmod 600 /etc/vsftpd_login.db  
+
+新建一个/etc/pam.d/vsftpd.vu文件，内容如下：
+  > auth required /lib/security/pam_userdb.so db=/etc/vsftpd_login     
+> account required /lib/security/pam_userdb.so db=/etc/vsftpd_login  
+
+给ftp新建一个用户：
+  > [root@php ~]# useradd -d /home/vsftpd -s /sbin/nologin vsftpd  
+
+#### 启动之
+  > [root@php ~]# /usr/local/sbin/vsftpd &amp;     
+> [1] 9761  
+
+9761是自动弹出的告诉你pid的。
+
+&#160;
+
+&#160;
+
+#### Troubleshooting
+
+##### 启动ok,但是ftp连接报错
+  > [右] 正在连接到 210.28.92.18 -&gt; IP=210.28.92.18 PORT=21     
+> [右] 已连接到 210.28.92.18      
+> [右] 500 OOPS: vsftpd: both local and anonymous access disabled!  
+
+将local_enable=YES即可。
+
+##### root可以登录，但是设置的帐号却不能
+
+这个需要注意是否安装了pam。前面我们看到账户使用了pam认证，那么必须有pam的支持。
+  > [root@php ~]#yum install pam-devel  
+
+然后再重新编译、安装vsftpd。用ldd命令可以看到vsftpd是否加载了pam：
+  > [root@php vsftpd-2.2.2]# ldd /usr/local/sbin/vsftpd      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; linux-gate.so.1 =&gt;&#160; (0x00195000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libpam.so.0 =&gt; /lib/libpam.so.0 (0x006a7000)       
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libdl.so.2 =&gt; /lib/libdl.so.2 (0x0035c000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libnsl.so.1 =&gt; /lib/libnsl.so.1 (0x0068e000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libresolv.so.2 =&gt; /lib/libresolv.so.2 (0x00744000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libutil.so.1 =&gt; /lib/libutil.so.1 (0x0067c000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libcap.so.1 =&gt; /lib/libcap.so.1 (0x00688000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libc.so.6 =&gt; /lib/libc.so.6 (0x00215000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; libaudit.so.0 =&gt; /lib/libaudit.so.0 (0x0037b000)      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; /lib/ld-linux.so.2 (0x001f2000)  
+
+然后重启vsftpd就ok乐。还算有点扰人的。参考：[http://www.oschina.net/docs/article/10383](http://www.oschina.net/docs/article/10383 "http://www.oschina.net/docs/article/10383")

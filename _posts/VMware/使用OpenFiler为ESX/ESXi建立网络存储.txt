@@ -1,0 +1,87 @@
+Title: 使用OpenFiler为ESX/ESXi建立网络存储
+Date: 2009-03-23 21:09:27
+URL: /2009/03/vmware-iscsi/
+Tags: esx , iscsi , openfiler , VMware
+
+最重要的目的，就是因为VMotion这个功能只对共享存储支持！顺便为了学习一下NFS的使用，就找了两个软件，一个是OpenFiler，基于CentOS的，另一个是FreeNAS，基于BSD。由于BSD不是很熟悉，就用OpenFiler了。
+
+&#160;
+
+#### OpenFiler的配置安装
+
+OpenFiler下载地址：[http://www.openfiler.com/](http://www.openfiler.com/ "http://www.openfiler.com/")
+
+下载好了之后是一个200M左右的ISO镜像，刻盘安装即可。很简单，和Linux安装一样。需要注意的是，安装的时候不要让他自动分区，否则最后你就没空间建立存储了。
+
+分区方案：
+  > /,2048M。
+> 
+> /boot,100M。
+> 
+> /swap，2048M。  
+
+安装很快，10分钟左右。
+
+随后进入管理界面，[https://ip:446](https://ip:446)，使用openfiler/password登陆即可。
+
+只捡重要的说了。
+
+首先应当启用服务，包括iSCSI target，NFSv3以及SMB/CIFS。
+
+接下来创建一个分区，Volumes中选择Block Devices，建立分区。如果只给ESX用，最大剩余空间即可。
+
+建立一个Volume Group，比如NAS。把前面的分区加进来。
+
+创建一个iSCSI Volume，设定大小，名称即可。
+
+iSCSI Targets，可以默认，复制这个地址，比如iqn.2006-01.com.openfiler:tsn.4c8c0f4ffc71
+
+&#160;
+
+随后要MAP一个Lun，我一开始就是没做这一部，以至于ESX找不到磁盘。很简单，照着图做就行了。
+
+Network ACl中允许你的ESX服务器地址访问。
+
+安全起见，你还可以设置CHAP认证，也就是密码了。
+
+&#160;
+
+#### ESX的配置部分
+
+首先，需要打开VMotion，这个默认是没有的，你可以在License中看到Vmotion是Unused。你添加Storage Adapter的时候会提示这个：
+  > Cannot configure software iSCSI     
+> VMotion an IP Storage has not been enabled.  
+
+而ESXi就没有这个问题，直接就允许了。真搞不懂VMWare。所以我们需要首先允许Vmotion。
+
+&#160;
+
+进入Configuration中的Networking，点击Add Networking，然后选中VMkernel，在后面的界面中输入IP，记得Vmotion一定要打上勾。这个相当于你和NAS通讯的IP地址。
+
+&#160;
+
+然后点击Storage Adapters，选中其中的iSCSI Software Adapter,点击Properties。
+
+这个地方很简单了，输入OpenFiler的一些设置即可。
+
+Rescan一下即可。很慢很慢，要有心理准备...
+
+这个时候如果在OpenFiler的Status中的iSCSI status看到ESX的Connections，那么说明成功一大半了。恭喜你~
+
+&#160;
+
+最后，点击Storage，点击Add Storage，选择Disk/Lun，就可以看到你刚才的iSCSI了，大功告成！
+
+&#160;
+
+ps，网上的文章说同时要打开防火墙中的iSCSI端口，由于他的例子是ESXi，而我用的是ESX，破解的时候已经关掉了防火墙，所以在设置这个就会把防火墙打开，造成License Server失效...汗。
+
+&#160;
+
+&#160;
+
+参考：
+
+[http://www.xuniji.com/vmware/view.asp?id=307](http://www.xuniji.com/vmware/view.asp?id=307 "http://www.xuniji.com/vmware/view.asp?id=307")
+
+[http://bbs.vmware.cn/viewthread.php?tid=10054](http://bbs.vmware.cn/viewthread.php?tid=10054 "http://bbs.vmware.cn/viewthread.php?tid=10054")

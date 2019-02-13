@@ -1,0 +1,12 @@
+Title: windows media player 11居然不支持mms
+Date: 2011-09-13 20:12:19
+URL: /2011/09/wmp11-do-not-support-mms/
+Tags: wmp
+
+不过03下的windows media service的mms协议，wmp11还是可以播放的。
+
+悲剧的微软，悲剧的mms
+
+[http://support.microsoft.com/kb/934371](http://support.microsoft.com/kb/934371 "http://support.microsoft.com/kb/934371")
+
+[http://bbs.qianqian.com/viewthread.php?tid=418908](http://bbs.qianqian.com/viewthread.php?tid=418908 "http://bbs.qianqian.com/viewthread.php?tid=418908")

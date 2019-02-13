@@ -1,0 +1,19 @@
+Title: 总算解决了wordpress自动转换破折号的问题
+Date: 2010-01-01 14:23:10
+URL: /2010/01/disable-wordpress-texturize/
+Tags: texturize , Wordpress
+
+一直困扰于wp把--破折号转换成－的问题（注意前面是英文的两横线，后面是中文的破折号），尤其是linux下的编译命令，头大无比。
+
+一开始我以为是windows live writer造成的。确实wlw里面也有自动转换，然而关掉，还是不行。
+
+后来google一把，在wp的台湾网站上找到这么一条：
+  > **排版細膩** — WordPress使用[Texturize](http://photomatt.net/tools/texturize)引擎來轉換ASCII到正確的XHTML格式。包括引號、逗號、省略號、斜體和破折號、乘法符號和其他特殊符號。更多的訊息可以參閱Peter Sheerin的文章：[The Trouble With Em ’n En](http://alistapart.com/stories/emen/)。  
+
+原来是wp自导的这个texturize引擎造成的。
+
+后台找了半天，没有，于是继续google。找到这个：[http://www.jasonlitka.com/2007/09/25/wordpress-plugin-disable-wptexturize/](http://www.jasonlitka.com/2007/09/25/wordpress-plugin-disable-wptexturize/ "http://www.jasonlitka.com/2007/09/25/wordpress-plugin-disable-wptexturize/")原来有人专门为这个写了个插件..
+
+&#160;
+
+启用插件，刷新页面，搞定。

@@ -1,0 +1,38 @@
+Title: Squid反向代理的实现-DNS部分（Part 0，DNS Config）
+Date: 2009-08-02 15:58:00
+URL: /2009/08/squid-dns/
+Tags: dns , Squid
+
+由于我们采用了Bind的多View设置，加上Squid的设置，所以稍微有点复杂。
+
+&#160;
+
+针对[www.nau.edu.cn](http://www.nau.edu.cn)，假设Cernet IP是1.1.1.1，ChinanetIP是1.1.1.2。
+
+Squid的域名cache.nau.edu.cn，CernetIp是2.2.2.1,ChinanetIP是2.2.2.2
+
+&#160;
+
+对于DNS的chinanet部分，将[www.nau.edu.cn](http://www.nau.edu.cn)解析到cache.nau.edu.cn的CNAME上
+
+Cernet部分，同样解析到cache.nau.edu.cn的CNAME上。
+
+&#160;
+
+这时候我们遇到一个问题，就是用户访问[www.nau.edu.cn](http://www.nau.edu.cn)，得到Ip地址2.2.2.1，然后找到了Squid，Squid去找[www.nau.edu.cn](http://www.nau.edu.cn)，去解析DNS，发现IP是自己，这时候就会产生一个死循环了。
+
+解决办法就是编辑squid的hosts文件：
+
+**vi /etc/hosts**
+
+加入如下：
+
+[www.nau.edu.cn](http://www.nau.edu.cn) 1.1.1.1
+
+&#160;
+
+让Squid认为[www.nau.edu.cn](http://www.nau.edu.cn)的地址是1.1.1.1，而不是从dns去获取到自己的地址。
+
+&#160;
+
+有点乱，将就着看吧…

@@ -1,0 +1,28 @@
+Title: 奇怪的dns问题（半年的缓存？）
+Date: 2013-10-15 14:57:21
+URL: /2013/10/dns-cache/
+Tags: cache , dns
+
+为了加速访问，对于edu.cn的域名我们是交给121.194.2.2;121.194.2.3这两个dns处理的。一直都很正常。
+
+这个dns应该是cernet的
+C:\Users\baalchina&gt;ping dns1.hosting.edu.cn
+
+正在 Ping dns1.hosting.edu.cn [121.194.2.2] 具有 32 字节的数据: 
+来自 121.194.2.2 的回复: 字节=32 时间=29ms TTL=49
+
+不过这几天有人反映njau.edu.cn访问不了，解析出来地址是
+
+&gt; www.njau.edu.cn 
+服务器:  dns1.nau.edu.cn 
+Address:  210.28.92.7
+
+非权威应答: 
+名称:    www.njau.edu.cn 
+Address:  202.195.240.15
+
+我以为是cernet问题，找了地网中心，又找了南农的老师，发现他们的web早就在半年前改成了202.195.244.186。但是为什么121这个dns还是这么久的缓存？
+
+我怀疑是view做错了，不过他们说不是，南农老师怀疑是121这个dns把高校的www地址写死了。然后问了一圈，决定把121这个dns改成中科大的202.38.64.1，于是一切正常了。
+
+中科大还是牛b。这个dns同时还跑了流量监控。。。

@@ -1,0 +1,28 @@
+Title: 删除带有ltp1,com4这样特殊名字的文件
+Date: 2012-03-27 12:52:20
+URL: /2012/03/del-webshell/
+Tags: webshell , 木马
+
+某服务器，发现一些木马，其中help.asp,sys.asp这些都很好处理，只是做了一个隐藏文件的处理。
+
+但是诸如lpt1.help.asp以及com4.help.asp这些文件就不好弄了。
+
+baidu一下，果然是因为lpt,com这些都是系统设备名字的原因，这些文件还有RHSA属性，如图：
+
+[![QQ截图20120327124706](/wp-content/uploads/2012/03/QQ20120327124706_thumb.jpg "QQ截图20120327124706")](/wp-content/uploads/2012/03/QQ20120327124706.jpg)
+
+先去除属性：
+
+E:\iisroot\admin&gt;attrib -r -h -s -a [\\.\e:\iisroot\admin\lpt1.help.asp](file://\\.\e:\iisroot\admin\lpt1.help.asp)
+
+然后删除掉：
+
+E:\iisroot\admin&gt;del [\\.\e:\iisroot\admin\lpt1.help.asp](file://\\.\e:\iisroot\admin\lpt1.help.asp)    
+
+&#160;
+
+意思就是使用UNC路径，类似网上邻居的格式。
+
+参考：
+
+[http://www.renxinwu.com/blog/html/155/](http://www.renxinwu.com/blog/html/155/)

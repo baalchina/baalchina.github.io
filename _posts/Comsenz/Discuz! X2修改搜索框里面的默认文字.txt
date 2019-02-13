@@ -1,0 +1,20 @@
+Title: Discuz! X2修改搜索框里面的默认文字
+Date: 2011-06-02 15:04:57
+URL: /2011/06/change-discuz-search-bar/
+Tags: Discuz
+
+X2里面，搜索框里面是“请输入搜索内容”，如果点击，那么文字就自动消失了。
+
+&#160;
+
+如果要修改文字，有两个地方：
+
+1、data/web/nauzone/source/language|lang_template.php
+
+&#160; 'enter_content' =&gt; '想找什么？搜索一下！^_^',
+
+语言包，干掉他。
+
+2、data/web/nauzone/static/js|common.js
+
+这个是为了实现点击输入框自动消失的效果…有3个地方，也要修改。否则没有那个效果了。

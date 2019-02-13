@@ -1,0 +1,32 @@
+Title: 最简squid配置教程
+Date: 2010-01-05 10:14:39
+URL: /2010/01/squid-fast-config/
+Tags: Squid
+
+for 刘老大。:lol
+
+首先ssh上去，
+  > vi /etc/hosts  
+
+添加你要解析的地址，比如
+  > 1.1.1.1 hosts.example.com  
+
+其中
+
+1.  1.1.1.1是真实Web服务器的IP地址
+2.  hosts.example是服务器的域名  
+
+接下来编辑
+  > vi /usr/local/squid/etc/squid.conf  
+
+对应添加这两行：
+  > cache_peer_domain example&#160;hosts.example.com
+> 
+> cache_peer hosts.example.com parent 80 0 originserver no-query name=example&#160;  
+
+注意颜色对应。
+
+然后重新配置squid即可。
+  > /usr/local/squid/sbin/squid -k reconfigure  
+
+测试通过就ok了。

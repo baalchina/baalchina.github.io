@@ -1,0 +1,122 @@
+Title: Squid的设置（Part II，Troubleshooting，200100128）
+Date: 2009-08-08 15:51:07
+URL: /2009/08/squid-troubleshooting/
+Tags: Linux , Squid
+
+## WARNING: transparent proxying not supported
+  > 2009/08/03 08:22:07| WARNING: transparent proxying not supported  
+
+不支持透明代理.
+  > Aug&#160; 7 11:20:29 cache squid[21884]:&#160;&#160;&#160;&#160; Failed to verify one of the swap directories, Check cache.log&#160;&#160; for details.&#160; Run 'squid -z' to create swap directories&#160; if needed, or if running Squid for the first time.      
+> Aug&#160; 7 11:20:29 cache squid[21882]: Squid Parent: child process 21884 exited with status 1       
+> [root@cache ~]# /usr/local/squid/sbin/squid -z  
+
+第一次运行的时候需要建立CACHE目录.通过-z参数实现.
+
+## 启动报错，Cannot open HTTP Port
+  > Dec 31 01:04:46 cache squid[12484]: Squid Parent: child process 12489 started      
+> Dec 31 01:04:46 cache (squid): Cannot open HTTP Port       
+> Dec 31 01:04:46 cache squid[12484]: Squid Parent: child process 12489 exited with status 1  
+
+非root用户不能启动大于1024的端口，用root启动。另外selinux也会阻挡。关掉，重启。
+
+&#160;
+
+&#160;
+
+## WARNING cache_mem is larger than total disk cache space!
+  > [root@cache squid-3.1.0.13]# /usr/local/squid/sbin/squid -k parse      
+> 2009/08/08 15:20:17| Processing Configuration File: /usr/local/squid/etc/squid.conf (depth 0)       
+> 2009/08/08 15:20:17| Starting Authentication on port [::]:80       
+> 2009/08/08 15:20:17| Disabling Authentication on port [::]:80 (interception enabled)       
+> 2009/08/08 15:20:17| Disabling IPv6 on port [::]:80 (interception enabled)       
+> **2009/08/08 15:20:17| WARNING cache_mem is larger than total disk cache space!**  
+
+&#160;
+
+cache_men不能超过cache_dir中的一个数值，比如我的cache_dir是
+
+cache_dir ufs /data/squid_log 100 16 256
+
+cache_men被注释掉了，于是报错。
+
+修改为
+
+cache_men 96 MB，OK。
+
+参考：[http://bbs.chinaunix.net/archiver/?tid-114374.html](http://bbs.chinaunix.net/archiver/?tid-114374.html "http://bbs.chinaunix.net/archiver/?tid-114374.html")
+
+&#160;
+
+## ACL的问题
+
+默认Squid(3.1)不支持反向代理访问的（但是RFC1918的地址可以），是通过squid.conf中的ACL来实现的。
+
+具体现象就是你在172地址访问没问题，但是公网访问就提示Access Denied。
+
+日志显示：
+  > 1249718043.103&#160;&#160;&#160;&#160;&#160; 0 218.94.50.92 TCP_DENIED/403 3750 GET [http://english.nau.edu.cn/](http://english.nau.edu.cn/) - NONE/- text/html  
+
+这时候只需要将squid.conf中默认的
+
+http_access deny all修改为
+
+http_access allow all就可以了。一个很简单的ACL。
+
+&#160;
+
+## 重启的时候提示squid: No running copy
+
+使用squid -k reconfigure重启的时候老是提示
+  > [root@cache ~]# /usr/local/squid/sbin/squid -k shutdown      
+> squid: No running copy
+> 
+> &#160;  
+
+解决办法：squid将pid记录在一个文件里面，如果不存在（默认好像不会自己建立），那么就找不到了，虽然这时候squid是在运行的。只要指定一个pid文件就行了。
+  > [root@cache ~]#touch /usr/local/squid/var/squid.pid  
+
+再到squid.conf里面加入：
+  > pid_filename /usr/local/squid/var/squid.pid  
+
+就搞定了。
+
+&#160;
+
+## 2010/01/25 18:09:09| client_side.cc(2949) okToAccept: WARNING! Your cache is running out of filedescriptors
+
+访问squid发现非常非常之慢，然后找cache.log，发现如上提示。
+
+google了一下，发现是因为打开的文件数超过了linux的限制造成的，修改即可。
+  > # ulimit -HSn 65536  
+
+修改Linux为65536，并加入到/etc/profile中。
+
+然后重新编译Squid，加入
+  > --with-filedescriptors=65536  
+
+参数即可。
+
+参考：
+
+1.  [http://blog.verycd.com/dash/cmd=showentry&amp;eid=10840](http://blog.verycd.com/dash/cmd=showentry&amp;eid=10840 "http://blog.verycd.com/dash/cmd=showentry&amp;eid=10840")2.  [http://linux.chinaunix.net/bbs/viewthread.php?tid=1028215](http://linux.chinaunix.net/bbs/viewthread.php?tid=1028215 "http://linux.chinaunix.net/bbs/viewthread.php?tid=1028215")  
+
+## 不停的自动关闭
+
+squid不断地自动关闭，然后发现/var/log/message里面有这个
+  > Jan 28 12:20:16 cache-lab squid[6725]: Squid Parent: child process 6741 exited due to signal 25 with status 0     
+> Jan 28 12:20:19 cache-lab squid[6725]: Squid Parent: child process 6744 started      
+> Jan 28 12:20:26 cache-lab squid[6725]: Squid Parent: child process 6744 exited due to signal 25 with status 0      
+> Jan 28 12:20:26 cache-lab squid[6725]: Exiting due to repeated, frequent failures  
+
+singal 25，貌似是因为日志文件太大了。看了一下日志：
+  > [root@cache-lab ~]# ll /data/logs/squid/     
+> total 3757392      
+> -rw-r----- 1 nobody nobody 1661531737 Jan 28 15:56 access.log      
+> -rw-r----- 1 nobody nobody&#160;&#160; 34775796 Jan 28 15:56 cache.log      
+> -rw-r----- 1 nobody nobody 2147483647 Jan 27 04:12 store.log  
+
+看到那个著名的2147483647了...
+
+    
+暂时把store.log写到/dev/null试试看。

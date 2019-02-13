@@ -1,0 +1,35 @@
+Title: Windows Update 的0x800B0001错误
+Date: 2012-08-29 15:06:59
+URL: /2012/08/wsus-0x800b0001-error/
+Tags: WSUS
+
+一台Windows 2008 R2，指定WSUS服务器，更新的时候提示0x800B0001错误。
+
+错误如下：
+2012-08-29	14:47:24:832	 832	638	Misc	Validating signature for C:\Windows\SoftwareDistribution\SelfUpdate\wuident.cab:
+2012-08-29	14:47:24:832	 832	638	Misc	 Microsoft signed: Yes
+2012-08-29	14:47:24:832	 832	638	Misc	WARNING: Digital Signatures on file C:\Windows\SoftwareDistribution\SelfUpdate\wuident.cab are not trusted: Error 0x800b0001
+2012-08-29	14:47:24:832	 832	638	Setup	WARNING: SelfUpdate check failed to download package information, error = 0x800B0001
+2012-08-29	14:47:24:832	 832	638	Setup	FATAL: SelfUpdate check failed, err = 0x800B0001
+2012-08-29	14:47:24:832	 832	638	Agent	  * WARNING: Skipping scan, self-update check returned 0x800B0001
+2012-08-29	14:47:24:832	 832	638	Agent	  * WARNING: Exit code = 0x800B0001
+2012-08-29	14:47:24:832	 832	638	Agent	*********
+2012-08-29	14:47:24:832	 832	638	Agent	**  END  **  Agent: Finding updates [CallerId = AutomaticUpdates]
+2012-08-29	14:47:24:832	 832	638	Agent	*************
+2012-08-29	14:47:24:832	 832	638	Agent	WARNING: WU client failed Searching for update with error 0x800b0001
+2012-08-29	14:47:24:832	 832	98c	AU	&gt;&gt;##  RESUMED  ## AU: Search for updates [CallId = {174E2DA4-4B96-42B6-B0E9-3172AC51AF83}]
+2012-08-29	14:47:24:832	 832	98c	AU	  # WARNING: Search callback failed, result = 0x800B0001
+2012-08-29	14:47:24:832	 832	98c	AU	  # WARNING: Failed to find updates with error code 800B0001
+2012-08-29	14:47:24:832	 832	98c	AU	#########
+2012-08-29	14:47:24:832	 832	98c	AU	##  END  ##  AU: Search for updates [CallId = {174E2DA4-4B96-42B6-B0E9-3172AC51AF83}]
+2012-08-29	14:47:24:832	 832	98c	AU	#############
+2012-08-29	14:47:24:832	 832	98c	AU	Successfully wrote event for AU health state:0
+2012-08-29	14:47:24:832	 832	98c	AU	AU setting next detection timeout to 2012-08-29 11:47:24
+2012-08-29	14:47:24:832	 832	98c	AU	Successfully wrote event for AU health state:0
+2012-08-29	14:47:24:832	 832	98c	AU	Successfully wrote event for AU health state:0
+
+google之，是因为wsus服务端的更新比客户端还要老，也就造成了这个错误。
+
+参见：
+
+[http://social.msdn.microsoft.com/Forums/en-US/winserver2008appcompatabilityandcertification/thread/23194723-149a-4311-9ea9-1bec767aac1c](http://social.msdn.microsoft.com/Forums/en-US/winserver2008appcompatabilityandcertification/thread/23194723-149a-4311-9ea9-1bec767aac1c)

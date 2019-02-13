@@ -1,0 +1,33 @@
+Title: yum的使用
+Date: 2009-08-02 11:26:20
+URL: /2009/08/yum-usage/
+Tags: Linux , Yum
+
+有时候编译发现某组件没有，这时候用yum就很方便了。
+
+比如编译mysql提示
+  > checking for termcap functions library... configure: error: No curses/termcap library found  
+
+那么
+
+&#160;
+  > yum search curses
+> 
+> yum search termcap  
+
+&#160;
+
+提示：
+  > [root@mysql-replication mysql-5.1.36]# yum search termcap     
+> libtermcap.i386 : A basic system library for accessing the termcap database.      
+> termcap.noarch : The terminal feature database used by certain applications.      
+> termcap.noarch : The terminal feature database used by certain applications.      
+> libtermcap-devel.i386 : Development tools for programs which will access the termcap database.      
+> libtermcap.i386 : A basic system library for accessing the termcap database.  
+
+接下来安装之：
+
+&#160;
+  > yum install libtermcap-devel  
+
+下面的就很简单了。不多说了。

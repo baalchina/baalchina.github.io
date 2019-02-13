@@ -1,0 +1,32 @@
+Title: SecureCRT解决中文乱码
+Date: 2009-08-03 15:53:44
+URL: /2009/08/secure-crt-chinese/
+Tags: securecrt
+
+两个地方，服务器和SecureCRT上。
+
+&#160;
+
+### 服务器，
+  > vi /etc/sysconfig/i18n  
+
+改为支持UTF-8
+  > LANG=&quot;zh_CN.UTF-8&quot;  
+
+&#160;
+
+### 然后Crt中
+
+选择字体
+
+Terminal-Apperance中，Fonts选择中文字体，接着把Character encoding改成UTF-8即可。
+
+&#160;
+
+注意CRT要关掉重开。
+
+&#160;
+  > [root@squid ~]# chmod +777 /usr/local/squid/var/logs/cache.log     
+> chmod: 无效模式：“+777”      
+> 请尝试执行“chmod --help”来获取更多信息。      
+> [root@squid ~]#

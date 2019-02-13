@@ -1,0 +1,18 @@
+Title: 发现了一个奇怪的trunk的问题
+Date: 2010-10-11 21:23:42
+URL: /2010/10/a-vlan-problem/
+Tags: trunk , vlan
+
+拓扑如下：
+
+Huawei3300---&gt;Enterasys N7A---&gt;Enterasys N7B---&gt;Ruijie S3550---&gt;Ruijie S2126。
+
+其中Huawei3300是专网，往后都是用的vlan形式。
+
+&#160;
+
+本来配的时候配错了，一路下来，N7B中到S3550的下联口打了tag，但是上联口没有打。很奇怪的是，他居然通了。
+
+后来N7A换成了H3C S7510，结果就是不通了。但是更奇怪的是，可以在末端的S2126上看到vlan的MAC地址。
+
+奇怪。

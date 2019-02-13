@@ -1,0 +1,16 @@
+Title: iis的站点id原来是根据名字算出来的
+Date: 2013-04-08 13:34:15
+URL: /2013/04/iis-site-id/
+Tags: iis , Windows
+
+两个服务器，同一个网站名称，迁移的时候才发现id居然一样。baidu一番，发现iis的id是根据站点名算出来的。
+
+&#160;
+
+这就说得痛了~
+
+&#160;
+
+参考：
+
+[http://blog.zxlm.cn/2008/01/%E5%BD%BB%E5%BA%95%E6%8E%8C%E6%8F%A1iis-60%E5%8A%9F%E8%83%BD%E7%BD%91%E7%AB%99id.html](http://blog.zxlm.cn/2008/01/%E5%BD%BB%E5%BA%95%E6%8E%8C%E6%8F%A1iis-60%E5%8A%9F%E8%83%BD%E7%BD%91%E7%AB%99id.html)

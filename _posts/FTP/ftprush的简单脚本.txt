@@ -1,0 +1,37 @@
+Title: ftprush的简单脚本
+Date: 2012-06-11 14:45:17
+URL: /2012/06/ftprush-script/
+
+ftprush脚本用到比较多的应该是Transfer这个。
+
+帮助中的解释如下：
+    
+
+procedure Transfer( 
+
+&#160; Handle: Integer; 
+
+&#160; SrcList, SrcFolder, SrcItem, DesList, DesFolder, DesItem: string; 
+
+&#160; Flag: Integer; 
+
+&#160; FolderAllow, FolderSkip, FileAllow, FileSkip: string; 
+
+&#160; CompleteFlag: string; 
+
+&#160; RepeatCount: Integer; 
+
+&#160; RetryCount: Integer; 
+
+&#160; Timeout: Integer; 
+
+&#160; FolderSort, FileSort: Integer; 
+
+&#160; Depth, SubCount: Integer; 
+
+);
+
+&#160;
+
+
+1.  **_Handle_**，使用哪个窗口，1，2…不设置就用0。2.  SrcList，源ftp名或者ftp名的列表。用于Download和Fxp3.  SrcFolder，这个就是源目录啦。可以是目录名，也可以是bookmark。4.  SrcItem，源目录或者源文件。可以是目录或者文件名。5.  DesList，DesFolder，DesItem，和上面3个一样。6.  Flag，帮助说，如果你不用Flasg，那么就写一个0。7.  FolderAllow，允许子目录对应FolderAllow参数，可以是空值。8.  FolderSkip，跳过符合本参数的目录。可以是空值。9.  FileAllow，允许子文件应用到FileAllow参数，可以是空值。10.  FileSkip，跳过符合FileSkip的子文件，可以是空值。

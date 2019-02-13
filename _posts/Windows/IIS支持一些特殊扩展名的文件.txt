@@ -1,0 +1,16 @@
+Title: IIS支持一些特殊扩展名的文件
+Date: 2009-12-28 12:56:22
+URL: /2009/12/iis-mime-type/
+Tags: iis , mime , Windows
+
+IIS6里面有些特殊文件即使存在，也会提示404错误，是因为IIS不支持这些MIME类型，比如ISO，比如Ubuntu的deb文件。
+
+加上就好了。
+
+IIS属性--HTTP头--MIME类型，添加：
+
+扩展名：
+  > *  
+
+MIME类型
+  > application/octet-stream

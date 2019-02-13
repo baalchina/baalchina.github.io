@@ -1,0 +1,21 @@
+Title: 获取国内版eset nod32的升级密码
+Date: 2011-09-13 13:25:19
+URL: /2011/09/get-eset-update-id/
+Tags: eset , nod32
+
+国内版eset使用的是激活码方式，虽然注册的时候提供了邮箱，但是似乎并没有发送eav-xxxx这样的升级id到你的邮箱。
+
+虽然写了一个值到
+  > HKEY_LOCAL_MACHINE\SOFTWARE\ESET\ESET Security\CurrentVersion\Plugins\01000400\Profiles\@My profile  
+
+password部分却很恶心的进行了加密。
+
+&#160;
+
+这时候只要装个俄国老写的那个nod32updateviewer，里面有个小钥匙图标，可以get password from eset。
+
+然后设置里面，选中show password，就可以看到密码了。
+
+&#160;
+
+补充一下：虽然eset的设置界面里面可以看到id，但是密码是星号。win7下我试了星号查看器，似乎无效~

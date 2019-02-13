@@ -1,0 +1,18 @@
+Title: Linux系统下修改时区，进行同步
+Date: 2008-08-26 09:04:53
+URL: /2008/08/linx-timezone/
+Tags: Linux , 时区
+
+查看当前时区：
+
+> # vi /etc/sysconfig/clock
+
+修改设置时区
+
+> # tzselect
+
+定时校正
+
+> # yum install ntp> 
+> # crontab –e> 
+> */15 * * * * /usr/sbin/ntpdate 210.72.145.44

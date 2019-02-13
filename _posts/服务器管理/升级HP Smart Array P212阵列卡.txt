@@ -1,0 +1,20 @@
+Title: 升级HP Smart Array P212阵列卡
+Date: 2013-07-31 13:05:06
+URL: /2013/07/upgrade-hp-p212-firmware/
+Tags: hp , p212
+
+一台HP服务器上接的P212阵列卡，原来是2TB硬盘没问题，换成3TB就无法识别了。显示容量为0。准备升级一下阵列卡固件。
+
+首先下载 [HP Service Pack for ProLiant](http://www.hp.com/go/spp)，这是一个ISO，需要注册HP账号才行。
+
+然后用HP自己的USB工具[HP USB Key Creator Utility](http://h20000.www2.hp.com/bizsupport/TechSupport/SoftwareDescription.jsp?swItem=MTX-eee9b3632ced47478f9ef85d43&amp;lang=en&amp;cc=us&amp;mode=3&amp;) 做成光盘启动。
+
+把下载的固件（.scexe格式）放到./hp/swpackages下。
+
+启动，按照操作做即可。
+
+ps，以上是没有系统的情况，如果有Linux，也可以直接执行。
+
+ps2，如果下载的是最新的Service Pack for ProLiant，那么里面其实自带了不少ROM。
+
+参考：[http://h20000.www2.hp.com/bizsupport/TechSupport/SoftwareDescription.jsp?lang=en&amp;cc=us&amp;prodTypeId=329290&amp;prodSeriesId=3885791&amp;swItem=MTX-4f63c6420b7349f7ad26468214&amp;prodNameId=3885792&amp;swEnvOID=54&amp;swLang=2&amp;taskId=135&amp;mode=4&amp;idx=1](http://h20000.www2.hp.com/bizsupport/TechSupport/SoftwareDescription.jsp?lang=en&amp;cc=us&amp;prodTypeId=329290&amp;prodSeriesId=3885791&amp;swItem=MTX-4f63c6420b7349f7ad26468214&amp;prodNameId=3885792&amp;swEnvOID=54&amp;swLang=2&amp;taskId=135&amp;mode=4&amp;idx=1)

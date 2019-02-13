@@ -1,0 +1,38 @@
+Title: Discuz X1.5对于南审地带的修改
+Date: 2010-09-28 09:24:05
+URL: /2010/09/discuz-x-1-5-nauzone/
+Tags: Discuz , nauzone
+
+Discuz 7.2时代，参看：[http://www.baalchina.net/2009/08/discuz-code/](http://www.baalchina.net/2009/08/discuz-code/)
+
+Discuz X1时代，参看：[http://www.baalchina.net/2010/05/discuzx-nauzone/](http://www.baalchina.net/2010/05/discuzx-nauzone/ "http://www.baalchina.net/2010/05/discuzx-nauzone/")
+
+&#160;
+
+首先还是下载地址的那个。这次多加几个标志。注意修改的地方比Discuz X1.5少了一个。
+  > source\language\forum\lang_template.php
+> 
+> &#160;  
+
+修改为
+  > 'discuzcode_copyclipboard' =&gt; '下载地址(点我即可将地址复制到剪贴板！',  
+
+这个是把复制代码的提示改掉。
+
+&#160;
+  > template\default\forum\discuzcode.htm  
+
+增加一些框框，图表什么的。
+
+&#160;
+
+19行
+  > &lt;!--{block return}—&gt;  
+
+后面增加
+  > &lt;br /&gt;&lt;img src=&quot;[http://zone.nau.edu.cn/static/image/common/download.gif&quot;](http://zone.nau.edu.cn/static/image/common/download.gif&quot;) /&gt;下载地址(点击框框下方提示将地址复制到下载软件队列中即可下载！具体查看&lt;a href=&quot;[http://net.nau.edu.cn/resource/guide/how-to-download-ftp-file/&quot;](http://net.nau.edu.cn/resource/guide/how-to-download-ftp-file/&quot;)&gt; 这里&lt;/a&gt;)：  
+
+&#160;
+
+然后增加一个外网的提示：
+  > /source/language/lang_message.php  > 'user_banned' =&gt; '伟大领袖毛主席教导我们：只有南审内网才可以访问南审地带。详情请参看：&lt;a href=&quot;[http://bbs.nau.edu.cn/viewthread.php?tid=333777&quot;](http://bbs.nau.edu.cn/viewthread.php?tid=333777&quot;)&gt;[http://bbs.nau.edu.cn/viewthread.php?tid=333777](http://bbs.nau.edu.cn/viewthread.php?tid=333777)&lt;/a&gt;',

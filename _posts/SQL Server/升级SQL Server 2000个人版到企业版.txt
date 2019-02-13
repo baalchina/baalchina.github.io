@@ -1,0 +1,11 @@
+Title: 升级SQL Server 2000个人版到企业版
+Date: 2012-07-05 20:13:10
+URL: /2012/07/upgrade-sql-serve/
+
+方法：安装SQL Server 2000企业版，选择升级即可...好吧，我什么也没说。:lol
+
+安装完成后重启下sqlserver或者服务器，不然还是显示personal edition。升级好之后，就可以用超过1g内存啦！
+
+具体区别可以看这里：
+
+http://www.google.com.hk/url?sa=t&amp;rct=j&amp;q=sql+server+2000+edition+compare&amp;source=web&amp;cd=3&amp;ved=0CGMQFjAC&amp;url=http%3A%2F%2Fdownload.microsoft.com%2Fdownload%2F8%2F1%2F7%2F817bb6e6-9d97-4a5d-be8d-508256ae4045%2Fchoosed.doc&amp;ei=U4T1T9_BKOyfiAfJvIjIBg&amp;usg=AFQjCNH733fpLblaIVCphlRsq-MMBKsRDA

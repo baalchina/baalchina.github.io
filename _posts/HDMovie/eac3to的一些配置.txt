@@ -1,0 +1,53 @@
+Title: eac3to的一些配置
+Date: 2009-05-06 13:35:24
+URL: /2009/05/eac3to-install/
+Tags: eac3to , hd
+
+eac3to是一个强大的音频转换工具，当然他需要一系列收费软件的支持，比如nero，比如Surcode DTS Encoder。
+
+&#160;
+
+## 安装
+
+安装Nero 7，注意8不行！
+
+选中Nero ShowTime即可，其他的都不要选择。然后到Produce Setup里面加上蓝光插件的key即可。
+
+&#160;
+
+DTS就不多说了，很简单。
+
+&#160;
+
+## 检测
+  > eac3to.exe –test  
+
+，即可看到结果
+
+&#160;
+  > G:\hdc\work\eac3to&gt;eac3to.exe -test      
+> eac3to (v3.16) is up to date       
+> Nero Audio Decoder (Nero 7) works fine       
+> ArcSoft DTS Decoder doesn't seem to be installed       
+> [http://www.arcsoft.com/products/totalmediatheatre](http://www.arcsoft.com/products/totalmediatheatre)       
+> Sonic Audio Decoder (5.0.0.203) works fine       
+> Haali Matroska Muxer (2009-01-11) is up to date       
+> Nero AAC Encoder (1.3.3.0) is up to date       
+> Surcode DTS Encoder (1.0.29.0) is installed       
+> MkvToolnix (2.6.0.0, release version) is installed       
+> &#160; There's a new release version (2.7.0.0) available       
+> [http://www.bunkus.org/videotools/mkvtoolnix](http://www.bunkus.org/videotools/mkvtoolnix)       
+> &#160; There's a new beta version (2.7.0.0, 2009-04-25) available       
+> &#160; [http://www.bunkus.org/videotools/mkvtoolnix/win32/pre](http://www.bunkus.org/videotools/mkvtoolnix/win32/pre)  
+
+Works fine!
+
+Nero7蓝光的注册码：
+
+EC06-206A-99K5-2527-940M-3227-K7XK
+
+&#160;
+
+参考：
+
+Wiki:[http://en.wikibooks.org/wiki/Eac3to/FAQ](http://en.wikibooks.org/wiki/Eac3to/FAQ "http://en.wikibooks.org/wiki/Eac3to/FAQ")

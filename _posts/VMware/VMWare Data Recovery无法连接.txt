@@ -1,0 +1,20 @@
+Title: VMWare Data Recovery无法连接
+Date: 2010-04-12 13:26:06
+URL: /2010/04/vmware-vdr-failed-to-login/
+Tags: vdr , VMware
+
+突然发现VDR无法连接了。重启了虚拟机还是不行。于是进去捣鼓半天，发现日志中一堆错误。
+
+重启datarecovery服务也不行，最后偶然df的时候发现磁盘满了。估计是这个原因，于是重做了一个VDR，将原来的删掉了...
+
+发现我啥也没说...哈哈。
+
+补充：
+
+[![vdr3](/wp-content/uploads/2010/04/vdr3_thumb.jpg "vdr3")](/wp-content/uploads/2010/04/vdr3.jpg)
+
+[![vdr2](/wp-content/uploads/2010/04/vdr2_thumb.jpg "vdr2")](/wp-content/uploads/2010/04/vdr2.jpg)
+
+&#160;
+
+可以看到，第一个是不正常的，没有能挂载SCSI-0:1，也就是备份磁盘。估计是这个原因。

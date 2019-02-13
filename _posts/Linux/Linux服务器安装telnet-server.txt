@@ -1,0 +1,14 @@
+Title: Linux服务器安装telnet-server
+Date: 2008-08-06 14:12:12
+URL: /2008/08/linux服务器安装telnet-server/
+Tags: Linux , Telnet
+
+默认的Cent-OS 4.4 Server是没有安装telnetserver的。安全嘛。
+
+
+#yum install telnet-server
+#ntsysv
+#service xinetd restart
+
+
+Done。

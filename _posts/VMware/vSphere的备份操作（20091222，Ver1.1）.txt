@@ -1,0 +1,60 @@
+Title: vSphere的备份操作（20091222，Ver1.1）
+Date: 2009-12-04 13:40:43
+URL: /2009/12/vsphere-backup/
+Tags: backup , VMware , vsphere
+
+虚拟化的一大特点就是备份、迁移方便，但是不明白为什么vmware把备份做的如此复杂...从vi3开始就很困扰的问题，到vsphere还是那么复杂，找了好长时间的资料才找到。难道就是因为复杂了才能卖技术支持？哈哈。
+
+&#160;
+
+VI3中，备份用的是vSphere里面VMware consolidated Backup，据说是一个命令行程序...反正我是没用起来。vmware.com说vSphere里面内置了这个功能，找了很久也没找到。最后发现vSphere叫做VMware vStorage APIs for Data Protection：[http://www.vmware.com/cn/products/vstorage-apis-for-data-protection/](http://www.vmware.com/cn/products/vstorage-apis-for-data-protection/ "http://www.vmware.com/cn/products/vstorage-apis-for-data-protection/")，反正就是一些乱七八糟的备份名词，搞得人晕乎，东西才卖的出去...
+
+&#160;
+
+而我在第三张盘里面发现了一个DataBackup，应该也是备份的。
+
+#### 安装
+
+首先在安装了vi的电脑上安装DataBackup，其实就是一个插件。然后我们要创建一个虚拟机（可以把它理解为用于备份的虚拟机）。
+
+点击vi的文件--部署ovf模板--打开光盘上的“G:\DataRecovery\VMwareDataRecovery-ovf\VMwareDataRecovery.ov”。然后就创建了一个叫做“VMware Data Recovery”的虚拟机。这是一个基于CentOS的Linux系统。
+
+#### 部署
+
+先不急着启动系统。我们要给这个虚拟机添加磁盘--用于保存备份，可以是iSCSI，也可以是本地磁盘。我这里使用iSCSI，具体步骤不多说。大小我分配了160g。
+
+启动之，然后会看到欢迎界面上，我们可以配置ip，默认是dhcp的。
+
+随后我们回到vi，主页，会看到“解决方案和应用程序”中夺了一个VMware Data Recovery。点击之，连接到刚才那台Linux主机。输入vc的密码即可。在向导中，备份目标就可以看到刚才添加的硬盘了。
+
+我们也可以添加网络共享，就是[\\1.1.1.1\c$](file://\\1.1.1.1\c$)这种形式。测试了一下，支持Windows 2003。
+
+注意这个磁盘要格式化，否则无法保存备份的。格式化完成之后，就从原来的/dev/sdb变成了/SCSI-0:1/
+
+&#160;
+
+接下来，添加备份任务，这个很简单，不多说了。可以实现快照等功能，并且可以保存多个备份点。还是比较方便的。
+
+&#160;
+
+更多功能待发现。
+
+===============================================
+
+20091222更新
+
+今天发现VMWare出了Data Backup的1.1，于是更新一下。
+
+#### 
+
+#### 升级
+
+卸载DB的插件。然后安装新的1.1，再运行VC。
+
+我们还需要VMware Data Recovery这个虚拟机也升级一下。
+
+首先，我们把它_shutdown -h now_。
+
+然后重新部署新的OVF模板，新的模板在部署的时候就可以直接设定时区了，但是不能设定IP，还有待改进。
+
+然后新的模板，设定磁盘的时候选择老的磁盘就可以啦。

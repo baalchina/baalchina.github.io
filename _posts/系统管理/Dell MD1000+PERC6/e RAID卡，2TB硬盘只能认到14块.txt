@@ -1,0 +1,8 @@
+Title: Dell MD1000+PERC6/e RAID卡，2TB硬盘只能认到14块
+Date: 2013-11-04 14:44:35
+URL: /2013/11/dell-md1000-14-disks/
+Tags: dell , md1000
+
+Dell MD1000，15个槽位，以前用1tb sas/sata盘都是完全可认的，但是升级到2tb盘，无论如何都只能识别到14块，确认盘没问题都是新盘，槽位应该也没问题，因为每次错误的槽位都不一样。
+
+搜索到这个帖子，[http://we.poppur.com/thread-1760489-1-1.html](http://we.poppur.com/thread-1760489-1-1.html)，也有类似情况，算了，不折腾咯。

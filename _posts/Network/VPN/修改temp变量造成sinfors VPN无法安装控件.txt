@@ -1,0 +1,27 @@
+Title: 修改temp变量造成sinfors VPN无法安装控件
+Date: 2009-03-22 13:59:24
+URL: /2009/03/sinfors-vpn-active-x/
+Tags: sinfor , ssl , VPN
+
+用ramdisk虚拟了一个磁盘出来，把vista的temp变量指向了虚拟盘。
+
+但是造成了vpn无法登陆，控件安装失败，提示“cs应用出现异常，请咨询管理员。”
+
+&#160;
+
+安装了sinfors的工具，使用debug view可以看到
+
+[3644] defaultSavePath == NULL   
+[3644] download failed
+
+将temp修改回来就好了。正常的提示是这样的：
+
+[3644] defaultSavePath == NULL   
+[3644] [https://www.nauvpn.cn/com/ProxyIE.CAB,C:\Users\BAALCH~1\AppData\Local\Temp\ProxyIE.CAB](https://www.nauvpn.cn/com/ProxyIE.CAB,C:\Users\BAALCH~1\AppData\Local\Temp\ProxyIE.CAB)    
+[3644] Download succeed, file is stored in &quot;C:\Users\BAALCH~1\AppData\Local\Temp\ProxyIE.CAB&quot;
+
+&#160;
+
+参考：
+
+[http://www.sinfors.com/cn/forum/htm_data/12/0809/144.html](http://www.sinfors.com/cn/forum/htm_data/12/0809/144.html "http://www.sinfors.com/cn/forum/htm_data/12/0809/144.html")

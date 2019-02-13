@@ -1,0 +1,58 @@
+MySQL 5.7配置Replication
+
+#Master配置
+
+##my.cnf
+```
+server_id = 100
+log-bin=mysql-bin
+binlog_do_db=test1
+binlog_do_db=test2
+replicate-same-server-id
+expire_logs_days = 3
+max_binlog_size = 500M
+
+```
+- 这里需要注意的是`binlog_do_db`的配置，同步是根据二进制日志来的，所以你要打开需要同步的数据库的二进制日志。一个库一行。
+- 以及过期时间和日志大小的问题
+
+
+##创建同步账号
+`rep`，密码`replication`，主机`192.168.1.*`
+```
+/usr/bin/mysql -uroot -p --socket=socket=/var/lib/mysql/mysql.sock -e "create user rep identified by 'replication';" 
+/usr/bin/mysql -uroot -p --socket=socket=/var/lib/mysql/mysql.sock -e"grant replication slave on *.* to 'rep'@'192.168.1.%' identified by 'replication';"
+```
+##重启mysql
+`systemctl restart mysqld`
+
+##检查Master状态
+```
+mysql> show master status;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000002 |      154 | test         |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+1 row in set
+```
+
+# Slave的配置
+##`my.cnf`
+- 配置`server-id`，和Master的不能相同
+##配置同步，注意是在mysql命令行中实现的
+`"change master to master_host='192.168.1.1',master_user='rep',master_password='123456',master_log_file='mysql-bin.000001',master_log_pos=154; start slave;  `
+
+> 这里需要注意的是，虽然配置的`bin.000001`这个日志，但是当你重启Master之后，Master的日志会增长，不用怕，Slave会自动同步的
+
+
+##检查状态
+`show slave status \G;`
+检查
+```
+Slave_IO_Running: Yes
+Slave_SQL_Running: Yes
+```
+
+#重新配置
+如果修改了Master的配置，需要对Slave重新配置，在Master上`show master status`之后，记下file和position，在Slave上再运行同步命令即可

@@ -1,0 +1,39 @@
+Title: 简单的“网盘”程序
+Date: 2010-02-28 15:59:42
+Status: private
+URL: /2010/02/简单的网盘程序/
+
+学校里老师们有这个需求：放作业什么的在网上，告诉学生们去下载。网上也有收费、破解的一些网盘，但是不太放心。
+
+后来偶然看到了apache的user dir功能，觉得很完美，于是开工~
+
+&#160;
+
+需求：
+
+1.  可以方便下载（apache可以做列表，老师们自己也可以通过上传一个index.html来隐藏列表，而直接告诉学生文件名）2.  可以方便上传（ftp哇）3.  可以自己改密码（由于userdir使用的是linux的用户，所以做个shell，教老师用telnet登陆上来，自动改好，然后自动退出，就可以鸟）4.  配额（ftp做配额，linux也可以配额）  
+
+简单说下步骤。
+
+## 首先我们来安装Apache
+
+没啥难度，一路configure/make/make install
+
+&#160;
+
+## Apache的user dir配置部分
+
+先编辑httpd.conf，添加必要的ip地址，域名，主目录等。这里可以写一个简单的说明，比如申请指南什么的放到主目录里。
+
+&#160;
+
+然后到httpd.conf最后一行，去掉第二行开头的#
+  > # User home directories      
+> #Include conf/extra/httpd-userdir.conf  
+
+&#160;
+
+再编辑extra/httpd-userdir.conf
+  > UserDir public  
+
+这一行是目录名称，也就是/home/username中的哪个目录会被作为网页目录，我这里改成了public。如果这里改了的话，后面目录权限那里也要设置一下。

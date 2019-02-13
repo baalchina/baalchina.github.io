@@ -1,0 +1,34 @@
+#基础
+- iscsi target部分使用的是Windows，就不多说了
+- 安装软件：`# yum -y install iscsi-initiator-utils`
+- `/etc/iscsi/initiatorname.iscsi`下是initatorname
+
+
+#配置
+需要注意的是，这些配置都要在~/下完成(?)
+- 发现设备：`iscsiadm -m discovery -t sendtargets -p 192.168.1.200`。如果成功，会返回target的名字
+- login:
+```
+ iscsiadm -m node -T iqn.2015-08.com.361way:test-target -l 
+```
+或者
+```
+  iscsiadm --mode node --targetname iqn.2015-08.com.361way:test-target --portal 192.168.1.200:3260 --login
+```
+- logout
+```
+# iscsiadm -m node -T iqn.2015-08.com.361way:test-target -u 
+```
+或者
+```
+# iscsiadm --mode node --targetname iqn.2015-08.com.361way:test-target --portal 192.168.1.200:3260 --logout
+```
+
+记不得也没关系，`man iscsiadm`有样例
+
+#挂载
+- fdisk -l 如果看到出现磁盘就说明识别到了。
+- 用fdisk建立分区
+- mkfs.ext4 /dev/sdb1格式化
+- 编辑fstab，增加`/dev/sdb1               /backup                 ext4    defaults,_netdev        0 0`
+- `mount -a`刷新fstab

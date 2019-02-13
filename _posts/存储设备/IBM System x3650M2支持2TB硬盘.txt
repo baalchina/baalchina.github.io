@@ -1,0 +1,28 @@
+Title: IBM System x3650M2支持2TB硬盘
+Date: 2010-12-23 13:11:01
+URL: /2010/12/system-x-3650-support-2tb-harddriver/
+Tags: x3650
+
+其实很简单啦，就是把ServeRaid8k卡的Bios升级到16002即可。之前用的Windows下的升级工具似乎只升级到了15xxx，不是最新的16xxx。
+
+单独下载：
+
+[http://www-947.ibm.com/support/entry/portal/docdisplay?lndocid=MIGR-5073645](http://www-947.ibm.com/support/entry/portal/docdisplay?lndocid=MIGR-5073645 "http://www-947.ibm.com/support/entry/portal/docdisplay?lndocid=MIGR-5073645")
+  > Version: 5.2.0-16002 - Suggested     
+> ---------------------      
+> Controllers Affected: ServeRAID 8i, 8k, 8k-l, 8s      
+> Enhancements: None      
+> Problem(s) Fixed:      
+> - Fixed the firmware crash during RAID-0 migration to RAID-5.      
+> - Fixed the firmware crash when both the RAID-5 and RAID-6 are made offline while RAID-6 rebuild is in progress.      
+> - Fixed issue in flashcopy.      
+> Version: 5.2.0-16001 - Suggested      
+> ---------------------      
+> Controllers Affected: ServeRAID 8i, 8k, 8k-l, 8s      
+> Enhancements: None      
+> Problem(s) Fixed:      
+> - Provided support for 2TB physical drive.  
+
+盘是西数的绿盘。
+
+如果不升级的话，磁盘管理里面虽然能看到这个2TB盘，但是创建Array却找不到。

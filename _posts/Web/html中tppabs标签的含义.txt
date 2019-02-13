@@ -1,0 +1,12 @@
+Title: html中tppabs标签的含义
+Date: 2012-09-30 16:50:08
+URL: /2012/09/html-tppabs-tag/
+
+看一段源代码的时候看到tppabs这个标签，很奇怪以前没看过，于是百度一下，是Teleport Ultra生成的。
+ &lt;li&gt;&lt;a href="index.htm" tppabs="http://www.163.com/"&gt;首页&lt;/a&gt;&lt;/li&gt;
+
+也就是注明原来的地址。
+
+如果需要清除，参考：
+
+[http://www.fufuok.com/teleport-tppabs.html](http://www.fufuok.com/teleport-tppabs.html)

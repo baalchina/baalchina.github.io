@@ -1,0 +1,20 @@
+Title: Windows 7 KMS激活报“08007000D”的解决方法
+Date: 2010-04-06 11:15:07
+URL: /2010/04/08007000d/
+Tags: kms , Windows
+
+用的zwt的keygen，在lenovo的机器上激活Win7 Ent一点问题没有，但是换到自己的Thinkpad上就不行了。老是抱这个错误。
+
+搜索了下，解决了，办法如下：
+
+&#160;
+  > 1. slmgr.vbs /rilc     
+> 2. slmgr.vbs /rearm      
+> 3. restart your pc      
+> 重启，再
+> 
+> slmgr /ato  
+
+成功激活~
+
+参考：[http://www.pcbeta.com/viewthread-703655.html](http://www.pcbeta.com/viewthread-703655.html "http://www.pcbeta.com/viewthread-703655.html")

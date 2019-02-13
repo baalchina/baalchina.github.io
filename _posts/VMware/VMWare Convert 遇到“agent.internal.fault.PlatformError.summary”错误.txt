@@ -1,0 +1,13 @@
+Title: VMWare Convert 遇到“agent.internal.fault.PlatformError.summary”错误
+Date: 2010-06-29 09:38:35
+URL: /2010/06/a-vmware-convert-problem/
+Tags: convert , VMware
+
+早上试图转换一台Windows 2003，遇到了这个错误。放狗搜了一把，官网有同样问题，说是在Win2000平台上，解决方法是把任务Save As一下，重开就好。照做无效。官网文章：[http://www.vmware.com/support/converter/doc/releasenotes_conv40.html](http://www.vmware.com/support/converter/doc/releasenotes_conv40.html "http://www.vmware.com/support/converter/doc/releasenotes_conv40.html")
+
+&#160;
+
+本来都准备放弃了，随后点了一下导出日志功能，打开，看到这一行：
+  > Cannot connect to server 210.28.92.206:902: No connection could be made because the target machine actively refused it  
+
+于是突然醒悟，是防火墙，于是关掉防火墙，重启，OK。

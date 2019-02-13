@@ -1,0 +1,60 @@
+Title: Linux学习-NFS(V1.0)
+Date: 2010-07-19 14:16:42
+URL: /2010/07/linux-study-nfs/
+Tags: Linux , nfs
+
+1.  NFS使用RPC（远程过程调用）来协助工作。
+
+2.  NFS和FTP等的区别，透明的访问一个进程，引用文件部分：即不需要产生文件的副本，本地客户端也不需要做任何修改。
+
+3.  NFS服务器的安装
+
+    1.  启动inet, portmap, nfs和mount
+
+        2.  定义要拿来共享的分区
+
+        3.  客户端列表中定义客户端的参数
+
+        4.  修改/etc/exports
+
+        5.  重启nfs。
+
+4.  NFS的系统结构（注意这是服务器上的）
+
+    1.  /etc/exports。主配置文件。
+
+        2.  /usr/sbin/exportfs，一个命令
+
+        3.  /usr/sbin/showmount，这个主要用户客户端，来查看NFS共享出来的资源。
+
+5.  /etc/exports的配置。将需要共享的文件系统编辑到/etc/exports中，当NFS重启的时候就会自动读取，并将文件共享，设定权限。
+
+6.  修改了exports文件之后，运行exportfs更新一下即可。
+
+7.  NFS客户端挂载，使用mount命令
+
+    1.  #mount -t nfs 192.168.1.1:/home/wu /home/nfs/wu
+
+        2.  将192.168.1.1上的/home/wu挂载到本地的/home/nfs/wu下。
+
+8.  扫描可共享的文件
+
+    1.  #showmount -e 192.168.1.1
+
+9.  卸载，使用#umount命令。
+
+10.  还可以使用/etc/fstab来挂载。
+
+    1.  #vi /etc/fstab
+
+        2.  server:/usr/local/pub /pub nfs rsize=9192.,wsize=8192,timeo=14,intr
+
+11.  也可以使用autofs来挂载，只有文件系统被使用时才挂载。
+
+    1.  首先由一个主文件/etc/auto.master，然后里面引用了分别每个挂载点的配置文件。
+
+        2.  比如/etc/auto.master下写一行：/misc /etc/auto.misc
+
+        3.  再编辑/etc/auto.misc，添加：wu –rw,soft 192.168.1.1:/project。就是把192.168.1.1下的project挂载到了/misc/wu下。
+
+        4.  需要重启autofs生效。

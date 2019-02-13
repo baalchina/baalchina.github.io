@@ -1,0 +1,105 @@
+Title: 代理服务器自动配置脚本
+Date: 2010-06-13 10:09:35
+URL: /2010/06/pac-script/
+Tags: pac , proxy
+
+就是一个pac（Proxy Auto Config）文件。IE/FF都支持的，应该是一个标准吧。用的应该是js的语法。
+
+写了个简单的，方便内网使用期刊网。
+  > /*
+> This is an AutoProxy script for Nanjing Audit University
+> Created by baalchina@nic
+> Any suggestions,please mail:nic@nau.edu.cn
+> 2010.06.11
+> */
+> 
+> function FindProxyForURL(url, host)
+> {
+> /*中国学术期刊网*/
+>      if (shExpMatch(host, &quot;*.cnki.net&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*维普南大镜像*/
+>      else if (shExpMatch(host, &quot;202.195.136.17&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*维普矿大镜像*/
+>      else if (shExpMatch(host, &quot;202.119.47.6&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*维普苏大镜像*/
+>     else if (shExpMatch(host, &quot;202.195.136.17&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*读秀知识库*/
+>     else if (shExpMatch(host, &quot;*.duxiu.com&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*国研网教育版和企业版，端口怎么处理？*/
+>     else if (shExpMatch(host, &quot;211.65.227.58&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*中经网统计数据库*/
+>     else if (shExpMatch(host, &quot;db.cei.gov.cn&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*中经网产业数据库*/
+>     else if (shExpMatch(host, &quot;ceidata.cei.gov.cn&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*新东方多媒体*/
+>     else if (shExpMatch(host, &quot;library.koolearn.com&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*中国权威经济论文库*/
+>     else if (shExpMatch(host, &quot;thesis.cei.gov.cn&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*中国地区经济发展报告*/
+>     else if (shExpMatch(host, &quot;dqbg.cei.gov.cn&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*国泰安CSMAR*/
+>     else if (shExpMatch(host, &quot;www.gtarsc.com&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*起点数据库包库*/
+>     else if (shExpMatch(host, &quot;www.qdexam.com&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*起点数据库镜像*/
+>     else if (shExpMatch(host, &quot;172.17.61.200:&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*CSSCI*/
+>     else if (shExpMatch(host, &quot;202.119.47.137&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*人大报刊复印*/
+>     else if (shExpMatch(host, &quot;202.119.47.9&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*EBSCO*/
+>     else if (shExpMatch(host, &quot;search.ebscohost.com&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*Springer*/
+>     else if (shExpMatch(host, &quot;china.springerlink.com/&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*LexisNexis*/
+>     else if (shExpMatch(host, &quot;www.lexisnexis.com&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*Financial Management*/
+>     else if (shExpMatch(host, &quot;www.fma.org&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*Cambridge Law Journal*/
+>     else if (shExpMatch(host, &quot;journals.cambridge.org&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*Open Access*/
+>     else if (shExpMatch(host, &quot;www.socolar.com&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+> /*CALIS外文期刊网*/
+>     else if (shExpMatch(host, &quot;ccc.calis.edu.cn&quot;))
+>        return &quot;PROXY proxy.nau.edu.cn:8080&quot;;
+>      else
+>        return &quot;DIRECT&quot;;
+> }
+
+&#160;
+
+很简单，就是特定的地址使用proxy.nau.edu.cn:8080这个服务器，否则返回DIRECT，也就是直接访问。
+
+参考：
+
+1.  [http://www.cnblogs.com/zhengyun_ustc/archive/2005/05/08/150758.html](http://www.cnblogs.com/zhengyun_ustc/archive/2005/05/08/150758.html "http://www.cnblogs.com/zhengyun_ustc/archive/2005/05/08/150758.html")2.  [http://en.wikipedia.org/wiki/Proxy_auto-config](http://en.wikipedia.org/wiki/Proxy_auto-config "http://en.wikipedia.org/wiki/Proxy_auto-config")
+
+如何在浏览器配置pac，可以参照这个：
+
+1.  [内网使用期刊网等学术资源指南](http://net.nau.edu.cn/application/proxy-service/proxy/ "内网使用期刊网等学术资源指南")
+
+> if (shExpMatch(url,&quot;*.google.com/*&quot;)) {&#160;&#160;&#160;&#160;&#160; return &quot;PROXY 192.168.1.1:3128&quot;;&#160;&#160;&#160; }&#160;&#160;&#160; 
+> if (shExpMatch(url, &quot;*.wikipedia.com:*/*&quot;)) {&#160;&#160;&#160;&#160;&#160; return &quot;SOCKS5 lilinux.net:1080&quot;;&#160;&#160;&#160; }&#160;&#160;&#160; 
+> if (isInNet(host, &quot;10.0.0.0&quot;,&#160; &quot;255.0.0.0&quot;)){&#160;&#160;&#160;&#160;&#160; return &quot;DIRECT&quot;;&#160;&#160;&#160; }&#160;&#160;&#160; return &quot;DIRECT; PROXY 192.168.1.1:3128; SOCKS5 lilinux.net:1080&quot;;&#160; }

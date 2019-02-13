@@ -1,0 +1,14 @@
+Title: Flash Media Server的使用
+Date: 2011-01-11 15:29:03
+URL: /2011/01/fms/
+Tags: flash , fms
+
+### 文件后缀
+
+H264文件，如果是flv后缀的话，在fms用rtmp播放一拖动就会音画不同步。这时候把文件名改成f4v后缀就行了…
+
+### flvcheck.exe
+
+[http://help.adobe.com/en_US/FlashMediaServer/3.5_AdminGuide/WS5b3ccc516d4fbf351e63e3d119f29261b7-7ffc.html](http://help.adobe.com/en_US/FlashMediaServer/3.5_AdminGuide/WS5b3ccc516d4fbf351e63e3d119f29261b7-7ffc.html)
+
+这个工具检测flv文件是否创建的有问题。如上面所示的，如果是flv，就报错，如果是f4v，就ok…

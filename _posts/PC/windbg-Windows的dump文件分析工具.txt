@@ -1,0 +1,22 @@
+Title: windbg-Windows的dump文件分析工具
+Date: 2009-09-05 14:59:33
+URL: /2009/09/windbg/
+Tags: windbg , Windows
+
+下载地址：   
+[http://www.microsoft.com/whdc/DevTools/Debugging/default.mspx](http://www.microsoft.com/whdc/DevTools/Debugging/default.mspx "http://www.microsoft.com/whdc/DevTools/Debugging/default.mspx")
+
+&#160;
+
+最近Win7老是蓝屏，莫名其妙，于是找了这个工具分析dump文件。
+
+Win7的dump文件在c:\windows\minidump下面，默认连administrator都没有权限，不过获取一下也不难。
+
+&#160;
+
+然后用WinDBG，File，OpenCrashDump，打开文件，到最后一行，即可看到如下：
+  > Probably caused by : ntoskrnl.exe ( nt+a07f8 )
+> 
+>   
+
+网上搜索了一下，基本判断是硬件有问题，难道还是询盘在作怪？

@@ -1,0 +1,11 @@
+Title: Windows Server Update Services配置
+Date: 2008-10-08 18:55:31
+URL: /2008/10/wsus-confi/
+Tags: Windows , WSUS , 安全
+
+首先系统需要安装.ner Framework 2.0以及MMC 3.0，前者会无法安装，后者会无法打开控制台。
+另外IIS以及数据库都是需要的，这个会自动配置。
+
+安装**WSUSSetup_30SP1_x86.exe**，随后进入设定，选定储存位置。注意如果选择了所有微软产品，至少70g的磁盘是不够的...
+
+还有需要注意的就是审批策略，默认审批策略中是不审核，所以要修改一下。

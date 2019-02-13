@@ -1,0 +1,55 @@
+Title: L2,L3设备的安全配置
+Date: 2008-09-22 20:37:16
+Status: private
+URL: /2008/09/device-security/
+Tags: 安全
+
+首先，应当禁止用户telnet Router地址，也就是SVI接口。Enterasys称之为Router Interface。
+> **_set router telnet disable_**
+实现的效果就是只能通过这样的接口进行telnet:
+> set ip address 172.26.3.11 mask 255.255.255.248> 
+> set ip route default 172.26.3.12
+这样的接口就没法telnet了。
+> interface vlan 1111> 
+> ip address 172.30.130.253 255.255.255.0> 
+> no shutdown
+然后再在每个SVI接口上加上ACL，禁止到172.26.0.0/16的telnet流量即可。当然最好是在接入层设备做，但是不归我们管，所以就这样好了。
+
+接下来是访问列表部分。我这里：
+
+1.  只允许172.16.31.0/24以及172.17.13.0/24 telnet 到172.26.0.0/16段。是我们的两个办公室。
+2.  N7上添加访问列表的方式是“access-list 111 insert 1 deny tcp any 172.26.0.0 0.0.255.255 eq 23”。insert 1代表插入到第1条前面。
+3.  偷了个懒，对于不是我们的上联，就直接禁止了，没有做permit。
+4.  另外应用这个访问列表的也只需要用户网关的SVI口就行了，互联的SVI没必要（应该是吧...）。
+那么对于机房的N7汇聚，新版的ACL就是
+> **access-list 111 deny tcp any 172.26.0.0 0.0.255.255 eq 23**> 
+> access-list 111 deny tcp any any eq 136> 
+> access-list 111 deny tcp any any eq 137> 
+> access-list 111 deny tcp any any eq 138> 
+> access-list 111 deny tcp any any eq 139> 
+> access-list 111 deny tcp any any eq 445> 
+> access-list 111 deny tcp any any eq 4444> 
+> access-list 111 deny tcp any any eq 593> 
+> access-list 111 deny tcp any any eq 1081> 
+> access-list 111 deny tcp any any eq 256> 
+> access-list 111 deny tcp any any eq 768> 
+> access-list 111 deny udp any any eq 135> 
+> access-list 111 deny udp any any eq 136> 
+> access-list 111 deny udp any any eq 137> 
+> access-list 111 deny udp any any eq 138> 
+> access-list 111 deny udp any any eq 139> 
+> access-list 111 deny udp any any eq 445> 
+> access-list 111 deny udp any any eq 256> 
+> access-list 111 deny udp any any eq 768> 
+> access-list 111 deny tcp any any eq 1068> 
+> access-list 111 deny tcp any any eq 5554> 
+> access-list 111 deny tcp any any eq 9995> 
+> access-list 111 deny tcp any any eq 9996> 
+> access-list 111 deny tcp any any eq 34385> 
+> access-list 111 permit ip any any
+接下来，对于下联端口的广播做一些限制。由于办公段L3的3550已经做了，所以只需要对2.5个机房汇聚(n7-13,14以及N7-02)接机房的接口做就可以了。
+
+> n7-14.2f.b2-2.pk(su)-&gt;set port broadcast ge.1.4-12 150> 
+> n7-14.2f.b2-2.pk(su)-&gt;set port broadcast ge.2.1-40 15
+
+最后，由于在设备上做了限制只能在172.17.13.0/24以及172.16.30.0/24段访问，所以在网管服务器上建立了SSH-Server，用ssh连接到网管服务器，然后telnet到他。

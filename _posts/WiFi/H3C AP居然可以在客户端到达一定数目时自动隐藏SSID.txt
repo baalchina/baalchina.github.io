@@ -1,0 +1,7 @@
+Title: H3C AP居然可以在客户端到达一定数目时自动隐藏SSID
+Date: 2012-10-23 22:22:34
+URL: /2012/10/h3c-ap-auto-hide-when-too-many-clients-connect/
+Tags: h3c , wlan
+
+SSID nau-ap of radio 2 of AP sjpx_north_back becomes hidden when the number of clients reaches the maximum limit.
+今天偶然在日志里看到的。似乎这样做的目的是为了在客户太多的时候隐藏SSID以减轻负载，避免太多的人连上来大家都用不了。

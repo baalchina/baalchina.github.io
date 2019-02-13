@@ -1,0 +1,27 @@
+Title: cacti服务器报错
+Date: 2013-07-29 16:46:55
+URL: /2013/07/cacti-server-logs-error/
+Tags: cacti
+
+一台cacti的服务器，突然没数据了，后台也进不去，nginx提示502错误。
+
+系统是Linux+Nginx+php-fpm，所有的服务看了一下都是启动了，然后找nginx error日志，有这个提示：
+
+`2013/07/29 15:35:33 [error] 10849#0: *1 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 172.17.1.1, server: localhost, request: "POST /index.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "172.x.x.x", referrer: "http://172.x.x.x/index.php"`
+
+似乎是php-fpm出错。于是去修改php-fpm的conf，把日志打开（默认php-fpm没有日志），有以下提示：
+
+`
+[29-Jul-2013 15:49:27] WARNING: [pool www] child 11495 exited on signal 25 (SIGXFSZ) after 85.448328 seconds from start
+[29-Jul-2013 15:49:27] NOTICE: [pool www] child 11554 started
+`
+
+只要刷新下index.php页面，就报着个错误。而info.php却正常。
+
+偶然发现，每次vi一个文件或者查看日志后，系统都提示我有新的mail，按理不应该这么频繁，于是打开mail一看，有这个提示：
+
+`/bin/sh: line 1: 20612 File size limit exceeded/usr/local/php/bin/php /data/web/cacti/poller.php > /dev/null 2>&1`
+
+果然是日志超过2g造成的。问题是什么日志呢？google一番，发现是cacti的日志。难怪我前面查了半天nginx/php的日志都正常呢。
+
+修改cacti日志，关闭，一切ok。

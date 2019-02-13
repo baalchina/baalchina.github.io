@@ -1,0 +1,20 @@
+Title: Gene6下，文件名空格开头造成无法下载
+Date: 2010-09-29 10:12:26
+URL: /2010/09/gene6-with-space-filename/
+Tags: FTP , gene6
+
+某些文件无法下载，始终找不到原因
+  > [1] PASV     
+> [1] 227 Entering Passive Mode (210,28,92,169,45,131)      
+> [1] 打开数据连接到主机: 210.28.92.169 端口: 11651      
+> [1] REST 0      
+> [1] 350 Restarting at 0. Send STORE or RETRIEVE.      
+> [1] RETR 091023 青春不败 E01.rmvb      
+> [1] 550 &quot;091023 青春不败 E01.rmvb&quot;: no such file.      
+> _文件传输失败: 091023 青春不败 E01.rmvb_  
+
+&#160;
+
+上ftp一看，原来文件开头都是空格，不知道怎么gene6把空格省掉了…
+
+不知道是ftp通病，还是gene6问题。

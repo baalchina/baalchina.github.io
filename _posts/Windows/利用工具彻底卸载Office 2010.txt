@@ -1,0 +1,17 @@
+Title: 利用工具彻底卸载Office 2010
+Date: 2010-07-11 08:46:41
+URL: /2010/07/uninstall-office-2010/
+Tags: office , Windows
+
+安装Office 2010，折腾了好久，结果装不上了，不停的保各种错误，先是Office Software Protection Platform服务报错。然后到网上找到一个据说可以清楚Office 2010的“RipOutOffice2007”，无解。又找了一个Windows Installer Clean Up，依旧无解，这次报错变成了注册表没权限。
+
+一番Google，找到这个：[http://support.microsoft.com/?scid=kb%3Ben-us%3B290301&amp;x=3&amp;y=14](http://support.microsoft.com/?scid=kb%3Ben-us%3B290301&amp;x=3&amp;y=14 "http://support.microsoft.com/?scid=kb%3Ben-us%3B290301&amp;x=3&amp;y=14")
+  > How do I uninstall Office 2003, Office 2007 or Office 2010 suites if I cannot uninstall it from Control Panel?  
+
+文章说的很清楚，由于Windows Installer Clean Up解决问题的同时还会造成问题，所以MS把他给废掉了，换成了一个新的工具。
+
+一番折腾，搞定。
+
+&#160;
+
+另外，可牛杀毒好像和这个有点冲突。

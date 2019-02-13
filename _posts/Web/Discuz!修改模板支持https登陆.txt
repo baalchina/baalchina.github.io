@@ -1,0 +1,37 @@
+Title: Discuz!修改模板支持https登陆
+Date: 2008-08-27 16:17:22
+URL: /2008/08/discuz-https/
+Tags: Discuz , https
+
+服务器端的https登陆设置请看
+[http://baalchina.nau.edu.cn/2008/08/nginx-https-rewrite/](http://baalchina.nau.edu.cn/2008/08/nginx-https-rewrite/)
+
+## 大概了解下用到的模板，包括header.htm，footer.htm，以及logging.htm。另外，登陆成功/失败使用的是showmessage.htm模板。
+
+首先，以header.htm和footer.htm为基础，新建header_ssl.htm以及footer.htm，在logging.php中将相应引用模板的位置修改为引用新建的ssl模板。
+
+接下来修改对应模板。这个稍有点复杂，需要一点点调试。去掉所有的外联的图片、外联的css以及js---通过将他们修改为文件内部引用。
+
+其中：
+common.js不需要。可以去掉。
+css中，注意这个：
+> .mainbox
+他引用了一个
+> {HEADERBGCODE};
+变量。这个其实就是一个background的图片。所以需要把这个删除。否则还是会提示“存在不安全的内容”
+
+其他的就不多说了。包括footer中的连接等。很多，需要自己一个个去调试。
+
+## 另外是showmessage模板。这个用于登陆成功、失败之后的跳转页面。
+
+首先修改global.func.php，找到showmessage这个函数，然后复制，将函数名改成showmessagessl，或者随便其他什么名字。
+
+将函数中用到的模板修改为showmessgae_ssl
+
+修改logging.php，将所有的showmessage修改为showmessagessl。
+
+修改showmessage_ssl模板，将header和footer用前面的header_ssl和footer_ssl代替。
+
+基本搞定。
+
+现在还是有一个提示，这个提示是登陆成功、失败之后访问/uc/api.php造成的。这个问题还需要考虑下怎么做。感觉在服务器上处理比较方便。

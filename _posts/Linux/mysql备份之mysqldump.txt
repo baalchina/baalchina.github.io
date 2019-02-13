@@ -1,0 +1,22 @@
+Title: mysql备份之mysqldump
+Date: 2009-08-23 14:59:03
+URL: /2009/08/mysqldump-usage/
+Tags: Linux , Mysql , mysqldump
+
+mysqldump其实就是把mysql数据库_dump_成sql文件。速度相当快（当然，没有直接copy快..哈哈），兼容性好。sql语句嘛，通吃的。
+
+最简单的dump：
+> /usr/local/mysql/bin/mysqldump --uroot --ppassword discuz cdb_members &gt; /data/backup/members.sql
+rsync --vzrtopg –progress  --delete rsync://ubuntu.srt.cn/ubuntu/ /cygdrive/L/mirror/ubuntu/
+
+就是把discuz库的cdb_members表dump成members.sql文件。
+
+mysqldump还有很多参数，常用的：
+
+*   --opt，等同与添加--add-drop-table --add-locks --create-options --disable-keys --extended-insert --lock-tables --quick --set-charset这一堆参数
+*   --lock-tables，锁表。dump的时候把这个表锁起来，保证**表**的完整性。
+*   --lock-all-tables，锁有的表，保证**库**的完整性。
+
+参考：
+
+[http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html](http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html "http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html")

@@ -1,0 +1,56 @@
+Title: Windows下使用IIS下建立内网Ubuntu镜像
+Date: 2009-12-28 13:10:33
+URL: /2009/12/building-ubuntu-mirror-in-windows-server/
+Tags: Linux , Ubuntu , Windows
+
+学校里搞一个Ubuntu镜像，可惜有空间的服务器都是Windows的，懒得再搞一个Linux服务器，于是就在Windows下作吧。
+
+#### 需要环境
+
+1.  Windows服务器（废话），启用IIS或者FTP。我用的是IIS。
+2.  300G左右的存储（我是同步了所有的文件，包括源码，各个版本，以及各个硬件支持，目前大小是296G，398504个文件）
+3.  Linux下镜像采用rsync，那么Windows下就是cwRsync啦。  
+
+#### 配置cwRsync
+
+安装，不多说，然后新建一个批处理，代码如下
+  > rsync -vzrtopg --progress&#160; --delete rsync://ubuntu.srt.cn/ubuntu/ /cygdrive/L/mirror/ubuntu/  
+
+可以看出，我是从ubuntu.srt.cn/ubuntu同步到本地的l盘的mirror下的ubuntu目录。
+
+完整的国内镜像可以看[https://launchpad.net/ubuntu/+archivemirrors](https://launchpad.net/ubuntu/+archivemirrors "https://launchpad.net/ubuntu/+archivemirrors")，几个地方，USETC的教育网速度不错，srt和lupa的电信速度不错。但是USETC到一定时间就会自动断开，lupa的同步会死掉，最后我是用srt完成的。其实也有很多源比如搜狐网易都有，但是不支持rsync协议。
+
+另外要记得把这个批处理放到计划任务里面去。
+
+#### 配置IIS
+
+这个就很简单了，把l盘的这个目录放出去就行。我开了目录浏览。另外IIS里面需要加一个MIME类型，否则ubuntu的.deb文件会报404，具体看这里：[IIS MIME类型设置](http://www.baalchina.net/2009/12/iis-mime-type/)
+
+#### 客户端配置
+
+以Ubuntu 9.10为例，修改/etc/apt/source.list文件（backup first!）
+  > deb [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic main restricted universe multiverse      
+> deb [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-security main restricted universe multiverse      
+> deb [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-updates main restricted universe multiverse      
+> deb [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-proposed main restricted universe multiverse      
+> deb [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-backports main restricted universe multiverse      
+> deb-src [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic main restricted universe multiverse      
+> deb-src [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-security main restricted universe multiverse      
+> deb-src [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-updates main restricted universe multiverse      
+> deb-src [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-proposed main restricted universe multiverse      
+> deb-src [http://linux.nau.edu.cn/ubuntu/](http://linux.nau.edu.cn/ubuntu/) karmic-backports main restricted universe multiverse
+> 
+> &#160;  
+
+然后刷新列表，就可以用新力得了。
+  > sudo apt-get update  
+
+&#160;
+
+参照[Ubuntu中文Wiki的文章](http://wiki.ubuntu.org.cn/articles/q/r/e/Qref_Source_4d14.html#.E6.BA.90.E5.88.97.E8.A1.A8)
+
+&#160;
+
+Tips:
+
+1.  Ubuntu的官方镜像列表：[https://launchpad.net/ubuntu/+archivemirrors](https://launchpad.net/ubuntu/+archivemirrors "https://launchpad.net/ubuntu/+archivemirrors")

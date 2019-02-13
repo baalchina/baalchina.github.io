@@ -1,0 +1,22 @@
+Title: 用了个代理服务器，结果各个软件开始抽风
+Date: 2011-01-30 15:51:10
+URL: /2011/01/proxy-problem/
+Tags: proxy
+
+家里广电的网络，发现直接上网慢，于是弄了个简单的电信的代理，CCProxy做的，当然加了密码，于是各个软件开始不通程度的抽风。
+
+&#160;
+
+Internet选项里面设置了代理，FF/Chrome等自动调用，这个还好。不过默认似乎不能设置单独让Chrome不走代理。
+
+1.  大脚插件，直接提示无法连接到服务器。必须取消代理才行。2.  大部分软件，比如迅雷的弹出窗口，会蹦出一个代理的认证窗口。这个估计是因为他直接调用系统环境造成的。3.  搜狗最搞笑，浏览正常，但是账户无法登录，提示服务暂时不可用。取消代理一切OK。4.  Windows Live Writer，无法检测服务器类型。虽然新建账户那里可以设置代理，但是不生效，关掉也不行，只好重装。开开代理，这个文章都发不出去了…基础连接已经断开，我擦。  
+
+&#160;
+
+金山T盘：
+
+[![image](/wp-content/uploads/2011/01/image_thumb.png "image")](/wp-content/uploads/2011/01/image.png)
+
+招行专业版：
+
+[![image](/wp-content/uploads/2011/02/image_thumb.png "image")](/wp-content/uploads/2011/02/image.png)

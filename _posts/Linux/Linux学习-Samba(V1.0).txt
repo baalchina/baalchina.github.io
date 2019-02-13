@@ -1,0 +1,18 @@
+Title: Linux学习-Samba(V1.0)
+Date: 2010-07-19 16:30:49
+URL: /2010/07/linux-study-samba/
+Tags: Linux , samba
+
+1\. Samba的作用，和Windows服务器共享文件，注意Windows是不支持Samba的。
+
+2. Samba使用SMB协议，Server Message Block。
+
+3. Samba的两个进程：smbd和nmbd。
+
+4. 主配置文件：/etc/samba/smb.conf
+
+5. 添加samba用户：#smbpasswd -a username。必须是系统存在的用户。
+
+6. 检查Samba共享的资源：#smbclient -l 192.168.1.1
+
+7. Samba的图形化配置工具叫做SWAT，Samba Web Administration Tool。

@@ -1,0 +1,13 @@
+Title: 开启杀毒软件的SSL监控之后无法连接vcenter
+Date: 2012-12-29 10:22:40
+URL: /2012/12/eset-unable-to-connect-esx/
+
+机器上是eset ess5，有个https监控，本来一直关着，但是老是提示嫌麻烦，于是打开了，但是这样一来原来正常的vcenter就无法连接了。老是提示
+> ssl verification failure for due to a host thumbprint mismatch
+如图：[gallery]
+
+虽然确认之后vc能连接上，但是还是虚拟机的控制台还是打不开。
+
+google到
+
+http://blog.isaacblum.com/2012/08/01/kaspersky-anti-virus-vmware-esxvmware-vsphere-client-osx/，想起来是eset的ssl监控造成的。似乎eset和卡巴一样都是通过自己颁发一个证书解决的？

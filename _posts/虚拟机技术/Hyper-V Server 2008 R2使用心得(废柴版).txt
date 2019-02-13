@@ -1,0 +1,35 @@
+Title: Hyper-V Server 2008 R2使用心得(废柴版)
+Date: 2010-12-22 10:46:00
+URL: /2010/12/hyper-v-2008-r2/
+Tags: hyperv
+
+闲来无聊，装个Hyper-V 2008 R2测试下。
+
+&#160;
+
+安装界面基本和Win2008R2差不多，装完，重启动，直接进入了界面，不过配置IP都是通过CLI，似乎就是Win2008的Core模式。
+
+[![image](/wp-content/uploads/2010/12/image_thumb4.png "image")](/wp-content/uploads/2010/12/image4.png)
+
+管理的话，可以远程桌面上去用CLI，也可以用管理工具(Remote Server Administration Tools for Windows 7 )，下载地址：
+
+[http://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d&amp;displaylang=en](http://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d&amp;displaylang=en "http://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d&amp;displaylang=en"),文档里面的给的是Vista的管理工具，不适用于Win7。
+
+然后恭喜你，你还需要到控制面板-Windows功能-打开或关闭Windows功能-选中远程服务器管理工具。真不知道微软怎么想的，搞那么复杂。当然如果桌面机本来就是2008就好办多了。
+
+第一次连接提示RPC不可用，检查了一下ACL确实关掉了135，打开，但是还是不行。最后发现还要打开远程管理。启动的那个PowerShell里面，选择4，然后依次开启PowerShell，重启，开启远程管理其管理即可。
+
+[http://social.microsoft.com/Forums/zh-CN/windowsserversystemzhchs/thread/3aa23cb6-6c59-4a45-9b3f-e76e708e08b9](http://social.microsoft.com/Forums/zh-CN/windowsserversystemzhchs/thread/3aa23cb6-6c59-4a45-9b3f-e76e708e08b9 "http://social.microsoft.com/Forums/zh-CN/windowsserversystemzhchs/thread/3aa23cb6-6c59-4a45-9b3f-e76e708e08b9")这个很有帮助
+
+然后发现还是不行，最后关掉防火墙，总算连上了..   
+关闭防火墙，使用cmd-netsh-firewall-set opmode disable
+
+最后连上之后，又发现一个悲剧的问题，就是本地的Win7的用户名密码和2008R2不同，以至于无法连接。问题是，他根本不给你修改/设置用户名密码的地方。
+
+1.  结论1，看来微软逼你用域
+2.  结论2，虽然说hyper-v很强（据说），但是他的管理客户端就是一坨屎！
+3.  结论3，还有个强大的工具叫做SCVMM，也就是Sytem Center Virtual Machine Manager 2008 R2，问题是，这个玩意要收费！  
+
+&#160;
+
+本文暂时到此为止…微软的东西实在是很sb，这就是我折腾一天得出的最终结论…

@@ -1,0 +1,23 @@
+Title: WSUS的0x80190194错误
+Date: 2008-09-03 10:40:25
+URL: /2008/09/wsus-0x80190194/
+Tags: WSUS
+
+最近WSUS不太正常，看本地的log，有一段：
+
+> 2008-09-03 07:11:21:555 872 224 Misc WARNING: WinHttp: SendRequestToServerForFileInformation failed with 0x80190194> 
+> 2008-09-03 07:11:21:555 872 224 Misc WARNING: WinHttp: ShouldFileBeDownloaded failed with 0x80190194> 
+> 2008-09-03 07:11:21:555 872 224 Misc WARNING: DownloadFileInternal failed for[http://update.nau.edu.cn/selfupdate/wuident.cab](http://update.nau.edu.cn/selfupdate/wuident.cab): error 0x80190194> 
+> 2008-09-03 07:11:21:555 872 224 Setup FATAL: IsUpdateRequired failed with error 0x80244019
+注意红色部分。
+
+查看IIS的虚拟目录，selfupdate果然没有了...
+
+解决方法：
+
+> Open the IIS Manager console> 
+> Drill down to the Default Web Site, right click it and select New -&gt; Virtual Directory> 
+> For the alias use Selfupdate and for the path point to the Selfupdate directory.  It should be something like C:\Program Files\Update Services\Selfupdate.> 
+> Forward through the wizard selecting all the defaults.
+
+参见：[http://blogs.technet.com/sus/archive/2008/08/14/wsus-clients-fail-to-update-with-error-code-0x80190194.aspx](http://blogs.technet.com/sus/archive/2008/08/14/wsus-clients-fail-to-update-with-error-code-0x80190194.aspx)

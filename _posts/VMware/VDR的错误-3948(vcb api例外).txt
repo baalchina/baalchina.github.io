@@ -1,0 +1,10 @@
+Title: VDR的错误-3948(vcb api例外)
+Date: 2010-04-13 09:08:15
+URL: /2010/04/vdr-error-3948/
+Tags: vdr , VMware
+
+昨天做好的vdr早上发现备份失败，如题目的提示。
+
+google一把，发现是因为主机指定了主机名，而主机名没有在dns注册的原因。
+
+编辑vdr的虚拟机，加入hosts映射即可。

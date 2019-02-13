@@ -1,0 +1,19 @@
+Title: Nginx下只针对logging.php进行https处理的重写规则
+Date: 2008-08-06 21:01:57
+URL: /2008/08/nginx-https-rewrite/
+Tags: https , Nginx , rewrite , Web
+
+在https server下加入如下配置：
+if ($uri !~* "/logging.php$")
+{
+rewrite ^/(.*)$ http://$host/$1 redirect;
+}
+在http server下加入如下配置：
+if ($uri ~* "/logging.php$")
+{
+rewrite ^/(.*)$ https://$host/$1 redirect;
+}
+最后结果就是，用户会且只会在访问logging.php的情况下，才会通过https访问。有效地避免了arp欺骗、嗅探等方法盗取账号密码的行为。
+
+感谢nginx作者的帮助。
+[http://marc.info/?l=nginx&amp;m=121663148102512&amp;w=2](http://marc.info/?l=nginx&amp;m=121663148102512&amp;w=2)

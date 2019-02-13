@@ -1,0 +1,62 @@
+Title: Windows下组播的两个测试工具
+Date: 2011-05-12 12:55:14
+URL: /2011/05/testing-multicast-flow/
+Tags: Multicast
+
+如何测试组播已经配置好了？Windows 2003 Resource Kit里面带了个工具可以测试。名字叫做mcast.exe
+
+Kit的下载地址：[http://www.microsoft.com/downloads/en/details.aspx?FamilyID=9d467a69-57ff-4ae7-96ee-b18c4790cffd](http://www.microsoft.com/downloads/en/details.aspx?FamilyID=9d467a69-57ff-4ae7-96ee-b18c4790cffd "http://www.microsoft.com/downloads/en/details.aspx?FamilyID=9d467a69-57ff-4ae7-96ee-b18c4790cffd")
+
+&#160;
+
+首先，在源服务器上运行。
+
+&#160;
+  > mcast /GRPS:239.192.99.99 /SRCS:172.27.2.4 /NUMPKTS:10000 /INTVL:1000  
+
+&#160;
+
+1.  GRPS：发向239.192.99.99这个组2.  SRCE：用172.27.2.4这个ip发送3.  NUMPKTS：发送10000个包4.  INTVL：每1000ms发送一个。  
+
+&#160;
+
+接下来，在接收PC上运行：
+  > mcast /GRPS:239.192.99.99 /RECV  
+
+这个很简单，接受239.192.99.99这个源的数据包。
+
+&#160;
+
+如果运行正常，会如图所示：
+
+[![5X94O)SP3FE4P%CYGX0@94W](/wp-content/uploads/2011/05/5X94OSP3FE4PCYGX094W_thumb.jpg "5X94O)SP3FE4P%CYGX0@94W")](/wp-content/uploads/2011/05/5X94OSP3FE4PCYGX094W.jpg)
+
+&#160;
+
+可以看到成功接收数据包了。
+
+此时可以尝试吧发送关掉，会发现接收端不走了。说明组播都是正常的。
+
+&#160;
+
+交换设备上，没接受的时候，是这样的：
+  > 00005. (172.27.2.4, 239.192.99.99)       
+> &#160;&#160;&#160;&#160;&#160; Uptime: 00:00:15       
+> &#160;&#160;&#160;&#160;&#160; Upstream Interface: Vlan-interface602       
+> 
+> &#160;  
+
+当存在接受者是，是这样的：
+  > 00005. (172.27.2.4, 239.192.99.99)      
+> &#160;&#160;&#160;&#160;&#160; Uptime: 00:22:28       
+> &#160;&#160;&#160;&#160;&#160; Upstream Interface: Vlan-interface602       
+> &#160;&#160;&#160;&#160;&#160; List of 1 downstream interface       
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1:&#160; Vlan-interface488  
+
+可以看到，已经生成了路由表。
+
+&#160;
+
+&#160;
+
+另外的一个测试工具就是Notel做的Multicast Hammer，这是一个图形界面的程序，很简单，一次可以做n个组播组，发送数据包。客户端在装一个，接受即可。

@@ -1,0 +1,74 @@
+Title: H3C WA2220AG AP+WX6103 AC升级的问题
+Date: 2012-06-15 12:31:22
+URL: /2012/06/h3c-wa2220ag-ap-upgrade/
+Tags: ac , ap , h3c , wifi
+
+延续昨天的blog[H3C LSQ1WCMB0无线控制器升级](http://www.baalchina.net/2012/06/h3c-wifi-upgrade/)，今天升级之后发现所有的AP都连不上了。于是打技术支持，折腾了一上午，搞定。把解决方法说一下。
+
+其实最主要的问题就是WA2220 AG AP在AC升级之后需要同时升级软件。而AP本身只有8m flash空间，造成了自动下载不能。
+
+直接用tftp下载版本，提示是OK的
+
+但是重启无效。
+
+我尝试了删掉wa2200_fit.bin这个文件，但是再次tftp，还是无效，提示说空间不够
+
+[![](/wp-content/uploads/2012/06/Image1.png "Image")](/wp-content/uploads/2012/06/Image1.png)
+
+![](file:///C:/Users/BAALCH~1/AppData/Local/Temp/enhtmlclip/Image.png)
+
+dir /all的话会发现有一个[]包含的文件，不知道是什么意思？当然这时候空间就不够了。
+&lt;WA2220-AG&gt;dir /all
+Directory of flash:
+
+   0     -rw-   3631520  Apr 26 2000 12:02:55   [wa2200_fit.bin]
+   1     -rw-         0  Apr 26 2000 12:12:37   [h3c.ini]
+
+6985 KB total (3434 KB free)
+
+这时候需要格式化flash：
+
+&lt;WA2220-AG&gt;format flash:
+All data on flash: will be lost , proceed with format ? [Y/N]:y
+....................
+%Format flash: completed.
+&lt;WA2220-AG&gt;dir /all
+% Device can't be found or file can't be found in the directory
+
+6985 KB total (6983 KB free)
+
+&lt;WA2220-AG&gt;
+注意第二次空间就有了。
+
+然后再tftp，重启就行了。注意不能直接重启，虽然工程师说可以。
+&lt;WA2220-AG&gt;reboot
+ Start to check configuration with next startup configuration file, please wait.
+........DONE!
+ This command will reboot the device. Current configuration may be lost in next
+startup if you continue. Continue? [Y/N]:y
+ Specified boot file does not exist
+
+几点总结：
+
+1.  打了多次H3C 400电话，工程师也没解决问题。她说应该升级AC的时候升级AP，问题是我在升级AC的时候已经把WA2200_fit.bin和wa2200_update.bin上传了，只不过晚了10分钟而已。何况tftp也不行。我不太明白H3C为什么会这样？
+2.  一开始的时候还让我重启一下AP，因为连不上（当时AC界面里没有AP的IP地址），她就让我去拔电源。OMG。
+3.  好在DHCP服务器日志里面我看到了IP信息，然后连接下载的。
+4.  AP在不断的从AC下载固件，这个在log上有日志，但是由于空间满了，所以就没法升级了。这个却没在AC日志里面体现。
+5.  必须要format才能删除[]包含的文件，这个是隐藏文件？系统文件还是？我看属性是-rw-，不知道为什么不能删除。
+6.  H3C 工程师说只要format之后，重启就可以自动下载固件了，但是实际上是不行的。
+7.  tftp固件升级之后配置还在，看来是存在AC上的。
+8.  日志很重要！
+
+20120615 19：52PM更新
+
+按照白天的经验，直接Delete是不行的，但是晚上换了另一个AP，delete /unreserver就可以了。
+
+所以最后还是准备用批处理完成，直接format处理
+telnet 1.1.1.1
+h3capadmin
+format flash:
+y
+tftp 172.17.188.133 get wa2200_fit.bin
+reboot
+y
+注意最后一个y后面有个回车。

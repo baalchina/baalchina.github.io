@@ -1,0 +1,12 @@
+Title: 无法加入域，提示“找不到网络路径”的解决办法
+Date: 2009-03-19 19:26:50
+URL: /2009/03/unable-to-join-active-directory/
+Tags: ad
+
+Xp sp3 ghost，虚拟机，无法加入与，始终提示“找不大网络路径”。
+
+是因为ghost版本的xp关闭掉了TCP/IP Netbios服务。起来既可。
+
+参考：
+
+[http://bblxlit.blog.51cto.com/151710/24738](http://bblxlit.blog.51cto.com/151710/24738 "http://bblxlit.blog.51cto.com/151710/24738")

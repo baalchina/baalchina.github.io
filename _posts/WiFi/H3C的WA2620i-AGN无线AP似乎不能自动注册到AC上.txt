@@ -1,0 +1,10 @@
+Title: H3C的WA2620i-AGN无线AP似乎不能自动注册到AC上
+Date: 2012-09-13 21:44:08
+URL: /2012/09/h3c-ap-register-to-ac/
+Tags: h3c , wifi
+
+auto-ap打开了，不能自动注册，手动添加，输入序列号就可以。不过注册时间有点长，差不多要5min。
+
+&#160;
+
+另外，需要保证AC上有wa2600ae_fit.bin这个文件。

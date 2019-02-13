@@ -1,0 +1,18 @@
+Title: Windows Server修改远程桌面端口
+Date: 2008-08-06 21:19:24
+URL: /2008/08/windows-mstsc-port/
+Tags: Windows , 安全 , 远程桌面
+
+废话少说，直接上文件。:lol
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp]
+"PortNumber"=dword:000004d2
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp]
+"PortNumber"=dword:000004d2
+保存为mstsc.reg，运行即可。
+
+其中dword:000004d2代表1234端口。
+
+另外需要重启计算机，或者将远程桌面关闭，再打开。因为服务没法重启。

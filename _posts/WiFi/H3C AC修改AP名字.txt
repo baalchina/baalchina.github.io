@@ -1,0 +1,20 @@
+Title: H3C AC修改AP名字
+Date: 2012-09-20 22:07:02
+URL: /2012/09/how-to-change-a-h3c-ap-name/
+Tags: h3c , wifi
+
+如果是auto-ap，比较简单
+
+&#160;
+
+#wlan auto-ap persistent { name auto-ap-name [ new-ap-name ]
+
+修改完之后就不是auto-ap了，是configured AP
+
+虽然可以先用#wlan ap ap-name进去，也有个ap-name的命令，但是实际上是没有效果的。Web界面里修改AP名字的地方也是灰色的。
+
+&#160;
+
+咨询了H3C 800，操作也很简单：
+
+telnet，把原AP那段copy出来，undo掉，改掉ap-name，再贴进去。

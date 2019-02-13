@@ -1,0 +1,27 @@
+Title: mysql的常用操作命令
+Date: 2009-08-20 15:48:13
+URL: /2009/08/mysql-useful-commands/
+Tags: Linux , Mysql
+
+#### 检测并修复数据库
+
+修复特定库(database)
+  > /usr/local/mysql/bin/mysqlcheck -o -r database –uroot –ppassword
+> 
+> &#160;  
+
+修复所有库
+  > /usr/local/mysql/bin/mysqlcheck -A -o -r -uroot –ppassword
+> 
+> &#160;  
+
+如果只修复特定表：
+  > /usr/local/mysql/bin/mysqlcheck -c -r discuz cdb_ai -uroot –ppassword
+> 
+> &#160;  
+
+&#160;
+
+#### 备份数据库,mysqldump
+
+参考：[mysqldump的使用](http://www.baalchina.net/2009/08/mysqldump-usage/)

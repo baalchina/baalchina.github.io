@@ -1,0 +1,10 @@
+Title: Windows 7下的虚拟光驱软件
+Date: 2009-08-19 11:08:26
+URL: /2009/08/windows7-x64-virtual-cdrom/
+Tags: daemontools , virtualclonedriver , Windows , 虚拟光驱
+
+Windows 7 x64版本，虚拟光驱软件网上说Daemon Tools 4.3以后的可以用，结果我装了DAEMONToolsPro4350306这个，死活装不上。不停的告诉你要重启之后装SPTD驱动，重启之后还是这个提示。
+
+&#160;
+
+最后找到了这个：[http://www.slysoft.com/zh/download.html](http://www.slysoft.com/zh/download.html "http://www.slysoft.com/zh/download.html")，SlySoft的Virtual Clone Driver 5.4.3.2。只有1m多，可以支持Win7 x64。要知道Daemon Tools可是11m多哦。

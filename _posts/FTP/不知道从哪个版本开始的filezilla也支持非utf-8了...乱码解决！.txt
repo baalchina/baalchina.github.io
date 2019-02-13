@@ -1,0 +1,8 @@
+Title: 不知道从哪个版本开始的filezilla也支持非utf-8了...乱码解决！
+Date: 2009-05-17 18:40:38
+URL: /2009/05/filezilla-utf8/
+Tags: filezilla , utf8
+
+[![filezilla](/wp-content/uploads/2009/05/filezilla-thumb.jpg "filezilla")](/wp-content/uploads/2009/05/filezilla.jpg)
+
+强制gb2312即可~

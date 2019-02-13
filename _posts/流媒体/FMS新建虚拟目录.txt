@@ -1,0 +1,43 @@
+Title: FMS新建虚拟目录
+Date: 2011-02-19 09:53:40
+URL: /2011/02/fms-virtual-directory/
+Tags: adobe , fms
+
+新增Application版本
+
+首先fms.ini，新建一段，照抄VOD的，比如
+
+&#160;
+  > FLV_COMMON_DIR = E:\vfiles     
+> FLV_DIR = E:\vfiles  
+
+&#160;
+
+然后，C:\Program Files\Adobe\Flash Media Server 4\applications下，把VOD复制一份，改名为FLV。
+
+&#160;
+
+接下来，修改该目录下的Application.xml，比如
+
+&#160;
+  > &#160;&#160;&#160; &lt;StreamManager&gt;     
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;VirtualDirectory&gt;      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;Streams&gt;/;${FLV_COMMON_DIR}&lt;/Streams&gt;      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;Streams&gt;/;${FLV_DIR}&lt;/Streams&gt;      
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/VirtualDirectory&gt;      
+> &#160;&#160;&#160; &lt;/StreamManager&gt;  
+
+现在，FLV这个映射就到了e:\vfiles下了。
+
+&#160;
+
+注意这里有个小诀窍，如果你的文件放在子目录下(比如e:\vfiles\sub\1.f4v)，播放的rtmp代码应该是
+  > rtmp://flv.nau.edu.cn/flv/mp4:sub/1.f4v  
+
+而不是想当然的
+  > rtmp://flv.nau.edu.cn/flv/sub/mp4:1.f4v  
+
+&#160;
+
+参照Adobe网站：   
+[http://forums.adobe.com/message/844512](http://forums.adobe.com/message/844512)

@@ -1,0 +1,20 @@
+Title: 几个版本x264.exe的速度对比
+Date: 2010-04-29 08:23:15
+URL: /2010/04/x264-compar/
+Tags: x264
+
+CPU都是如下：
+
+[![cpu](/wp-content/uploads/2010/04/cpu_thumb.jpg "cpu")](/wp-content/uploads/2010/04/cpu.jpg)
+
+首先是_**x264_x86_r1400_QxSSSE3_icc_techouse.7z**_这个版本，据jaychu讲针对core duo2优化的。
+
+1st pass:
+  > encoded 189743 frames, 10.04 fps, 11381.67 kb/s  
+
+2nd pass
+  > encoded 189743 frames, 7.20 fps, 11992.19 kb/s  
+
+&#160;
+
+下面准备用官方的x264.exe试试看。当然，版本也是1400.

@@ -1,0 +1,38 @@
+Title: 服务器raid卡电池的问题
+Date: 2009-03-17 11:09:20
+URL: /2009/03/raid-battery/
+Tags: battery , raid , systemx
+
+具体问题就是因为新机器，电池没充电完全。
+
+服务器开机的时候提示如下：
+  > Your battery is either charging, bad, or missing; and you      
+> have Virtual Drives (VD) configured for write-back mode.       
+> Because the battery is currently charging, these VDs will       
+> actually run in write-through mode until the battery is       
+> fully charged or replaced if it is bad or missing.  
+
+说明参见：[http://www-900.ibm.com/cn/support/viewdoc/detail?DocId=XLIU-7FYDNQ](http://www-900.ibm.com/cn/support/viewdoc/detail?DocId=XLIU-7FYDNQ "http://www-900.ibm.com/cn/support/viewdoc/detail?DocId=XLIU-7FYDNQ")
+
+解决办法，充电就行了。
+
+&#160;
+
+另外关于raid卡电池：
+
+现代的raid卡电池是用于断电时将缓存保存到硬盘上的，所以没电也没关系。
+
+参考：
+
+[http://support1.ap.dell.com/cn/zh/forum/thread.asp?fid=19&amp;tid=210060](http://support1.ap.dell.com/cn/zh/forum/thread.asp?fid=19&amp;tid=210060 "http://support1.ap.dell.com/cn/zh/forum/thread.asp?fid=19&amp;tid=210060")    
+[http://www.5dmail.net/bbs/thread-177127-1-5.html](http://www.5dmail.net/bbs/thread-177127-1-5.html "http://www.5dmail.net/bbs/thread-177127-1-5.html")
+
+&#160;
+
+另外还有一篇关于raid的帖子也很有价值：
+
+[https://www-900.ibm.com/cn/support/forum/app/tscforum/topic?tid=184300](https://www-900.ibm.com/cn/support/forum/app/tscforum/topic?tid=184300 "https://www-900.ibm.com/cn/support/forum/app/tscforum/topic?tid=184300")
+
+也就是说，raid信息存在了磁盘里，更换raid卡就可以自动重建了。这样raid卡坏掉也没关系了。
+
+当然，不是每个卡都这样的。

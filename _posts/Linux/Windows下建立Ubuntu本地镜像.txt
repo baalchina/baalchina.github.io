@@ -1,0 +1,9 @@
+Title: Windows下建立Ubuntu本地镜像
+Date: 2008-10-06 21:10:40
+URL: /2008/10/ubuntu-mirror-windows/
+Tags: Ubuntu , Windows , 镜像
+
+实现方法：Windows2003+IIS6(或者Serv-U)+Wget(或者cwsync)。
+
+参考站点：
+http://www.coolcode.cn/show-219-1.html

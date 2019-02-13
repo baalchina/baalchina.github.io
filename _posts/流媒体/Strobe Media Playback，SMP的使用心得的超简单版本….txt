@@ -1,0 +1,26 @@
+Title: Strobe Media Playback，SMP的使用心得的超简单版本…
+Date: 2011-01-11 13:22:33
+URL: /2011/01/strobe-media-playback/
+Tags: adobe , flash , osmf , smp
+
+SMP应该是OSMF，也就是Adobe的媒体框架的一个播放器。使用上并不是很复杂--当然也许是因为我没有复杂的使用。![微笑](/wp-content/uploads/2011/01/wlEmoticon-smile.png)
+
+&#160;
+
+首先从[http://www.osmf.org/](http://www.osmf.org/)下载之。
+
+然后解压下来，注意里面有个setup.html，可以简单的按照这个文件生成你需要的界面。比如定义skins等等。
+
+&#160;
+
+Skin的话，需要做一些小图，然后用xml的形式把每张图对应的smp位置定义好，放到服务器上--注意本地是不行的，必须要放服务器，这时候就需要注意crossdomain的问题。
+
+如果不定义skin，只想做个导引页的图片的话，加一条poster=poster.jpg就可以了。
+
+&#160;
+
+另外smp还有很多高级功能，待研究。
+
+&#160;
+
+对应SMP，Adobe还有个商业产品，叫做Adobe Flash Media Playback

@@ -1,0 +1,12 @@
+Title: H3C LSQ1WCMB0无线控制器升级
+Date: 2012-06-14 19:40:23
+URL: /2012/06/h3c-wifi-upgrade/
+Tags: h3c , wifi
+
+其实没啥难度...发封邮件给h3c，他就把升级包下载地址给你了，另外附上了下载帐号密码。
+
+就是升级速度有点慢，可能有5分钟。升级好了之后，AP会自动下载image：
+
+Image download process completed for AP ap1_0030.
+
+过程有点长。要耐心等待。

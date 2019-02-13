@@ -1,0 +1,29 @@
+Title: esx频繁从vcenter掉线的解决办法
+Date: 2010-01-07 14:41:07
+URL: /2010/01/esx-server-disconnect/
+Tags: VMware
+
+一台esx，频繁从esx掉线，重新连接后2min，就又掉线了。但是esx上的虚拟机的使用不受影响。
+
+查了下，是esx的vcenter代理安装的问题。将代理卸掉重装即可。
+
+&#160;
+  > [root@esx-server /]# rpm -qa | grep vpxa     
+> VMware-vpxa-2.5.0-64192      
+> [root@esx-server /]# rpm -qa | grep aam      
+> [root@esx-server /]#
+> 
+> &#160;  
+
+后面一个可能没有。
+
+然后删掉它：
+  > [root@esx-server /]# rpm -e &lt;PackageName&gt;  
+
+再用vcenter重新连接，就可以了。
+
+参考：
+
+VMWare官方文档：[http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&amp;docType=kc&amp;externalId=1006128&amp;sliceId=1&amp;docTypeID=DT_KB_1_1&amp;dialogID=1481206&amp;stateId=0%200%201483005](http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&amp;docType=kc&amp;externalId=1006128&amp;sliceId=1&amp;docTypeID=DT_KB_1_1&amp;dialogID=1481206&amp;stateId=0%200%201483005 "http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&amp;docType=kc&amp;externalId=1006128&amp;sliceId=1&amp;docTypeID=DT_KB_1_1&amp;dialogID=1481206&amp;stateId=0%200%201483005")
+
+某blog:[http://hi.baidu.com/jsnewbee/blog/item/d2626f4d85d50cfed62afc1a.html](http://hi.baidu.com/jsnewbee/blog/item/d2626f4d85d50cfed62afc1a.html "http://hi.baidu.com/jsnewbee/blog/item/d2626f4d85d50cfed62afc1a.html")

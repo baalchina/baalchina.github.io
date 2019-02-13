@@ -1,0 +1,49 @@
+Title: 如何使用路由器模拟Frame-Relay交换机
+Date: 2008-09-06 20:51:38
+URL: /2008/09/router-to-fr-switch/
+Tags: ccie , frame-relay , router , 笔记
+
+如何将一个路由器模拟成Frame-Relay交换机。
+> **frame-relay switching**> 
+> 
+> interface Serial1/1> 
+> no ip address> 
+> **encapsulation frame-relay> 
+> serial restart-delay 0> 
+> clock rate 64000> 
+> frame-relay intf-type dce> 
+> frame-relay route 102 interface Serial1/2 201> 
+> frame-relay route 103 interface Serial1/3 301**> 
+> !> 
+> interface Serial1/2> 
+> no ip address> 
+> encapsulation frame-relay> 
+> shutdown> 
+> serial restart-delay 0> 
+> clock rate 64000> 
+> frame-relay intf-type dce> 
+> frame-relay route 201 interface Serial1/1 102> 
+> frame-relay route 203 interface Serial1/3 302> 
+> !> 
+> interface Serial1/3> 
+> no ip address> 
+> encapsulation frame-relay> 
+> shutdown> 
+> serial restart-delay 0> 
+> clock rate 64000> 
+> frame-relay intf-type dce> 
+> frame-relay route 301 interface Serial1/1 103> 
+> frame-relay route 302 interface Serial1/2 203
+首先是frame-relay switching.
+
+接下来，在接口中配置。
+
+> interface Serial1/1> 
+> no ip address> 
+> encapsulation frame-relay #_封装_> 
+> serial restart-delay 0> 
+> clock rate 64000 #_速率_> 
+> frame-relay intf-type dce #_要设置成DCE_> 
+> frame-relay route 102 interface Serial1/2 201 _#注意这里，前面是出的，后面是进入的。_> 
+> frame-relay route 103 interface Serial1/3 301 #_比如103是1->3的DLCI，从s1/1出去，进入s1/3，其中对于s1/3的DLCI是301._> 
+> !

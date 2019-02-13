@@ -1,0 +1,26 @@
+Title: BIND的编译配置安装
+Date: 2008-08-27 21:06:14
+URL: /2008/08/bind-instal/
+Tags: bind , dns , Linux
+
+虽然rpm或者yum很容易，但是还是喜欢编译安装...
+
+首先升级下ssl。如果用--prefix=installdir指定了openssl的安装目录的话，那么BIND的编译：
+  > ./configure --with-openssl=/usr/local/openssl/ --prefix=/usr/local/bind  
+
+&#160;
+
+&#160;
+
+接下来生成rndc，并根据rndc生成named.conf的rndc部分：
+  > sbin/rndc-confgen &gt; /etc/rndc.conf     
+> tail -10 rndc.conf | head -9 | sed s/#\ //g &gt; named.conf  
+
+下面就是配置named.conf了。
+
+具体以后再补充。
+
+启动bind
+  > /usr/local/bind/sbin/named  
+
+重启貌似需要kill然后再运行。

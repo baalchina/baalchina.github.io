@@ -1,0 +1,13 @@
+Title: VMWare Tools 在esxi5.1/Windows 2003里面报“Error in the RPC receive loop: RpcIn: Unable to send”
+Date: 2012-12-27 12:25:24
+URL: /2012/12/vmware-tools-error-in-the-rpc-receive-loop/
+Tags: rpc , VMware
+
+从模板克隆来的2003 Server，Windows日志里面很多如图提示：
+
+[![](/wp-content/uploads/2012/12/QQ截图20121227122326.png "QQ截图20121227122326")](/wp-content/uploads/2012/12/QQ截图20121227122326.png)
+
+Error in the RPC receive loop
+找到VMWare KB的一篇文章，解决之，ps，比较晕的是，他的解决方法是让你关闭日志。。。
+
+http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&amp;docType=kc&amp;externalId=2036350&amp;sliceId=1&amp;docTypeID=DT_KB_1_1&amp;dialogID=493536660&amp;stateId=1%200%20493558634

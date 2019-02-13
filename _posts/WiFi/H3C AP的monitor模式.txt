@@ -1,0 +1,30 @@
+Title: H3C AP的monitor模式
+Date: 2012-10-24 21:30:28
+URL: /2012/10/h3c-ap-monitor-mode/
+Tags: h3c , wlan
+
+有个AP，莫名其妙的没法工作---ac上正常，射频打开，也配置了接入服务，但是就是搜索不到信号。
+
+对比了一下配置，发现多了一行这个：
+wlan ap sjpx_ap2 model WA2220-AG id 3
+trap enable
+serial-id 1111111111
+**work-mode monitor**
+radio 1
+  radio-policy 15361
+  service-template 2 vlan-id 333
+  service-template 3 vlan-id 444
+  radio enable
+radio 2
+  radio-policy 15362
+  service-template 2 vlan-id 333
+  service-template 3 vlan-id 444
+  radio enable
+#
+return
+
+查了H3C文档，发现这个监控模式用作监控的。关掉即可。
+
+参考：
+
+[http://www.h3c.com.cn/Service/Document_Center/Wlan/WX/H3C_WX3000/Command/Command_Manual/H3C_WX_CR-6W100/02/201011/699144_30005_0.htm#_Toc276721319](http://www.h3c.com.cn/Service/Document_Center/Wlan/WX/H3C_WX3000/Command/Command_Manual/H3C_WX_CR-6W100/02/201011/699144_30005_0.htm#_Toc276721319)

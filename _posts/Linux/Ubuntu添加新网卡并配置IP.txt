@@ -1,0 +1,18 @@
+Title: Ubuntu添加新网卡并配置IP
+Date: 2012-11-23 20:59:29
+URL: /2012/11/ubuntu-change-ip-address/
+Tags: Ubuntu
+
+版本Ubuntu 10.04 LTS。虚拟化之后原来的网卡没了，新增加的网卡不是eth0。
+
+首先，获得新网卡的eth号。
+
+lshw -class network
+可以看到网卡是eth几，比如eth6。
+
+然后配置IP地址：
+vi /etc/network/interface
+
+这个就简单了，照本宣科，复制即可。
+
+接着重启eth6即可。

@@ -1,0 +1,24 @@
+Title: Discuz 7.2的一个很无语的404问题--没有头像，就是404！
+Date: 2009-12-01 14:29:30
+URL: /2009/12/discuz-avatar-404-error/
+Tags: 404 , Discuz
+
+今天看服务器，发现一堆404，都是请求头像的...日志巨大无比...
+
+然后找了一番，发现是没有头像的会员，dz会自动给他一个默认头像，但是问题在于他还会去请求一个middle大小的头像，显然这个头像是不存在的，于是404啊404....大量无谓的错误日志，塞满了我可怜的磁盘空间...
+
+打个比方，这个帖子：[http://www.discuz.net/thread-1400422-1-1.html](http://www.discuz.net/thread-1400422-1-1.html)
+
+第一个用户的uid是http://www.discuz.net/space.php?uid=1242584，可以查看这个帖子的源代码，124行：
+  > &lt;div class=&quot;avatar&quot; onmouseover=&quot;showauthor(this, 'userinfo11675894')&quot;&gt;&lt;a href=&quot;space.php?uid=1242584&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;[http://uc.discuz.net/data/avatar/001/24/25/84_avatar_middle.jpg&quot;](http://uc.discuz.net/data/avatar/001/24/25/84_avatar_middle.jpg&quot;) onerror=&quot;this.onerror=null;this.src='[http://uc.discuz.net/images/noavatar_middle.gif'&quot;](http://uc.discuz.net/images/noavatar_middle.gif) /&gt;&lt;/a&gt;&lt;/div&gt;  
+
+复制代码   
+注意他请求了
+  > &#160;[http://uc.discuz.net/data/avatar/001/24/25/84_avatar_middle.jpg](http://uc.discuz.net/data/avatar/001/24/25/84_avatar_middle.jpg)  
+
+复制代码   
+这个文件，当然，这个文件是不存在的...
+
+官方可以自己看看你们的nginx日志...看看是不是大量的404...
+
+首先，404增加了无谓的错误日志大小，其次，这种请求肯定会消耗磁盘的，消耗系统资源的....

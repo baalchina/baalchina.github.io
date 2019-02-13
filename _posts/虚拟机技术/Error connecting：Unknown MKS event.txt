@@ -1,0 +1,8 @@
+Title: Error connecting：Unknown MKS event
+Date: 2009-02-28 13:40:45
+URL: /2009/02/esxi-mks-event/
+Tags: esxi , mks , VMware
+
+今天用远程桌面连接esxi的时候遇到的。MKS是mouse keyboard screen的意思。
+
+那么就是显示的问题了。在本地就ok。

@@ -1,0 +1,12 @@
+Title: 3com交换机的密码
+Date: 2009-07-14 19:29:09
+URL: /2009/07/3com-switch-lost-password/
+Tags: 3com , password
+
+某台交换机密码忘记了，但是要vlan号。找了半天，最后找到一个readonly账号..monitor/monitor。
+
+参见3com的Getting Started Guide。
+
+另外这个网页可以参考一下：
+
+[http://www.tek-tips.com/viewthread.cfm?qid=555357](http://www.tek-tips.com/viewthread.cfm?qid=555357 "http://www.tek-tips.com/viewthread.cfm?qid=555357")

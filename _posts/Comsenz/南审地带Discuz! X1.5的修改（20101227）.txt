@@ -1,0 +1,64 @@
+Title: 南审地带Discuz! X1.5的修改（20101227）
+Date: 2010-05-21 11:25:55
+URL: /2010/05/discuzx-nauzone/
+Tags: Discuz , nauzone
+
+Dz7.2时代，参看：[http://www.baalchina.net/2009/08/discuz-code/](http://www.baalchina.net/2009/08/discuz-code/)
+
+&#160;
+
+Discuz X1的话，需要修改三个地方
+  > source\language\forum\lang_template.php      
+> source\language\group\lang_template.php       
+> template\default\forum\discuzcode.htm  
+
+&#160;
+
+改掉
+  'discuzcode_copyclipboard' =&gt; '下载地址(将上述地址复制到下载软件队列中即可下载！',
+
+&#160;
+
+还要增加一个内网的提示
+
+> 'user_banned' =&gt; '伟大的毛主席教导我们，不是南审内网不能使用南审地带。',
+
+&#160;
+
+**_/source/language/lang_template.php_**
+
+还有：
+
+&#160;
+
+> 'enter_content' =&gt; '想找什么好东东？在这里搜索吧！',
+> 
+> &#160;
+
+作用是把搜索的框字修改后加红
+
+&#160;
+
+修改：
+
+> upload\template\default\common\module.css':
+
+把srchtxt改成
+
+> #srchtxt { font-size: 12px; line-height: 22px;color: #F00;font-weight: bold; }
+
+&#160;
+
+**_source\language\forum\lang_template.php 
+
+_**
+
+1009行，修改为：
+
+> 'pay_comment' =&gt; '您需要付出 &lt;strong&gt;{$_G[setting][extcredits][$_G[setting][creditstransextra][1]][title]} {$thread[price]} {$_G[setting][extcredits][$_G[setting][creditstransextra][1]][unit]}&lt;/strong&gt; 才能获得下载地址。如何获得金币请看网站上方说明。',
+
+&#160;
+
+**_template/default/forum/viewthread_fastpost.htm_**
+
+> &lt;textarea rows=&quot;5&quot; cols=&quot;80&quot; name=&quot;message&quot; id=&quot;fastpostmessage&quot; onKeyDown=&quot;seditor_ctlent(event, {if $_G['gp_ordertype'] != 1}'fastpostvalidate($(\'fastpostform\'))'{else}'$(\'fastpostform\').submit()'{/if});&quot; tabindex=&quot;4&quot; class=&quot;pt&quot;&gt;您的一句感谢，是对发布者的最大支持！&lt;/textarea&gt;

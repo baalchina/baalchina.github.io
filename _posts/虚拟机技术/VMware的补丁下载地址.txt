@@ -1,0 +1,7 @@
+Title: VMware的补丁下载地址
+Date: 2013-04-28 21:30:57
+URL: /2013/04/vmware-patch-download-url/
+Tags: VMware
+
+其实很简单，在http://www.vmware.com/patchmgr/findPatch.portal这里，选择你的版本号就可以了。
+如果补丁很多，可以调用一个java插件批量下载。

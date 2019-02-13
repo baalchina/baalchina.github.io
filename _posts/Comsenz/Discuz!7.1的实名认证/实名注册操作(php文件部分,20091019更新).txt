@@ -1,0 +1,86 @@
+Title: Discuz!7.1的实名认证/实名注册操作(php文件部分,20091019更新)
+Date: 2008-12-16 21:03:55
+URL: /2008/12/discuz-realname/
+Tags: Discuz , 实名认证
+
+其实和DZ6基本一样。
+
+首先后台将注册页面的地址修改为register.htm。自己做一个这个文件，将name和code连接放上去。
+
+## 修改header.htm：
+
+找到
+  > &lt;a href=&quot;$regname&quot; onclick=&quot;floatwin('open_register', this.href, 600, 400, '600,0');return false;&quot; class=&quot;noborder&quot;&gt;$reglinkname&lt;/a&gt;  
+
+修改为
+  > &lt;a href=&quot;$regname&quot; class=&quot;noborder&quot;&gt;$reglinkname&lt;/a&gt;  
+
+否则点击注册会弹出一个永远啥都没有的ajax窗口…
+
+## 将register.php修改为register_name.php。
+
+找到
+  > $email = trim($email);     
+> }  
+
+在后面添加
+  > //实名认证hack
+> 
+> $xm = trim($field_1new);     
+> $sfzhm = trim($field_5new);      
+> $xszhm = trim($field_4new);      
+> $query = $db-&gt;query(&quot;SELECT * FROM {$tablepre}students where xm='$xm' and sfzhm='$sfzhm' and xszhm='$xszhm'&quot;); $yz = $db-&gt;fetch_array($query);      
+> if (!$yz) {      
+> showmessage('你输入的实名验证资料错误，请重新输入正确信息！如果您确认信息正确，请携带有效证件到网络中心查询！');      
+> }      
+> elseif      
+> ($yz['used']==1)      
+> { showmessage('你输入的实名验证资料已经被注册过，请联系管理员！如果您没有注册过，请尽快携带有效证件到网络中心查询！');      
+> }
+> 
+> //实名认证hack  
+
+找到
+  > $authstr = $regverify == 1 ? &quot;$timestamp\t2\t$idstring&quot; : '';  
+
+添加：
+  > //实名认证hack     
+> $db-&gt;query(&quot;UPDATE {$tablepre}students SET used=1 WHERE xm='$xm' and sfzhm='$sfzhm' and xszhm='$xszhm'&quot;);      
+> //实名认证hack  
+
+#### 找到模板的register，修改为register_name，同时复制一份register.htm模板为register_name.htm。
+
+修改表单提交的目的为register_name.php：
+  > &lt;form method=&quot;post&quot; name=&quot;register&quot; id=&quot;registerform&quot; class=&quot;gateform&quot; onsubmit=&quot;ajaxpost('registerform', 'returnmessage4', 'returnmessage4', 'onerror');return false;&quot; action=&quot;$regname?regsubmit=yes&quot;&gt;  
+
+修改为
+  > &lt;form method=&quot;post&quot; name=&quot;register&quot; id=&quot;registerform&quot; class=&quot;gateform&quot; onsubmit=&quot;ajaxpost('registerform', 'returnmessage4', 'returnmessage4', 'onerror');return false;&quot; action=&quot;$register_name.php?regsubmit=yes&quot;&gt;  
+
+#### 还有一点需要注意的，让新的register_name.php引用新模板：
+
+找到3处(dz7.1，7不知道是多少)
+  > include template('register');  
+
+修改为
+  > include template('register_name');  
+
+&#160;
+
+&#160;
+
+## 将register.php修改为register_code.php
+
+修改regstatus为register_invite，作用是让该文件认为系统允许注册。注意模板也需要修改（2处）。
+
+dz7里面还多了一个邀请者ip和注册这ip的判断。真麻烦。sql掉他：
+  > update cdb_invites set inviteip = 2182113103  
+
+&#160;
+
+#### 另外一点，dz7.1之后需要修改register_code.htm模板
+
+也有3个regstatus，是用来控制邀请码的窗口是否显示的，否则注册的时候无法显示邀请码，提交就提示你没有输入邀请码不能注册。
+
+总体而言，dz7比dz6麻烦了很多…花了一个晚上。
+
+dz7.1相对dz7，又改了一大堆东西…恨啊…

@@ -1,0 +1,72 @@
+Title: Bind9的新漏洞
+Date: 2009-08-01 11:38:55
+URL: /2009/08/bind-cn-va09-69/
+Tags: bind , dns
+
+&#160;
+
+安全漏洞：CN-VA09-69    
+发布日期：2009年7月29日     
+漏洞类型：远程执行代码     
+漏洞评估：严重     
+受影响的软件：     
+&#160;&#160;&#160; 安装或捆绑BIND 9的操作系统及相关产品，目前FreeBSD和ISC发布公告确认该漏洞造成严重威胁。     
+漏洞描述：&#160; 
+&#160;&#160;&#160; ISC于7月28日公布了其域名系统软件BIND 9存在的一个高危漏洞，并且针对该漏洞攻击脚本在互联网上已出现。BIND是由ISC提供的一个常用的DNS软件，它支持动态DNS更新（参考IETF RFC 2136&lt;[http://tools.ietf.org/html/rfc2136](http://tools.ietf.org/html/rfc2136)&gt;）。该漏洞允许远程攻击者进行拒绝服务攻击；当处理一个伪造的动态更新包时，BIND 9系统会崩溃。此漏洞影响所有的BIND 9服务器，不限于配置了动态更新的服务器。需要说明的是，目前发现此漏洞仅对将BIND 9作为主权威服务器时产生影响，对从权威服务器和纯递归服务器没有影响。     
+漏洞影响：     
+&#160;&#160;&#160; 通过给BIND 9服务器发送一个伪造的动态更新包而引起系统崩溃，可使远程攻击者发动拒绝服务攻击。     
+解决方案：     
+&#160;&#160;&#160; 安装补丁。     
+&#160;&#160;&#160; 此漏洞已在ISC BIND versions 9.4.3-P3、9.5.1-P3和BIND 9.6.1-P1中得到解决，原厂商用户可根据情况更新至这些版本。通过第三方厂商获得软件的用户可查看受影响的软件列表，确定是否受影响。     
+&#160;&#160;&#160; 原厂商公告详见：[https://www.isc.org/node/474](https://www.isc.org/node/474).     
+参考信息：     
+[https://www.isc.org/node/474](https://www.isc.org/node/474)    
+[http://tools.ietf.org/html/rfc2136](http://tools.ietf.org/html/rfc2136)    
+[http://oldwww.isc.org/sw/bind/view?release=9.4.3-P3&amp;noframes=1](http://oldwww.isc.org/sw/bind/view?release=9.4.3-P3&amp;noframes=1)    
+[http://oldwww.isc.org/sw/bind/view?release=9.5.1-P3&amp;noframes=1](http://oldwww.isc.org/sw/bind/view?release=9.5.1-P3&amp;noframes=1)    
+[http://oldwww.isc.org/sw/bind/view?release=9.6.1-P1&amp;noframes=1](http://oldwww.isc.org/sw/bind/view?release=9.6.1-P1&amp;noframes=1)    
+[http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=538975](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=538975)    
+信息提供者：     
+ISC     
+JPCERT     
+感谢[北京启明星辰信息技术有限公司](http://www.venustech.com.cn/)和[北京神州绿盟科技有限公司](http://www.nsfocus.net/vulndb/13651)为CNCERT提供相关技术支持。    
+其它信息：     
+&#160;&#160;&#160; 相关CVE编号： CVE-2009-0696     
+漏洞报告文档编写：     
+ CNCERT/CC     
+安全公告文档编写：     
+ CNCERT/CC
+
+[http://www.cert.org.cn/articles/bulletin/common/2009073024463.shtml](http://www.cert.org.cn/articles/bulletin/common/2009073024463.shtml "http://www.cert.org.cn/articles/bulletin/common/2009073024463.shtml")
+
+&#160;
+
+关于域名系统软件BIND 9高危漏洞的补充公告(重要)
+
+安全漏洞：CN-VA09-70    
+发布日期：2009年7月30日     
+漏洞类型：远程攻击    
+漏洞评估：严重     
+受影响的软件：     
+&#160;&#160;&#160; 安装或捆绑BIND 9的操作系统及相关产品。     
+漏洞情况：     
+&#160;&#160;&#160; 7月29日，CNCERT发布了关于域名系统软件BIND 9存在高危漏洞的情况通报。经进一步测试分析，CNCERT对漏洞危险性和影响范围作如下补充公告。     
+&#160;&#160;&#160; 目前确定除安装BIND 9的主权威服务器受影响外，在BIND 9配置文件(named.conf)中存在带有Master类型的区域记录（Zone）的从权威服务器和递归服务器也会受到影响。BIND 9在缺省安装情况下，会在配置文件中包含如下几个带有Master类型的区域记录：“local host”、“127.in-addr.arpa”、“0.in-addr.arpa”、“255.in-addr.apra”；而使用BIND 9的多数用户一般不会删除上述内容，因此该漏洞对我国域名服务器的影响范围十分广泛。     
+解决方案：     
+&#160;&#160;&#160; 使用BIND 9作为域名服务器的用户需高度重视该漏洞的危害，及时做好修补和防护工作，具体建议如下：     
+&#160;&#160;&#160; 1.测试证明BIND 9厂商目前提供的补丁程序是有效的，具备条件的用户应考虑升级；     
+&#160;&#160;&#160; 2.因故不能对服务器进行升级的，如不作为主权威服务器使用，可考虑修改配置文件，删除所有Master记录；     
+&#160;&#160;&#160; 3.对于没有启用动态更新的域名服务器，可使用防护设备拦截带攻击意图的动态更新数据包；     
+&#160;&#160;&#160; 4.对基于BIND 9二次开发的软件系统，用户可在代码层级作修改，消除隐患。     
+&#160;&#160;&#160; 各企业和个人用户如发现其他问题或需技术支持，请与CNCERT联系。     
+信息提供者：     
+&#160;&#160;&#160; 北京启明星辰信息技术有限公司     
+&#160;&#160;&#160; 北京神州绿盟科技有限公司&#160; 
+文档编写：     
+CNCERT/CC     
+-----------------------------------------------------------------------------------     
+ CNCERT/CC在发布安全公告信息之前，都力争保证每条公告的准确性和可靠性。然而，采纳和实施公告中的建议则完全由用户自己决定，其可能引起的问题和结果也完全由用户承担。是否采纳我们的建议取决于您个人或您企业的决策，您应考虑其内容是否符合您个人或您企业的安全策略和流程。     
+ 在任何情况下，如果您确信您的计算机系统受到危害或是攻击，我们鼓励您及时告知国家计算机网络应急技术处理协调中心：http://www.cert.org.cn/servlet/Incident     
+ 同时，我们也鼓励所有计算机与网络安全研究机构，包括厂商和科研院所，向我们报告贵单位所发现的漏洞信息。我们将对所有漏洞信息进行验证并在CNCERT/CC网站公布漏洞信息及指导受影响用户采取措施以避免损失。     
+ 如果您发现本公告存在任何问题，请与我们联系： cncert@cert.org.cn
+ [http://www.cert.org.cn/articles/bulletin/common/2009073124465.shtml](http://www.cert.org.cn/articles/bulletin/common/2009073124465.shtml "http://www.cert.org.cn/articles/bulletin/common/2009073124465.shtml")

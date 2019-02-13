@@ -1,0 +1,17 @@
+Title: Ubuntu+Vista启动菜单的恢复
+Date: 2009-04-24 11:05:51
+URL: /2009/04/how-to-delete-grub/
+Tags: mbr , Ubuntu , 启动
+
+双系统，昨天把整个Ubuntu的分区删除了，结果开机就显示Grub Error 22。
+
+&#160;
+
+解决办法，用LiveCD启动，删除Grub即可。
+
+&#160;
+  > sudo dd if=/usr/lib/syslinux/mbr.bin of=/dev/sda  
+
+&#160;
+
+参考：[please help (grub loading error 22)](http://forum.ubuntu.org.cn/viewtopic.php?f=77&amp;t=196689&amp;start=0 "please help (grub loading error 22)")

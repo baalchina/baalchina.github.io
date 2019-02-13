@@ -1,0 +1,104 @@
+Title: Ubuntu的一些设置和安装
+Date: 2008-08-06 20:10:13
+URL: /2008/08/ubuntu的一些设置和安装/
+Tags: Linux , Ubuntu , 系统管理
+
+[Ubuntu]装了个，很好玩...2008-04-29 15:221、远程桌面，控制Windows用的
+命令行里面输入
+
+#sudo teclient
+
+
+2、快速设置指南
+http://wiki.ubuntu.org.cn/%E5%BF%AB%E9%80%9F%E8%AE%BE%E7%BD%AE%E6%8C%87%E5%8D%97
+
+3、关于上网（针对Ubuntu 8.04，默认设置好IP还是无法上网）
+静态IP配置，需要编辑
+
+
+#vi /etc/network/interface
+
+如下设置
+
+iface eth0 inet static
+address 172.16.31.11
+netmask 255.255.255.0
+gateway 172.16.31.253
+auto eth0
+
+注意最后的auto eth0如果不加好像无法起效。
+
+另外重新启动网络
+
+＃sudo /etc/init.d/networking restart
+
+
+4、显卡驱动
+很麻烦！真的很麻烦！折腾了很久。
+首先是去nvidia官方网站下载驱动。是一个shell文件。
+然后需要运行，但是会提示你xserver正在运行中。解决办法是进入任意console
+
+＃sudo /etc/init.d/gdm stop
+
+
+，就把xwindows杀掉了。
+
+下面需要安装libc，否则会提示出错。
+
+#sudo apt-get install libc6-dev
+
+注意这里如果源不是最新的华，可能会遇到无法安装的问题。参见5。
+
+然后
+
+#sudo sh /home/xxx.run
+
+基本一路next就可以了。
+
+XWindow的配置文件
+
+＃sudo gedit /etc/X11/xorg.conf
+
+
+这时候在Xwindow下，运行
+
+#gksudo nvidia-settings
+
+
+就可以进入Nvidia的图形配置了。
+
+还有个问题，就是设置了效果之后，Ubuntu标题栏神秘消失。
+添加    Option "AddARGBGLXVisuals" "True"，如下：
+
+
+Section "Screen"
+    Identifier     "Default Screen"
+    Device         "Configured Video Device"
+    Monitor        "Configured Monitor"
+    DefaultDepth    24
+    Option "AddARGBGLXVisuals" "True"
+    SubSection     "Display"
+        Virtual     1280 1024
+        Depth       24
+        Modes      "1280x1280@60"
+    EndSubSection
+EndSection
+
+
+注意最后的1280x1280，如果设置成1280x1024，你就会惊喜的发现登录界面上的输入用户明密码部分超出显示器范围了...
+
+参见：
+http://www.linuxidc.com/Linux/2008-03/11710p2.htm
+
+http://hi.baidu.com/csx163/blog/item/b57960d05f21268ba0ec9ce2.html
+
+5、更新源。国外的源比较慢，但是国内的某些源不是最新的，更新软件可能会遇到问题。我用的中科大的，没问题。
+http://wiki.ubuntu.org.cn/index.php?title=%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%88%91%E4%BB%AC%E6%8E%A8%E8%8D%90%E7%9A%84%E6%BA%90&variant=zh-cn
+
+基本上，还是很麻烦，即使是大家认为比较轻松的Ubuntu。幸亏有网络，有google，有国内源，不然不知道配置到什么时候呢...再考虑到软件兼容性，毕竟Linux擅长的不是桌面系统阿。
+
+6、关于root
+
+Ubuntu默认无root,sudo su就到root了,用sudo passwd root来设置
+
+PS，善用Google!

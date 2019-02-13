@@ -1,0 +1,23 @@
+Title: 锐捷/凯创设备上的交换机安全设置(20090312)
+Date: 2008-10-06 21:24:39
+URL: /2008/10/switch-securit/
+Tags: Telnet , 凯创 , 安全 , 锐捷
+
+注意仅仅是对于安全管理的设置。
+
+对于锐捷设备
+> ip ssh version 2> 
+> enable services ssh-server> 
+> no enable services telnet-server> 
+> services telnet host 172.17.13.0 255.255.255.0> 
+> no snmp-server community public
+作用：
+打开SSH，关闭telnet。如果打开telnet那么只允许在特定的网段进行telnet。
+
+对于凯创设备
+> set router telnet disable
+禁止通过SVI接口telnet。
+
+同时还有命令
+> set router ssh enable
+这个命令大开了设备的ssh。切记要打开这个，否则你再也连接不上设备了...

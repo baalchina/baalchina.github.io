@@ -1,0 +1,8 @@
+Title: gene6增加用户登录提示
+Date: 2009-10-21 09:45:29
+URL: /2009/10/gene6-tag/
+Tags: FTP , gene6
+
+[http://www.g6ftpserver.com/manuals/en/tags.html](http://www.g6ftpserver.com/manuals/en/tags.html "http://www.g6ftpserver.com/manuals/en/tags.html")
+
+在gene6的用户的杂项设置里面。

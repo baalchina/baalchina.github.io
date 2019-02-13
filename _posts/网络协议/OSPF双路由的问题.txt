@@ -1,0 +1,51 @@
+Title: OSPF双路由的问题
+Date: 2008-08-22 20:31:07
+URL: /2008/08/ospf-dual-route/
+Tags: ccie , nic , ospf
+
+其实很早就发现我们的核心设备上有些路由是两条。比如这个：
+> O 172.26.8.0/30 [110/20] via 172.26.8.5, Vlan 702> 
+> via 172.26.8.85, Vlan 723
+一开始以为是bug，后来以为是OSPF自动的负载均衡，现在看来不是。
+
+比如以上面为例。
+
+172.26.8.0/30的两个地址：
+172.26.8.1/30以及172.26.8.2/30。
+> n7-04-b2-1.3f.pk(rw)-&gt;Router1&gt;traceroute 172.26.8.1> 
+> Traceroute to 172.26.8.1, 30 hops max, 40 byte packets> 
+> 1 10.00 ms &lt;1 ms &lt;1 ms 172.26.8.1 []> 
+> TraceRoute Complete
+> n7-04-b2-1.3f.pk(rw)-&gt;Router1&gt;traceroute 172.26.8.2> 
+> Traceroute to 172.26.8.2, 30 hops max, 40 byte packets> 
+> 1 &lt;1 ms &lt;1 ms &lt;1 ms 172.26.8.85 []> 
+> 2 &lt;1 ms &lt;1 ms &lt;1 ms 172.26.8.86 []> 
+> 3 &lt;1 ms &lt;1 ms &lt;1 ms 172.26.8.85 []> 
+> 4 &lt;1 ms &lt;1 ms &lt;1 ms 172.26.8.86 []> 
+> 5 &lt;1 ms &lt;1 ms &lt;1 ms 172.26.8.85 []> 
+> 6 &lt;1 ms &lt;1 ms &lt;1 ms 172.26.8.86 []> 
+> Control Exit from TraceRoute
+发现问题了吧。172.26.8.1是存在的，172.26.8.2这个地址不存在。
+注意ping它：
+> n7-04-b2-1.3f.pk(rw)-&gt;Router1&gt;ping 172.26.8.2> 
+> Destination host unreachable.> 
+> Destination host unreachable.> 
+> Destination host unreachable.> 
+> 
+> ------ PING 172.26.8.2 : Statistics ------> 
+> 3 packets transmitted, 0 packets received, 100% packet loss
+**注意是目标不可达。**
+> n7-04-b2-1.3f.pk(rw)-&gt;Router1&gt;ping 172.17.13.11> 
+> Request timed out.> 
+> Request timed out.> 
+> 
+> ------ PING 172.17.13.11 : Statistics ------> 
+> 2 packets transmitted, 0 packets received, 100% packet loss
+目前原因我还没有想通...我估计尝试着把172.26.8.2这个地址配置上去，就不会出现这个问题了。
+
+但是奇怪的，发现
+
+> O     172.26.8.8/30 [110/20] via 172.26.8.13, Vlan 704> 
+>                              via 172.26.8.85, Vlan 723
+
+这一段，两个地址都可以ping通，但是172.26.8.9/30无法telnet，也就是不存在的。#show ip arp也看不到mac。那这个到底是什么？

@@ -1,0 +1,80 @@
+Title: Mysql的慢查询分析
+Date: 2009-09-13 16:11:51
+URL: /2009/09/mysql-slow-log-analyze/
+Tags: Mysql , mysqldumpslow , mysqlsla
+
+#### 最基本的是mysql自带的mysqlslowdump
+
+用起来很简单：
+
+&#160;
+  mysqldumpslow -s c -t 20 host-slow.log
+
+&#160;
+
+参数：
+
+1.  -s,排序，c,t,l,r以及ac,at,al,ar分别是按照query次数，时间，lock时间，返回记录排序。加a就是倒序。2.  -t,top n，跟上数字就是算出top多少条3.  -g，跟正则表达式。
+
+#### 先进一点的是mysqlsla,也是一个perl脚本，
+
+网址：[http://hackmysql.com/mysqlsla](http://hackmysql.com/mysqlsla "http://hackmysql.com/mysqlsla")
+
+同时这个网站也有其他一些工具，看起来都不错。
+
+&#160;
+
+这个需要小安装一下：
+
+tar xvfz mysqlsla-2.03.tar.gz
+cd mysqlsla-2.03
+perl Makefile.PL
+make
+make install
+
+注意需要perl的支持！
+
+#yum install perl
+
+#yum install perl-Time-HiRes
+
+
+&#160;
+
+后者是因为第一次运行的时候说2095行报错，于是看了一下，2095行是
+
+  use Time::HiRes qw(gettimeofday tv_interval);
+
+安装下就好了。不复杂。
+
+&#160;
+
+运行也比较简单：
+
+> — Slow log: mysqlsla -lt slow slow.log
+> 
+> — General log: mysqlsla -lt general general.log
+> 
+> — Binary log: mysqlbinlog bin.log | mysqlsla -lt binary
+
+&#160;
+
+> mysqlsla -lt slow /data/database/slog.log
+
+&#160;
+
+注意lt=log type，他其实也可以分析mysql的其他日志类型的。
+
+&#160;
+
+看看他的日志，还是很清晰的：
+
+[![sla](/wp-content/uploads/2009/09/sla_thumb.jpg "sla")](/wp-content/uploads/2009/09/sla.jpg)
+
+&#160;
+
+&#160;
+
+参考：
+
+[http://kenwu.me/compare-five-mysql-slowlog-analysis-tool](http://kenwu.me/compare-five-mysql-slowlog-analysis-tool "http://kenwu.me/compare-five-mysql-slowlog-analysis-tool")

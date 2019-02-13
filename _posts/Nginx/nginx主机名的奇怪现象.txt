@@ -1,0 +1,24 @@
+Title: nginx主机名的奇怪现象
+Date: 2011-09-27 15:12:30
+URL: /2011/09/nginx-domain-name/
+Tags: Nginx
+
+nginx，单机跑了几个虚拟主机。比如a.nau.edu.cn,b.nau.edu.cn,c.nau.edu.cn指向同一ip。
+
+&#160;
+
+第一个server{}内，如果是
+  > server {     
+> &#160;&#160;&#160; listen&#160;&#160;&#160;&#160;&#160;&#160; a.nau.edu.cn:80;      
+> }  
+
+的话，那么不管后面的server{}里面怎么写，都是指向a.nau.edu.cn根目录。
+
+&#160;
+
+如果改成
+  > server {     
+>  listen :80;      
+> }  
+
+就没有问题。不知道为什么…

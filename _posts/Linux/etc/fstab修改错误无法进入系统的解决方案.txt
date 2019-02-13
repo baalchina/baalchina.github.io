@@ -1,0 +1,15 @@
+Title: /etc/fstab修改错误无法进入系统的解决方案
+Date: 2009-12-06 15:19:55
+URL: /2009/12/fstab-failed/
+Tags: fstab , Linux
+
+改vsftp的配额，结果改错了...无法进入系统，提示read-only...
+
+解决方法
+
+用centos光盘启动，按f5，进入rescue模式。
+
+输入：
+  > chroot /mnt/sysimages  
+
+现在就可以修改/etc/fstab了。

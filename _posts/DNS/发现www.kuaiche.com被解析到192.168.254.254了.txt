@@ -1,0 +1,27 @@
+Title: 发现www.kuaiche.com被解析到192.168.254.254了
+Date: 2009-10-14 13:02:27
+URL: /2009/10/flashget-dns/
+Tags: flashget , kuaiche
+
+[www.flashget.com](http://www.flashget.com)，[www.kuaiche.com](http://www.kuaiche.com)均是如此。
+
+&#160;
+
+难道得罪了电信？
+
+&gt; www.kuaiche.com   
+Server:&#160; a.center-dns.jsinfo.net    
+Address:&#160; 218.2.135.1
+
+Non-authoritative answer:   
+Name:&#160;&#160;&#160; www.kuaiche.com    
+Address:&#160; 192.168.254.254
+
+&gt; www.flashget.com   
+Server:&#160; a.center-dns.jsinfo.net    
+Address:&#160; 218.2.135.1
+
+Non-authoritative answer:   
+Name:&#160;&#160;&#160; www.flashget.com.showq.net    
+Address:&#160; 192.168.254.254    
+Aliases:&#160; www.flashget.com

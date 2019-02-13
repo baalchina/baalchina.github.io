@@ -1,0 +1,28 @@
+Title: manyou和UCH协同工作的一些问题
+Date: 2008-12-01 09:27:36
+URL: /2008/12/manyou-uchome/
+Tags: Discuz , manyou , uchome
+
+1、manyou应用无法显示用户头像
+
+是因为“
+> 9、使用某个应用时，出现所有好友的头像都不能显示，如：[http://www.discuz.net/thread-1051042-1-1.html](http://www.discuz.net/thread-1051042-1-1.html)> 
+> 
+> 解决方法：（1）、如果您服务器或者您网站开启了防盗链，请暂时关闭网站的防盗链系统。> 
+> （2）、请到UCH后台，打开多应用设置，点击同步信息> 
+> 如果安装以上两点无法解决，请在本版块发帖提问。
+将nginx的防盗链设置不过滤加入*.manyou.com即可。
+
+2、为了让应用内网可用，需要放开一些ip地址
+
+fw:
+apps.manyou.com:221.194.139.132
+uchome.manyou.com:221.194.139.132
+好友买卖的头像：124.238.249.26
+停车parking.manyou-apps.com: 124.238.249.27
+
+drcom:
+apps.manyou.com:221.194.139.132
+uchome.manyou.com:221.194.139.132
+好友买卖的头像：124.238.249.26
+停车parking.manyou-apps.com: 124.238.249.27

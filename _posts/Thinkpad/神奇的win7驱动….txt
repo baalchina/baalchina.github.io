@@ -1,0 +1,6 @@
+Title: 神奇的win7驱动…
+Date: 2010-04-26 20:55:49
+URL: /2010/04/windows7-driver/
+Tags: Thinkpad , Windows
+
+更神奇的事情...t61的读卡器没驱动，在lenovo官方下载的inf文件包，死活装不上。然后ms卡的驱动，直接用windows update找到，接下来win7#的操作中心提示找不到驱动，点击查看解决方案，让我到lenovo网站下载，点击直接下载了一个.exe包，安装，搞定！

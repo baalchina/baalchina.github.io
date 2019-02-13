@@ -1,0 +1,35 @@
+Title: Mysql的一些操作
+Date: 2008-12-21 20:57:51
+URL: /2008/12/mysql-manage/
+Tags: Linux , Mysql
+
+1、启动与停止
+
+&#160;
+  > 1、使用 service 启动：      
+> service mysqld start
+> 
+> 2、使用 mysqld 脚本启动：      
+> /etc/inint.d/mysqld start
+> 
+> 3、使用 safe_mysqld 启动：
+> 
+> /usr/local/mysql/bin/mysqld_safe &amp;
+> 
+> **注意最后的&amp;，这样敲个回车之后可以回到提示符，否则就死在那里了。**  
+
+二、停止
+  > 1、使用 service 启动：      
+> service mysqld stop
+> 
+> 2、使用 mysqld 脚本启动：      
+> /etc/inint.d/mysqld stop
+> 
+> 3、/usr/local/mysql/bin/mysqladmin –uroot –p shutdown
+> 
+> 输入密码，ok.  
+
+三、重启
+  > 1、使用 service 启动：service mysqld restart
+> 
+> 2、使用 mysqld&#160; 脚本启动：/etc/inint.d/mysqld restart

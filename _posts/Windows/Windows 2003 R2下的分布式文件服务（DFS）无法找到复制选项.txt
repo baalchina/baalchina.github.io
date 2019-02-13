@@ -1,0 +1,24 @@
+Title: Windows 2003 R2下的分布式文件服务（DFS）无法找到复制选项
+Date: 2013-01-04 22:49:49
+URL: /2013/01/windows-dfs-unable-to-replicate/
+Tags: dfs , Windows
+
+下午看到Windows的分布式文件服务，小研究了下，发现不管怎么搞，都找不到这个复制选项，而没有复制，Windows的分布式文件服务也就没有任何意义了。google了好久都没结果，没一个靠谱的解答，最后还是自己解决了。
+
+[![](/wp-content/uploads/2013/01/1.png "1")](/wp-content/uploads/2013/01/1.png)
+
+**_我的，没有复制。_**
+
+[![](/wp-content/uploads/2013/01/2.jpg "2")](/wp-content/uploads/2013/01/2.jpg)
+
+**_网上的，有复制。_**
+
+系统是Windows Server 2003 R2 ，安装好Windows分布式文件服务之后点击管理服务器-文件服务器-升级此角色，就会看到选项--因为你根本没装这个服务嘛！
+
+[![](/wp-content/uploads/2013/01/3.png "3")](/wp-content/uploads/2013/01/3.png)
+
+**_看，没有服务怎么行。_**
+
+这个服务需要2003的第二张盘，也就是常被忽略的那张。
+
+安装完后，重启，管理工具里面会多出来一个DFS管理，这就是复制啦。

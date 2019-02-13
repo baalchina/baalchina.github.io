@@ -1,0 +1,22 @@
+Title: IBM x3850上安装Dell PERC6/E Raid卡
+Date: 2010-03-17 09:58:10
+URL: /2010/03/perc-in-ibm-x3850/
+Tags: dell , ibm , perc
+
+昨天试图在一台IBM x3850M2上安装Dell PERC6/E卡。硬件安装很顺利，开机也检测到了PCI设备，但是看了半天没找到Dell卡Ctrl+R的配置界面。
+
+担心是卡的兼容性问题，于是换了个槽，问题依旧。很是不解。
+
+后来突然看到IBM的Ctrl+H进入WebCLI的地方出现了PERC6/E的字样，如图：
+
+[![20100317259](/wp-content/uploads/2010/03/20100317259_thumb.jpg "20100317259")](/wp-content/uploads/2010/03/20100317259.jpg)
+
+于是Ctrl+H进去，看到神奇的一幕...
+
+[![20100317260](/wp-content/uploads/2010/03/20100317260_thumb.jpg "20100317260")](/wp-content/uploads/2010/03/20100317260.jpg)
+
+原来是IBM的这个Ctrl+H接管了Dell卡的配置程序了...我估计是因为卡的芯片一样造成的。
+
+&#160;
+
+ps，IBM的这个程序配置起来真复杂 ，做的是Web类型的，每点击链接都要闪一次，慢的要死。新建Raid，默认Raid0，磁盘大小是三块盘容量，如果改成Raid5，非要手动指定两快容量才行。一点也不智能。

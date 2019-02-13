@@ -1,0 +1,15 @@
+Title: bind的几个命令
+Date: 2009-08-01 10:50:04
+URL: /2009/08/bind-useful-command/
+Tags: bind , dns
+
+> /usr/local/named/sbin/named –v  
+
+查看Bind的版本。
+
+&#160;
+  > /usr/local/named/sbin/named –g  
+
+&#160;
+
+有点类似于nginx的-t参数，检测参数是否正确。运行之后会检测当前的参数，并且会将日志显示在屏幕上。

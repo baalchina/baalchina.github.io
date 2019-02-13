@@ -1,0 +1,69 @@
+Title: VMWare Infrastructure 3使用（20090324）
+Date: 2009-03-17 14:01:00
+URL: /2009/03/vmware-infrastructure/
+Tags: esx , esxi , vic , VMware
+
+#### 架构：
+
+ESX Server 3.5，这个是主要的东西。所有的虚拟机都运行在它上面。它自身是一个RHEL系统，使用和Linux类似。
+
+Virtual Center，集中管理软件。
+
+License Server，提供授权。
+
+&#160;
+
+#### 在虚拟机上的测试安装
+
+基本上就是新建一个虚拟机，选择Redhat Linux AS 4 64bit，然后把不相干的诸如声卡、USB都删掉，关掉3D加速。处理器打开Intel-VT，然后在vmx里面添加monitor_control.restrict_backdoor = &quot;true&quot;
+
+参考：
+
+[http://www.searchsv.com.cn/ShowContent_17572.htm](http://www.searchsv.com.cn/ShowContent_17572.htm "http://www.searchsv.com.cn/ShowContent_17572.htm")
+
+&#160;
+
+#### 破解以及安装
+
+由于一直没有lic文件，所以采用了ZWT的破解。至于zwt破解哪来的，去vc找就行了...
+
+以下在虚拟机上测试通过，具体参照zwt的crack文件夹。
+
+1.  首先是ESX的破解。正常安装ESX（从VMware官方下载的也可以）。
+2.  找一个干净的系统安装Infrastructure Server和Licensing Server，虚拟的也行。我在Win2k3上安装成功。3.  将提供的lic文件放到C:\Program Files\VMware\VMware License Server\Licenses。打开VMware License Server Tools，选择Start/Stop/Reread选项卡，点击ReRead License File。4.  打开VIC，连接到Infrastructure Server，注意不是ESX Server。5.  添加你的ESX Server，需要几分钟。选中ESX，点击Configuration/Licensing Features，将授权指向License Server。此时搞定了ESX。6.  在VIC中，进入Administration_下拉_菜单，点击Virtual Center Management Server Configuration，然后将测试模式取消即可。随后就能看到授权了。  
+
+至此，完全搞定~
+
+&#160;
+
+性能没和ESXi对比做测试，不过我估计应该会强一点。另外这时候多了备份，迁移以及模板功能，这都是ESXi不具备的。
+
+以后管理的时候就可以直接用VIC连接Infrastructure Server了。
+
+&#160;
+
+#### 设置自己的Banner:Security Banners on the Local Console
+
+1. Login into the Vi Client    
+2. Select the Configuration Tab, and in the Software pane choose     
+Advanced Settings     
+3. Select the Annotations option, in the corresponding edit field type in     
+your banner such as:
+
+&#160;
+
+#### ESX Server 3i只有32M，集成在服务器上的。
+
+&#160;
+
+#### VMware Converter
+
+VMware Converter 4开始支持从VMI到VMI的转换了，无需再拖到本地。名字也变成了VMware vCenter Converter Standalone。
+
+从VI到VI的迁移，和ftp差不多，他是把文件从source copy到本地，再copy到destination。还没实现到fxp...convert的时候你可以看到你的出和进流量，都是3~4m/s，而且速度相等。
+
+&#160;
+
+#### 其他
+
+Virtual Center可以管理ESXi，ESXi的使用参照：

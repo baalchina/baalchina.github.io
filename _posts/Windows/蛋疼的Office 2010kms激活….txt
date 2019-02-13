@@ -1,0 +1,32 @@
+Title: 蛋疼的Office 2010kms激活…
+Date: 2010-06-30 14:06:30
+URL: /2010/06/active-office-2010/
+Tags: kms , office , Windows
+
+我是觉得最好的激活方式就是kms激活，所以用了那个迷你激活程序。
+
+先从南审地带下载了一个，发现不能。
+
+然后从tccf下载了一个，这下有提示了，说是No installed product keys detected。但是点击装载key没有问题啊。
+
+于是又下载了一个1.3最终版，这次激活总算提示了：
+  > Product key uninstall successful.
+> 
+> Selected key VYBBJ-TRJPB-QFQRF-QFT4D-H3GVB successfully installed.
+> 
+> Installed Office 2010 edition detected is not a VL edition.      
+> This activator are for corporate versions of Office 2010 only!
+> 
+> Press any key to exit...
+> 
+> &#160;  
+
+果然如同想象的那样，因为我安装的是msdn版本…
+
+好吧，去ms下载一个企业版试试看…
+
+&#160;
+
+待续…
+
+1.  蛋疼1，搞了半天，想把2010卸载也卸载不了，提示失败。于是找了个这个工具：_Rip Out Office 2007_搞定了。 不过这个傻鸟软件运行完了也不提示直接就重启系统…要小心。

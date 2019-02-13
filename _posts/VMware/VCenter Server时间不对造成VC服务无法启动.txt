@@ -1,0 +1,15 @@
+Title: VCenter Server时间不对造成VC服务无法启动
+Date: 2012-10-07 21:22:20
+URL: /2012/10/vcenter-service-can-not-start-beacuse-wrong-system-time/
+Tags: ntp , time , vcenter , VMware
+
+把服务器从VC5升级到了VC5.1，升级的时候不知道怎么服务器时间提前了一天。当时没在意，直接升级，成功，一切OK。
+
+后来重启了服务器，再也连接不上VCenter了。登录进服务器，发现服务出错：
+VMware VirtualCenter Server 服务意外地终止，这种情况已经出现了 3 次。以下的修正操作将在 0 毫秒内运行: 重新启动服务。
+
+重启了服务器，依旧无法启动VMware VirtualCenter Server 服务。
+
+后来突然发现时间是正常的，打开一看，原来勾选了NTP服务器。于是赶紧把时间调整成超前一天，也就是“安装VC5.1之后的时间”，再次尝试启动VMware VirtualCenter Server服务。这次OK了。
+
+写下来，备忘！

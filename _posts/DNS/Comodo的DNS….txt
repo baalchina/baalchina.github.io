@@ -1,0 +1,16 @@
+Title: Comodo的DNS…
+Date: 2010-11-10 15:20:16
+URL: /2010/11/comodo-dns-hijack/
+Tags: comodo , dns
+
+早上开了个域名，自己用一切正常，但是同事用就是不行，ping返回的地址死活不对。
+
+[![未命名](/wp-content/uploads/2010/11/thumb.jpg "未命名")](/wp-content/uploads/2010/11/c74d8c368862.jpg)
+
+找了一下，92.242这个地址是comodo的网站。
+
+然后查了一下他的dns，果然是变成了comodo的dns:
+
+[![1](/wp-content/uploads/2010/11/1_thumb.jpg "1")](/wp-content/uploads/2010/11/1.jpg)
+
+百度一下这个156.154.70.25，果然是COMODO的DNS。讽刺的是，这个DNS是用来反DNS劫持的…结果把自己的网站劫持了。

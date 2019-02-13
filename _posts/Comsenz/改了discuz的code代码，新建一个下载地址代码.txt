@@ -1,0 +1,38 @@
+Title: 改了discuz的code代码，新建一个下载地址代码
+Date: 2009-08-24 17:04:16
+URL: /2009/08/discuz-code/
+Tags: Discuz , nauzone
+
+php的东西实在是不懂，偷个懒，直接修改了dz的code代码，反正南审地带那个论坛也不需要code代码这么先进的东西…哈哈。
+
+#### 修改语言包
+
+templates.lang.php，修改下列文件
+  'discuzcode_copyclipboard' =&gt; '下载地址(将上述地址复制到下载软件队列中即可下载！',
+
+#### 当然，也需要修改css
+
+先来看下默认的code代码的css：
+
+&lt;div class=&quot;blockcode&quot;&gt;&lt;div id=&quot;code0&quot;&gt;&lt;ol&gt;&lt;li&gt;ftp://ftp.nau.edu.cn/sports/soccer/record/Italy/090822.Milan.vs.Siena/2.wmv&lt;br /&gt;
+&lt;li&gt;ftp://ftp.nau.edu.cn/sports/soccer/record/Italy/090822.Milan.vs.Siena/1.mpg&lt;/ol&gt;&lt;/div&gt;&lt;em onclick=&quot;copycode($('code0'));&quot;&gt;下载地址(将以下地址复制到下载软件队列中即可下载！&lt;/em&gt;&lt;/div&gt;
+
+改这个就好了嘛。
+
+注意这个地方是在discuzcode.htm这个模板里面。找到红色部分，添加并修改为：
+
+> function tpl_codedisp($discuzcodes, $code) {
+> 
+> }--&gt;
+> 
+> &lt;!--{block return}--&gt;&lt;br /&gt;&lt;img src=&quot;[http://bbs.nau.edu.cn/images/nauzone/down.gif&quot;](http://bbs.nau.edu.cn/images/nauzone/down.gif&quot;) /&gt;下载地址(将以下地址复制到下载软件队列中即可下载！具体查看&lt;a href=&quot;[http://net.nau.edu.cn/resource/guide/how-to-download-ftp-file/&quot;](http://net.nau.edu.cn/resource/guide/how-to-download-ftp-file/&quot;)&gt;这里&lt;/a&gt;)：&lt;div class=&quot;blockcode&quot;&gt;&lt;div id=&quot;code$discuzcodes[codecount]&quot;&gt;&lt;ol&gt;&lt;li&gt;$code&lt;/ol&gt;&lt;/div&gt;&lt;em onclick=&quot;copycode($('code$discuzcodes[codecount]'));&quot;&gt;{lang discuzcode_copyclipboard}&lt;/em&gt;&lt;/div&gt;&lt;!--{/block}--&gt;
+> 
+> &lt;!--{eval return $return;}--&gt;
+> 
+> &lt;!--{eval
+> 
+> }
+
+ps，为什么不新建一个discuz代码？因为默认后台新建的代码会解析url，那么你直接在代码里面输入url会造成代码出错。虽然定义很方便，但是以后每次都需要发帖的时候指定必须不解析url，更麻烦了。
+
+应该有更好的方法，比如自定义一个新的代码，但是水平有限，就这样他凑合吧~~

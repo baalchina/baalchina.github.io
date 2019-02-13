@@ -1,0 +1,15 @@
+Title: 搜狗拼音好像和远程桌面冲突？
+Date: 2009-12-08 10:08:15
+URL: /2009/12/windows-sogou-error/
+Tags: sogou , Windows
+
+两台WIn2003了，远程桌面登陆，搜狗设置的是默认输入法，然后过一会就自动关闭。再次登录就是和重启之后一样的类似进程。然后winlogon.exe非法操作。
+
+卸载掉sogou就一切ok了。
+
+&#160;
+
+事件日志里面报错如下：
+  > 错误应用程序 ，版本 0.0.0.0，错误模块 SogouPY.ime，版本 4.2.2.2732，错误地址 0x0004715c。
+> 
+> 有关更多信息，请参阅在 [http://go.microsoft.com/fwlink/events.asp](http://go.microsoft.com/fwlink/events.asp) 的帮助和支持中心。

@@ -1,0 +1,34 @@
+Title: BGP Synchronization
+Date: 2009-06-25 14:56:38
+URL: /2009/06/bgp-synchronization/
+Tags: BGP , synchronization
+
+[![bgp-toc16](/wp-content/uploads/2009/06/bgptoc16_thumb.gif "bgp-toc16")](/wp-content/uploads/2009/06/bgptoc16.gif)
+
+关于BGP同步，看这个图。
+
+&#160;
+
+RTC将172.10.0.0发送给AS100，于是RTB通过iBGP知道了这个网络。那么它向172.10.0.0发送数据。下一条是RTC的地址2.2.2.1.
+
+于是把数据发送给iBGP邻居RTE。
+
+如果这时候RTA没有把172.10.0.0发布给IGP(比如OSPF),RTE就不知道172.10.0.0网络的存在。
+
+如果RTB开始发送给RTD说172.10.0.0可以通过我到达，那么所有来的数据都会在RTE被丢弃。
+
+&#160;
+
+所以BGP同步即是说，如果你的流量需要经过一个AS到达目的地，BGP不会宣告一个路由，直到你AS内所有的路由器通过IGP学到了这条路由。
+
+&#160;
+
+官方解释：
+
+**If your AS passes traffic from another AS to a third AS, BGP should not advertise a route before all routers in your AS learn about the route via IGP.** BGP waits until IGP propagates the route within the AS and then advertises it to external peers. A BGP router with synchronization enabled does not install iBGP learned routes into its routing table if it is not able to validate those routes in its IGP. Issue the no synchronization command under router bgp in order to disable synchronization. This prevents BGP from validating iBGP routes in IGP. Refer to BGP Case Studies: Synchronization for a more detailed explanation.
+
+&#160;
+
+参考：
+
+[http://www.cisco.com/en/US/tech/tk365/technologies_tech_note09186a00800c95bb.shtml#synch](http://www.cisco.com/en/US/tech/tk365/technologies_tech_note09186a00800c95bb.shtml#synch "http://www.cisco.com/en/US/tech/tk365/technologies_tech_note09186a00800c95bb.shtml#synch")

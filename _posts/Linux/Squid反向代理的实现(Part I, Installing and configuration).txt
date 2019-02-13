@@ -1,0 +1,107 @@
+Title: Squid反向代理的实现(Part I, Installing and configuration)
+Date: 2009-08-03 16:29:06
+URL: /2009/08/squiid-reverse-proxy/
+Tags: Linux , Squid
+
+### 目的
+
+1.  很多服务器需要公网加速，但是公网IP有限。2.  实现对外提供IPv6服务，但是不是每台服务器都可以直接接入到IPv6网络中（能否通过Squid实现？）3.  **最新的3.1版本和以前的差别很大！很多文档还是基于2.6之前版本的。务必注意**  
+
+Squid下载地址：    
+[http://mirror.aarnet.edu.au/pub/squid/squid/](http://mirror.aarnet.edu.au/pub/squid/squid/)
+
+### 安装
+
+很简单。
+  > #**./configure --prefix=/usr/local/squid**
+> 
+> #**make**
+> 
+> #**make install**  
+
+### 配置
+
+首先要给日志文件夹写权限
+  > #chmod +777 –R /usr/local/squid/logs  
+
+前面说过3.1版本区别很大…比如反向代理的，网上常见文档是这么说的
+
+[http://www.linux.gov.cn/netweb/squid.htm#reverseconf](http://www.linux.gov.cn/netweb/squid.htm#reverseconf "http://www.linux.gov.cn/netweb/squid.htm#reverseconf")
+  > httpd_accel_host virtual      
+> httpd_accel_port 80       
+> httpd_accel_single_host off       
+> httpd_accel_uses_host_header on  
+
+然后加上dns解析就行了。但是3.1里面，检测直接报错。实际上3.1里面只需要一条就够了：
+  > http_port 80 **transparent**  
+
+也就是在后面加上**transparent**参数。
+
+**注一下：实际上一开始我理解错了。transparent参数是透明代理的意思，用于正向代理。直接打开虽然可以实现反向代理的功能，但是实际上任何一个用户、网站都可以通过我的cache服务器进行代理访问了（比如通过我的代理服务器访问edu.cn网站）。**
+
+正确的反向代理的做法是通过cache_peer这个参数实现的：
+  > http_port 80 accel vhost      
+> 
+> cache_peer xlzx.nau.edu.cn parent 80 0 originserver no-query name=xlzx      
+> cache_peer english.nau.edu.cn parent 80 0 originserver no-query name=english
+> 
+> cache_peer_domain xlzx xlzx.nau.edu.cn      
+> cache_peer_domain english english.nau.edu.cn  
+
+&#160;
+
+http_port监听80端口，accel代表加速模式，vhost代表传递主机名，否则虚拟主机会失效。
+
+解释一下这里的cache_peer含义：
+
+1.  cache_peer，监听squid的802.  转向给english.nau.edu.cn的80originserver参数代表将squid本机“伪装”成原始的web服务器(causes this parent peer to be contacted as a origin server.)。但是抓包的时候没有发现区别...3.  no-query代表不向这台server发送ICP(Squid用于集群的一个协议)请求。单台主机没必要。4.  另外cache_peer_domain没有的话，所有域名都会指向第一个主机，而不是根据主机头区分服务。  
+
+更多参数参照：http://www.squid-cache.org/Versions/v3/3.1/cfgman/cache_peer.html
+
+这样才是完整的反向代理配置：服务器必须通过我的配置才能通过我的cache被加速。
+
+启动Squid，可以通过/var/log/message或者tail -100 /usr/local/squid/var/logs/cache.log 看到日志。刚开始的时候好像好多日志文件没有建立。
+
+注意日志，可以看到Squid从DNS解析到了域名
+
+### 常用命令
+  > #/usr/local/squid/sbin/squid –k parse  
+
+检测squid.conf是否正确。
+  > # /usr/local/squid/sbin/squid  
+
+启动Squid
+  > # squid -k shutdown  
+
+不用说了吧
+  > # squid -k reconfigure  
+
+这个有点类似于#clear bgp * soft in。哈。
+
+&#160;
+
+贴一下我的squid.conf的配置
+  > #Cache peer setting
+> 
+> cache_peer xlzx.nau.edu.cn parent 80 0 originserver no-query name=xlzx      
+> cache_peer english.nau.edu.cn parent 80 0 originserver no-query name=english
+> 
+> cache_peer_domain xlzx xlzx.nau.edu.cn      
+> cache_peer_domain english english.nau.edu.cn
+> 
+> #Main Configuration      
+> 
+> http_port 80 accel vhost
+> 
+> cache_mgr baalchina
+> 
+> cache_mem 96 MB      
+> cache_dir ufs /data/squidcache 100 16 256
+> 
+> access_log /data/logs/squid/access.log squid      
+> cache_log /data/logs/squid/cache.log       
+> cache_store_log /data/logs/squid/store.log
+> 
+> visible_hostname cache.nau.edu.cn
+> 
+> pid_filename /usr/local/squid/var/squid.pid

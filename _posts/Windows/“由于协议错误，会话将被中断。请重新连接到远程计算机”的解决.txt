@@ -1,0 +1,15 @@
+Title: “由于协议错误，会话将被中断。请重新连接到远程计算机”的解决
+Date: 2010-02-28 09:20:27
+URL: /2010/02/mstsc-error/
+Tags: mstsc , Windows
+
+远程桌面，从Windows 7连接Windows 2003的时候遇到的。能够看到远程的界面，但是随后就弹出这个了。
+
+&#160;
+
+解决办法：
+
+把服务器上的
+  > HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSLicensing  
+
+这个删掉就行了。记得备份。ps，没有重启…

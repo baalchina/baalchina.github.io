@@ -1,0 +1,14 @@
+Title: VCenter Server Appliance体验
+Date: 2013-04-16 18:49:31
+URL: /2013/04/vcenter-server-appliance/
+Tags: VMware
+
+以前vcenter是windows的，需要购买windows授权（不过估计用盗版的也没这个概念吧。。。），于是vmware搞了个VCenter Server Appliance，基于SUSE Linux的，这样至少OS的授权可以省掉了。
+
+试了一下，直接在官网下载60天的试用，是ova文件，直接导入系统就行了。导入的时候让你设置下ip什么的，然后用https://ip:5480登陆进去配置就行。配置很简单，不多说了。
+
+默认密码是root/vmware--&gt;不是administrator了，Linux了嘛。不过这样一来就不能用windows认证了。。。每次都需要输入密码，哈哈。
+
+然后大致看了一下，基本功能类似，安装上是省事多了，至少不用一堆next，也不用装sql server。直接开机就能用。其他...待研究。
+
+另外，Windows下的Vcenter是无法升级到Linux下的VCenter Server Appliance的。只能重做了。

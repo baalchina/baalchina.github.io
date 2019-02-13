@@ -1,0 +1,18 @@
+Title: 硬盘测试
+Date: 2010-12-20 15:23:06
+URL: /2010/12/hard-driver-test/
+Tags: ssd , 硬盘
+
+这个是Intel的SSD硬盘，SSDSA2MJ080G2C1。
+
+[![image](/wp-content/uploads/2010/12/image_thumb.png "image")](/wp-content/uploads/2010/12/image.png)
+
+这个是两块500G组的Raid0，一块希捷一块西数。Raid卡是Intel的板载卡
+
+[![image](/wp-content/uploads/2010/12/image_thumb1.png "image")](/wp-content/uploads/2010/12/image1.png)
+
+&#160;
+
+这个是一块希捷的1T，外置硬盘盒，接在主板上的SATA口。这个好悲剧…
+
+[![image](/wp-content/uploads/2010/12/image_thumb2.png "image")](/wp-content/uploads/2010/12/image2.png)

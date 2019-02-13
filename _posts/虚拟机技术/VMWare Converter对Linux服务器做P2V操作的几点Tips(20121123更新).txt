@@ -1,0 +1,20 @@
+Title: VMWare Converter对Linux服务器做P2V操作的几点Tips(20121123更新)
+Date: 2012-06-28 19:10:53
+URL: /2012/06/convert-linux-server-to-vmware/
+Tags: convert , VMware
+
+一台Ubuntu 10.04 LTS的服务器做一个p2v操作，折腾好久，几点Tips记录如下。
+
+1.  Linux服务器的P2V操作需要一个Helper服务器。中文就是助手服务器。这个服务器需要有一个IP，要能和物理机通信的。
+2.  如果是Windows，那么直接会把物理机虚拟化之后变成虚拟机，然后在手工去启动、装VMWare Tools.
+3.  而Linux是新建这个Helper服务器，给他一个IP地址，启动他，然后执行一些转换操作。注意提示是“_正在启动目标虚拟机以作为 Converter 助手服务器运行。_”
+4.  所以这个IP地址必须能获取--意味着需要DHCP，必须能和物理机通信--意味着默认网段（VMNetwork）需要能和物理机通信。
+5.  如果没有DHCP，在Converter的提交之前最后一步可以指定Helper的IP地址。注意要指定VMNetwork网段的地址，并且能和物理机通信。
+6.  否则就报错误了:converter.fault.HelperVmFailedToObtainIpFault
+7.  参考：[http://communities.vmware.com/message/2068430](http://communities.vmware.com/message/2068430)
+
+20121123更新：
+
+关于3，如果关注系统的话，会看到一个新的服务器被新建了，运行的似乎是ISOLinux，然后执行一些分区之类的操作，我感觉就是按照p2v的参数进行分区等工作。
+
+然后可以看到数据被传送到这个服务器，再次启动之后，就是你物理机的OS了。安装一下tools吧！

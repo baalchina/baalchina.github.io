@@ -1,0 +1,22 @@
+Title: Windows 2008 R2碎碎念
+Date: 2010-06-23 13:22:20
+URL: /2010/06/win-2008-r2-tips/
+Tags: Windows
+
+又折腾一番，把系统换成了08 R2，4G内存总算派上用场。
+
+#### QQ
+
+刚装好的系统，Windows Update提示有更新（是Windows Update本身的更新），装完，没启动，然后装QQ2010，QQ启动不能。
+
+[![无标题](/wp-content/uploads/2010/06/thumb.png "无标题")](/wp-content/uploads/2010/06/13fccbbc7a6f.png)
+
+重启一下，然后就好了。网上说装一下VC++2005的重分发包，无效。没重启的时候连这个包都装不上…
+
+#### Windows Live 软件
+
+总算发现这玩意支持x64系统了
+
+#### 激活
+
+虽然在学生中心申请了号了，最后还是用的KMS激活。当然，一开始还是报错，用这个帖子的办法解决了：[http://www.baalchina.net/2010/04/08007000d/](http://www.baalchina.net/2010/04/08007000d/)

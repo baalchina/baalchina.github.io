@@ -1,0 +1,15 @@
+Title: 静态html页面中的包含命令
+Date: 2010-07-07 14:17:28
+URL: /2010/07/ssi/
+Tags: shtml , ssi
+
+如果页脚、页眉都是统一的，那么就可以通过SSI(Server Side Include)来实现。
+
+SSI的文件是.shtml。Windows 2003默认支持。只是需要在“WEB服务扩展”中将“在服务器端的包含文件”打开。
+
+然后写html的时候，加入这个即可：
+  > &lt;!--#include file=&quot;head.htm&quot;—&gt;  
+
+注意默认在浏览器里面是看不到的，必须要由服务器进行解析。
+
+Dreamweaver CS5里面可以很方便的编辑。很不错。
