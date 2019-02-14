@@ -7,9 +7,9 @@ author:     baalchina
 header-img:
 catalog: true
 tags:
-  -iis
-  -web
-  -apache
+  - iis
+  - web
+  - apache
 ---
 
 # 环境
