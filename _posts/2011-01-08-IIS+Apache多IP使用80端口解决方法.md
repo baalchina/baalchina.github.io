@@ -1,17 +1,27 @@
-Title: IIS+Apache多IP，使用80端口解决方法
-Date: 2011-01-08 14:29:59
-URL: /2011/01/apache-iis-ip-address/
-Tags: Apache , iis
+---
+layout:     post
+title:      IIS+Apache多IP，使用80端口解决方法
+subtitle:   
+date:       2011-01-08
+author:     baalchina
+header-img:
+catalog: true
+tags:	-iis -web -apache
+---
 
-Windows 2003，IIS+Apache，两个IP，分别绑定IIS/Apache，但是只能启动一个，状况就是类似于80被占用。
+# 环境
+> Windows 2003，IIS+Apache，两个IP，分别绑定IIS/Apache
 
-&#160;
+# 问题
+> 只能启动一个，状况就是类似于80被占用。
 
-解决方法：
+
+
+# 解决方法：
 
 Win2003CD找到support/tools/Support.cab，找到httpdcf.exe。然后运行：
 
-&#160;
+
   > httpcfg set iplisten –i 192.168.1.1  
 
 即将IIS绑到192.168.1.1的80端口。
@@ -21,7 +31,6 @@ Win2003CD找到support/tools/Support.cab，找到httpdcf.exe。然后运行：
 
 Apache不需要特别设置，直接绑定即可。
 
-&#160;
 
 另外，切忌重启服务器。否则还是不生效。
 
