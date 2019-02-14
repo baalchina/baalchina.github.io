@@ -1,8 +1,0 @@
-Title: 如何注册一个.edu域名
-Date: 2008-08-07 16:35:13
-URL: /2008/08/edu-domain-name-register/
-Tags: edu , 域名
-
-.edu domain name registration is limited to fully accredited postsecondary institutions of higher learning, such as four-year colleges. .edu domain registration is for the most part **_limited to schools located in the United States. _**.edu domain name registration is handled exclusively by EDUCAUSE, a nonprofit organization working to promote the intelligent use of information technology in education. Their FAQ provides complete eligibility information.
-
-也就是说.edu域名只对美国的大学开放的。不过看到一个韩国的学校也在用.edu域名？奇怪...
