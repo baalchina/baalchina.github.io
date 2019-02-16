@@ -1,7 +1,15 @@
-Title: 杯具的ipod touch恢复固件
-Date: 2010-07-16 19:27:30
-URL: /2010/07/restore-apple-firmware/
-Tags: Apple , touch
+---
+layout:     post
+title:      杯具的ipod touch恢复固件
+subtitle:   
+date:       2010-07-16 19:27:30
+author:     baalchina
+header-img:
+catalog: true
+tags:
+  - Apple
+  - iPod
+---
 
 水果的东西实在是太娇贵了，什么时候见过nokia的东西摔了结果摔坏了的？杯具的偶就遇上了…touch莫名奇妙的重力感应失灵，于是打400电话，无解，决定去维修站返修。
 

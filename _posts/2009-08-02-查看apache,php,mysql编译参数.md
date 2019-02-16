@@ -28,8 +28,12 @@ tags:
   > httpd -v  
 
 # 查看php编译参数：
-  > $PHP$/bin/php -i | grep configure  
-
+```
+$PHP$/bin/php -i | grep configure  
+```
 
 当然，写个phpinfo也是可以的。
-  > <?php phpinfo();?>;
+
+```
+<?php phpinfo();?>;
+```
